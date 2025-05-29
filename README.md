@@ -26,16 +26,17 @@ Below is the set of labs to follow throughout the two days:
 | 10:00  - 10:15 | Break / One-on-one questions
 | 10:15  - 11:00 | [Introduction to Bayesian Methods](/labs/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd) (Hands-on Lab) |
 | 11:00 - 11:15 | Break / One-on-one questions |
-| 11:15 - 12:00 | [Bayesian Workflow](/lectures/bayesian_workflow/bayesian_workflow.qmd) (Lecture) |
+| 11:15 - 12:00 | [Bayesian Workflow (priors and other things)](/lectures/bayesian_workflow/bayesian_workflow.qmd) (Lecture) |
 | 12:00 - 1:00 | Networking Lunch |
-| 1:00  - 1:45 | [Bayesian Regression and Temporal Modeling](/lectures/bayesian_regression_and_temporal_modelling/bayesian_regression_and_temporal_modelling.qmd) (Lecture) |
-| 1:45  - 2:00 | Break / One-on-one questions |
-| 2:00  - 2:45 | [Bayesian Regression and Temporal Modelling](/labs/bayesian_regression_and_temporal_modelling/bayesian_regression_and_temporal_modelling.qmd) (Hands-on Lab) |
-| 2:45  - 3:00 | Break / One-on-one questions |
 | 3:00  - 3:45 | [Hierarchical Modeling](/lectures/hierarchical_modelling/hierarchical_modelling.qmd) (Lecture) |
 | 3:45  - 4:00 | Break / One-on-one questions |
 | 4:00  - 4:45 | [Hierarchical Modelling](/labs/hierarchical_modelling/hierarchical_modelling.qmd) (Hands-on Lab) |
 | 4:45  - 5:00 | Questions and Wrap-up |
+| 1:00  - 1:45 | [Bayesian Regression and non-linear functions](/lectures/bayesian_regression_and_temporal_modelling/bayesian_regression_and_temporal_modelling.qmd) (Lecture) |
+| 1:45  - 2:00 | Break / One-on-one questions |
+| 2:00  - 2:45 | [Bayesian Regression and non-linear functions](/labs/bayesian_regression_and_temporal_modelling/bayesian_regression_and_temporal_modelling.qmd) (Hands-on Lab) |
+| 2:45  - 3:00 | Break / One-on-one questions |
+
 
 ### Day 2 (August 15th 2025)
 
@@ -46,13 +47,13 @@ Below is the set of labs to follow throughout the two days:
 | 10:00 - 10:15 | Break / One-on-one questions |
 | 10:15 - 11:00 | [Spatial and Spatio-temporal Modelling](/labs/spatiotemporal_models/spatiotemporal_models.qmd) (Hands-on Lab) |
 | 11:00 - 11:15 | Break / One-on-one questions |
-| 11:15 - 12:00 | [Exposure-response modelling](lectures/exposure_response/exposure_response.qmd) (Lecture) |
-| 12:00 - 1:00 | Networking Lunch |
-| 1:00 - 2:00 | [Exposure-response modelling](/labs/exposure_response/exposure_response.qmd) (Hands-on Lab) |
-| 2:00 - 2:15 | Break / One-on-one questions |
-| 2:15 - 3:00 | [Software Options](lectures/software_options/software_options.qmd) (Lecture) |
+| 2:15 - 3:00 | [Software options](lectures/software_options/software_options.qmd) (Lecture) |
 | 3:00 - 3:15 | Break / One-on-one questions |
-| 3:15 - 4:15 | [Software Options](/labs/software_options/software_options.qmd) (Hands-on Lab) |
+| 3:15 - 4:15 | [Software options](/labs/software_options/software_options.qmd) (Hands-on Lab) |
+| 2:00 - 2:15 | Break / One-on-one questions |
+| 11:15 - 12:00 | [Advanced models](lectures/exposure_response/exposure_response.qmd) (Lecture) |
+| 12:00 - 1:00 | Networking Lunch |
+| 1:00 - 2:00 | [Advanced models](/labs/exposure_response/exposure_response.qmd) (Hands-on Lab) |
 | 4:15 - 5:00 | Workshop Summary, Interactive Panel Discussion & Course Wrap-up |
 | 5:00 - 5:15 | Questions and Wrap-up |
 
