@@ -32,9 +32,9 @@ Below is the set of labs to follow throughout the two days:
 | 1:45  - 2:00 | Break |
 | 2:00  - 2:45 | [Hierarchical modelling](/labs/hierarchical_modelling/hierarchical_modelling.qmd) (Hands-on Lab) |
 | 2:45  - 3:00 | Questions and wrap-up |
-| 3:00  - 3:45 | [Bayesian regression and non-linear functions](/lectures/bayesian_regression_and_temporal_modelling/bayesian_regression_and_temporal_modelling.qmd) (Lecture) |
+| 3:00  - 3:45 | [Bayesian regression and non-linear functions](/lectures/bayesian_regression_and_nonlinear_functions/bayesian_regression_and_nonlinear_functions.qmd) (Lecture) |
 | 3:45  - 4:00 | Break |
-| 4:00  - 4:45 | [Bayesian regression and non-linear functions](/labs/bayesian_regression_and_temporal_modelling/bayesian_regression_and_temporal_modelling.qmd) (Hands-on Lab) |
+| 4:00  - 4:45 | [Bayesian regression and non-linear functions](/labs/bayesian_regression_and_nonlinear_functions/bayesian_regression_and_nonlinear_functions.qmd) (Hands-on Lab) |
 | 4:45  - 5:00 | Questions and wrap-up |
 
 ### Day 2 (August 15th 2025)
@@ -42,17 +42,17 @@ Below is the set of labs to follow throughout the two days:
 | Time         | Activity                 |
 | ------------ | ------------------------ |
 | 8:30 - 9:00 | Check in and breakfast |
-| 9:00 - 10:00 | [Spatial and spatio-temporal modeling](/lectures/spatiotemporal_models/sstmodels.qmd) (Lecture) |
+| 9:00 - 10:00 | [Spatial and spatio-temporal modeling](/lectures/spatial_and_spatiotemporal_modeling/spatial_and_spatiotemporal_modeling.qmd) (Lecture) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:00 | [Spatial and spatio-temporal modelling](/labs/spatiotemporal_models/spatiotemporal_models.qmd) (Hands-on Lab) |
+| 10:15 - 11:00 | [Spatial and spatio-temporal modelling](/labs/spatial_and_spatiotemporal_modeling/spatial_and_spatiotemporal_modeling.qmd) (Hands-on Lab) |
 | 11:00 - 11:15 | Break |
 | 11:15 - 12:00 | [Software options](lectures/software_options/software_options.qmd) (Lecture) |
 | 12:00 - 1:00 | Networking lunch |
 | 1:00  - 1:45 | [Software options](/labs/software_options/software_options.qmd) (Hands-on Lab) |
 | 1:45  - 2:00 | Break |
-| 2:00  - 2:45 | [Advanced models](lectures/exposure_response/exposure_response.qmd) (Lecture) |
+| 2:00  - 2:45 | [Advanced models](lectures/advanced_models/advanced_models.qmd) (Lecture) |
 | 2:45  - 3:00 | Break |
-| 3:00 - 3:45 | [Advanced models](/labs/exposure_response/exposure_response.qmd) (Hands-on Lab) |
+| 3:00 - 3:45 | [Advanced models](/labs/advanced_models/advanced_models.qmd) (Hands-on Lab) |
 | 3:45 - 4:30 | Workshop summary, interactive panel discussion & course wrap-up |
 | 4:30 - 5:00 | Final farewell |
 
