@@ -1,17 +1,16 @@
 ---
-title: "Introduction to non-linear regression"
+title: "Advanced Environmental Modelling"
 author:
  - name: "Garyfallos Konstantinoudis"
    email: "g.konstantinoudis@imperial.ac.uk"
 institute: "Imperial College London"
-date: "08-22-2024"
+date: 2025-08-15
 date-format: medium
 title-slide-attributes:
   data-background-color: "#f3f4f4"
   data-background-image: "../../assets/bmeh_normal.png"
   data-background-size: 80%
   data-background-position: 60% 120%
-  subparagraph: yes
 format:
   revealjs:
     slide-number: true
@@ -23,1043 +22,509 @@ format:
     theme: [default, ../../assets/style.scss]
 ---
 
-::: {style="font-size: 90%;"}
-## A clarification
-
-In the name normal (or Poisson, binomial, etc.) linear model, the word 'linear' refers to the response being modelled as a linear combination of covariates, i.e.
-
-$$Y_i \sim N(\beta_1 + \beta_2X_{i2} + \dots + \beta_pX_{ip}, \sigma^2)$$
-
-It does not refer to each covariate-response relationship being linear. Therefore the following is also within the class of normal linear models
-
-$$Y_i \sim N(\beta_1 + \beta_2X_{i} + \beta_3X_{i}^2, \sigma^2)$$
-
-Here, the relationship between Y and x is quadratic, but it is still a linear model.
-:::
-
-## So how do you tell if the relationship is linear?
-
--   Plot each covariate against the response and see what shape the relationship is.
-
--   Make sure you plot it with the transformation used in the model.
-
--   If linear, fit a linear model, if not start thinking of the shape of the relationship.
-
--   Fit as simple a model as possible, do not overcomplicate it unnecessarily. (Occam's razor)
-
-::: {style="font-size: 80%;"}
-## Example
-
-Associations are not solely linear
-
 ```{r}
-#| echo: false
-#| eval: true
-#| fig-align: "center"
-#| fig-width: 8
-#| message: false
-#| warning: false
-
-library(dplyr)
-library(ggplot2)
-library(splines)
-
-set.seed(11)
-x <- rnorm(n = 1000)
-y <- 0.5 * x * x + rnorm(1000, sd = 0.3)
-
-ggplot(data = data.frame(x = x, y = y), aes(x = x, y = y)) +
-  geom_point(cex = 1.2) +
-  theme_bw() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, linewidth = 1) +
-  theme(text = element_text(size = 15))
-```
-:::
-
-## Ways to model non-linearity
-
--   Transform the continuous exposure to categorical variable and model the categories.
-
--   Basis functions (e.g., polynomial, Fourier)
-
--   Natural splines
-
--   Gaussian priors (e.g., random walks, kernels)
-
-## Categorical transformation
-
--   Let's first consider quintiles
-
--   What's the problem with this fit?
-
-```{r}
-#| echo: false
-#| eval: true
-#| fig-align: "center"
-#| fig-height: 6
-#| message: false
-#| warning: false
-
-data.frame(
-  x = x,
-  y = y,
-  x_cat = INLA::inla.group(x, n = 5) %>% factor()
-) -> dat_cat
-
-
-lm(y ~ x_cat, data = dat_cat) -> mod
-coefs <- c(coef(mod)[1], coef(mod)[1] + coef(mod)[-1])
-LL <- c(confint(mod)[1, 1], confint(mod)[1, 1] + confint(mod)[-1, 1])
-UL <- c(confint(mod)[1, 2], confint(mod)[1, 2] + confint(mod)[-1, 2])
-
-data.frame(
-  mean = coefs,
-  LL = LL,
-  UL = UL,
-  X = levels(dat_cat$x_cat) %>% as.character() %>% as.numeric()
-) %>%
-  ggplot() +
-  geom_point(data = data.frame(x = x, y = y), aes(x = x, y = y), alpha = 0.5) +
-  geom_point(aes(x = X, y = mean), col = "red", cex = 2) +
-  geom_errorbar(aes(x = X, ymin = LL, ymax = UL), col = "red", linewidth = 1, width = 0.3) +
-  theme_bw()
+library(here)
+library(tidyverse)
+library(INLA)
+library(hrbrthemes)
 ```
 
-## Categorical transformation
+## Advanced Environmental Models
 
--   More categories...
+-   Distributed non-linear lag models
 
--   What's the problem with this fit?
+-   Spatially varying coefficients
 
-```{r}
-#| echo: false
-#| eval: true
-#| fig-align: "center"
-#| fig-height: 6
-#| message: false
-#| warning: false
+-   Spatial DLNMs
 
-data.frame(
-  x = x,
-  y = y,
-  x_cat = INLA::inla.group(x, n = 20) %>% factor()
-) -> dat_cat
+## Distributed non-linear lag models
 
+-   An exposure event is frequently associated with a risk lasting for a defined period in the future
 
-lm(y ~ x_cat, data = dat_cat) -> mod
-coefs <- c(coef(mod)[1], coef(mod)[1] + coef(mod)[-1])
-LL <- c(confint(mod)[1, 1], confint(mod)[1, 1] + confint(mod)[-1, 1])
-UL <- c(confint(mod)[1, 2], confint(mod)[1, 2] + confint(mod)[-1, 2])
+-   The risk at a given time is assumed a result of protracted exposures experienced in the past
 
-data.frame(
-  mean = coefs,
-  LL = LL,
-  UL = UL,
-  X = levels(dat_cat$x_cat) %>% as.character() %>% as.numeric()
-) %>%
-  ggplot() +
-  geom_point(data = data.frame(x = x, y = y), aes(x = x, y = y), alpha = 0.5) +
-  geom_point(aes(x = X, y = mean), col = "red", cex = 2) +
-  geom_errorbar(aes(x = X, ymin = LL, ymax = UL), col = "red", linewidth = 1, width = 0.3) +
-  theme_bw()
-```
+-   Examples include, drugs, carcinogens, etc.
 
-## Basis Expansions
+Challenge: The risk should be modelled in terms of contributions depending on intensity and timing of the exposure events: bi-dimensional association (interaction).
 
-We need to define a set of flexible functions that could capture relationships that are not linear. In general, we can write:
+## Example 1: Lung cancer and radon exposure
 
-$$Y _i = \sum_j^K\beta_j \phi_j(X_j) + \epsilon_i$$
+![](Figures/radonlung.png)
 
-which we can write: $f(X) = \beta^T\Phi(X)$ and we say that $\Phi(X)$ is a basis system for $f$.
-
-## The polynomial basis function
-
-$$\Phi(X) = (1) \text{ ,thus } Y _i = \beta_0 + \epsilon_i$$
+## Example 2: PM10 in Chicago
 
 ```{r}
 #| echo: false
 #| eval: true
-#| fig-align: "center"
-#| fig-height: 4
-#| message: false
 #| warning: false
+#| message: false
 
 library(dlnm)
-library(patchwork)
-library(orthopolynom)
+library(ggplot2)
+library(dplyr)
 
-data(chicagoNMMAPS)
-leg4coef <- legendre.polynomials(n = 5)
+k <- 1:16
+res_store <- list()
 
-ggplot() +
-  geom_hline(yintercept = leg4coef[[1]], linewidth = 1) +
-  xlim(-1, 1) +
-  ylim(-1, 2) +
+for (i in 1:length(k)) {
+  chicagoNMMAPS$pm10_laggeg <- lag(chicagoNMMAPS$pm10, n = k[i] - 1)
+
+  mgcv::gam(
+    death ~ s(temp) +
+      s(time) + s(month) + dow + pm10_laggeg,
+    data = chicagoNMMAPS, family = "poisson"
+  ) -> tmp
+
+  res_store[[i]] <- list(
+    est = coef(tmp)["pm10_laggeg"],
+    LL = coef(tmp)["pm10_laggeg"] - 1.96 * summary(tmp)$se["pm10_laggeg"],
+    UL = coef(tmp)["pm10_laggeg"] + 1.96 * summary(tmp)$se["pm10_laggeg"]
+  )
+}
+
+
+lapply(res_store, unlist) %>%
+  do.call(rbind, .) %>%
+  as_tibble() %>%
+  mutate(
+    type =
+      factor(paste0("lag ", 0:15),
+        levels = paste0("lag ", 0:15)
+      )
+  ) -> plotres
+
+ggplot(data = plotres) +
+  geom_point(aes(x = type, y = est.pm10_laggeg)) +
+  # geom_line(aes(x=type, y=est.pm10_laggeg, group=1), linetype = "dashed") +
+  geom_errorbar(aes(x = type, ymin = LL.pm10_laggeg,
+                    ymax = UL.pm10_laggeg, width = 0.1)) +
+  geom_hline(yintercept = 0, col = "red", linetype = "dotted") +
   theme_bw() +
-  ylab("") +
-  xlab("") -> p1
-chicagoNMMAPS %>%
-  filter(year == 1987) %>%
-  ggplot(aes(x = time, y = temp)) +
-  geom_point(cex = 1.3) +
-  theme_bw() +
-  geom_smooth(method = "lm", formula = y ~ 1, se = FALSE, cex = .6, linewidth = 1) -> p2
+  ylab("log risk PM10") +
+  xlab("Lags") -> p1
 
-p1 | p2 + theme(text = element_text(size = 15))
+
+ggplot(data = plotres) +
+  geom_point(aes(x = type, y = est.pm10_laggeg)) +
+  geom_line(aes(x = type, y = est.pm10_laggeg, group = 1)) +
+  geom_ribbon(aes(x = type, ymin = LL.pm10_laggeg,
+                  ymax = UL.pm10_laggeg, group = 1),
+              fill = "blue", alpha = 0.2) +
+  geom_hline(yintercept = 0, col = "red", linetype = "dotted") +
+  theme_bw() +
+  ylab("log risk PM10") +
+  xlab("Lags") -> p2
 ```
-
-## The polynomial basis function
-
-$$\Phi(X) = (1 X) \text{ ,thus } Y _i = \beta_0 + \beta_1 X_1 + \epsilon_i$$
 
 ```{r}
 #| echo: false
 #| eval: true
-#| fig-align: "center"
-#| fig-height: 4
-#| message: false
 #| warning: false
+#| message: false
 
-library(RColorBrewer)
-cols <- RColorBrewer::brewer.pal(n = 8, "Set1")
-
-data(chicagoNMMAPS)
-
-ggplot() +
-  geom_abline(slope = 1, intercept = 0, col = cols[1], cex = .6, linewidth = 1) +
-  geom_hline(yintercept = leg4coef[[1]], linewidth = 1) +
-  xlim(-1, 1) +
-  ylim(-1, 2) +
-  theme_bw() +
-  ylab("") +
-  xlab("") -> p1
-
-chicagoNMMAPS %>%
-  filter(year == 1987) %>%
-  ggplot(aes(x = time, y = temp)) +
-  geom_point(cex = 1.3) +
-  theme_bw() +
-  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, cex = .6, linewidth = 1) -> p2
-
-p1 | p2
+chicagoNMMAPS %>% head()
 ```
 
-## The polynomial basis function
+## Example 2: PM10 in Chicago
 
-$$\Phi(X) = (1 \; X \; X^2) \text{ ,thus } Y _i = \beta_0 + \beta_1 X + \beta_2 X^2 + \epsilon_i$$
+What are the main assumptions here? (Spoiler: independence!!)
 
 ```{r}
 #| echo: false
 #| eval: true
 #| fig-align: "center"
-#| fig-height: 4
+#| warning: false
+#| message: false
 
-ggplot() +
-  geom_abline(slope = 1, intercept = 0, col = cols[1], cex = .6, linewidth = 1) +
-  geom_hline(yintercept = leg4coef[[1]], cex = .6, linewidth = 1) +
-  xlim(-1, 1) +
-  ylim(-1, 2) +
-  geom_line(aes(
-    x = seq(from = -1, to = 1, length.out = 1000),
-    y = -0.5 + 1.5 * seq(from = -1, to = 1, length.out = 1000)^2
-  ), linewidth = 1, col = cols[2]) +
-  theme_bw() +
-  ylab("") +
-  xlab("") -> p1
-
-chicagoNMMAPS %>%
-  filter(year == 1987) %>%
-  ggplot(aes(x = time, y = temp)) +
-  geom_point(cex = 1.3) +
-  theme_bw() +
-  geom_smooth(method = "lm", formula = y ~ x + I(x^2), se = FALSE, cex = .6, linewidth = 1) -> p2
-
-p1 | p2
+library(patchwork)
+(p1 + theme(text = element_text(size = 15))) /
+  (p2 + theme(text = element_text(size = 15)))
 ```
 
-## The polynomial basis function
+## Distributed linear lag models
 
-$$\Phi(X) = (1 \; X \; X^2 \; X^3) \text{ ,thus } Y _i = \beta_0 + \beta_1 X + \beta_2 X^2 + \beta_3 X^3 + \epsilon_i$$
+The unconstrained distributed lag model of order $q$ is:
 
-```{r}
-#| echo: false
-#| eval: true
-#| fig-align: "center"
-#| fig-height: 4
-x.plot <- seq(from = -1, to = 1, length.out = 1000)
-y <- -1.5 * x.plot + 2.5 * x.plot^3
+$$Y_t = \beta_0 + \beta_{10}X_t + \beta_{11}X_{t-1} + \dots+ \beta_{1q}X_{t-q} + \epsilon_t$$
 
-ggplot() +
-  geom_abline(slope = 1, intercept = 0, col = cols[1], cex = .6, linewidth = 1) +
-  geom_hline(yintercept = leg4coef[[1]], cex = .6, linewidth = 1) +
-  xlim(-1, 1) +
-  ylim(-1, 2) +
-  geom_line(aes(
-    x = seq(from = -1, to = 1, length.out = 1000),
-    y = -0.5 + 1.5 * seq(from = -1, to = 1, length.out = 1000)^2
-  ), col = cols[2], cex = .6, linewidth = 1) +
-  geom_line(aes(
-    x = x.plot,
-    y = y
-  ), col = cols[3], cex = .6, linewidth = 1) +
-  theme_bw() +
-  ylab("") +
-  xlab("") -> p1
+-   $\beta_{1\ell}$ is the effect at lag $\ell=0, 1, \dots q$ and $\epsilon_t$ an error term.
 
-chicagoNMMAPS %>%
-  filter(year == 1987) %>%
-  ggplot(aes(x = time, y = temp)) +
-  geom_point(cex = 1.3) +
-  theme_bw() +
-  geom_smooth(method = "lm", formula = y ~ x + I(x^2) + I(x^3), se = FALSE, cex = .6, linewidth = 1) -> p2
+-   The overall impact for a unit change in $X$ is given by $\sum^q_{\ell=0}\beta_\ell$.
 
-p1 | p2
-```
-
-## The polynomial basis function
-
-$$\Phi(X) = (1 \; X \; X^2 \; X^3 \; X^4) \text{ ,thus}$$
-
-$$Y _i = \beta_0 + \beta_1 X + \beta_2 X^2 + \beta_3 X^3 + \beta_4 X^4 + \epsilon_i$$
-
-```{r}
-#| echo: false
-#| eval: true
-#| fig-align: "center"
-#| fig-height: 4
-
-x.plot.1 <- seq(from = -1, to = 1, length.out = 1000)
-y.1 <- 0.375 - 3.75 * x.plot.1^2 + 4.375 * x.plot.1^4
-
-ggplot() +
-  geom_abline(slope = 1, intercept = 0, col = cols[1], cex = .6, linewidth = 1) +
-  geom_hline(yintercept = leg4coef[[1]], cex = .6, linewidth = 1) +
-  xlim(-1, 1) +
-  ylim(-1, 2) +
-  geom_line(aes(
-    x = seq(from = -1, to = 1, length.out = 1000),
-    y = -0.5 + 1.5 * seq(from = -1, to = 1, length.out = 1000)^2
-  ), col = cols[2], cex = .6, linewidth = 1) +
-  geom_line(aes(
-    x = x.plot,
-    y = y
-  ), col = cols[3], cex = .6, linewidth = 1) +
-  geom_line(aes(
-    x = x.plot.1,
-    y = y.1
-  ), col = cols[4], cex = .6, linewidth = 1) +
-  theme_bw() +
-  ylab("") +
-  xlab("") -> p1
-
-chicagoNMMAPS %>%
-  filter(year == 1987) %>%
-  ggplot(aes(x = time, y = temp)) +
-  geom_point(cex = 1.3) +
-  theme_bw() +
-  geom_smooth(method = "lm", formula = y ~ x + I(x^2) + I(x^3) + I(x^4), se = FALSE, cex = .6, linewidth = 1) -> p2
-
-p1 | p2
-```
-
-## The polynomial basis function
-
-$$\Phi(X) = (1 \; X \; X^2 \; X^3 \; X^4 \; X^5) \text{ ,thus }$$
-
-$$Y _i = \beta_0 + \beta_1 X + \beta_2 X^2 + \beta_3 X^3 + \beta_4 X^4 +\beta_5 X^5 + \epsilon_i $$
-
-```{r}
-#| echo: false
-#| eval: true
-#| fig-align: "center"
-#| fig-height: 4
-
-x.plot.2 <- seq(from = -1, to = 1, length.out = 1000)
-y.2 <- 1.875 * x.plot.2 - 8.75 * x.plot.2^3 + 7.875 * x.plot.2^5
-
-ggplot() +
-  geom_abline(slope = 1, intercept = 0, col = cols[1], cex = .6, linewidth = 1) +
-  geom_hline(yintercept = leg4coef[[1]], cex = .6, linewidth = 1) +
-  xlim(-1, 1) +
-  ylim(-1, 2) +
-  geom_line(aes(
-    x = seq(from = -1, to = 1, length.out = 1000),
-    y = -0.5 + 1.5 * seq(from = -1, to = 1, length.out = 1000)^2
-  ), col = cols[2], cex = .6, linewidth = 1) +
-  geom_line(aes(
-    x = x.plot,
-    y = y
-  ), col = cols[3], cex = .6, linewidth = 1) +
-  geom_line(aes(
-    x = x.plot.1,
-    y = y.1
-  ), col = cols[4], cex = .6, linewidth = 1) +
-  geom_line(aes(
-    x = x.plot.2,
-    y = y.2
-  ), col = cols[5], cex = .6, linewidth = 1) +
-  theme_bw() +
-  ylab("") +
-  xlab("") -> p1
-
-chicagoNMMAPS %>%
-  filter(year == 1987) %>%
-  ggplot(aes(x = time, y = temp)) +
-  geom_point(cex = 1.3) +
-  theme_bw() +
-  geom_smooth(method = "lm", formula = y ~ x + I(x^2) + I(x^3) + I(x^4) + I(x^5), se = FALSE, cex = .6, linewidth = 1) -> p2
-
-p1 | p2
-```
+## Example 2: PM10 in Chicago
 
 ::: {style="font-size: 80%;"}
-## Pros and cons
-
-Pros
-
--   These curves are quite flexible---a quadratic can fit most biologically plausible curves
-
--   The curves only use 1(quadratic) or 2(cubic) degrees of freedom more than linear, unlike dummy variable models
-
--   The results are not sensitive to choice of boundaries (there aren't any)
-
--   Outliers mostly influence the extremes of the curve, not the center part
-
-Cons
-
--   They use more degrees of freedom than linear, and therefore have less power
-
--   There is still some sensitivity to influential observations
-:::
-
-## Other types of basis function
-
--   **Harmonics** - The Fourier basis function
-
-    $$1, sin(\omega X), cos(\omega X), sin(2\omega X), cos(2\omega X), \dots, $$
-
-    $$sin(m \omega X), cos(m \omega X)$$
-
--   constant $\omega$ defines the period of oscillation of the first sine/cosine pair. This is $\omega = 2\pi/P$ where $P$ is the period.
-
-## Example: Fourier basis function
-
-$$\Phi(X) = (1 \; sin(\omega X) \; cos(\omega X) \; sin(2\omega X) \; cos(2\omega X)) \text{ ,thus }$$
-
-$$Y _i = \beta_0 + \beta_1 sin(\omega X) + \beta_2 cos(\omega X) + \beta_3 sin(2 \omega X) + \beta_4 cos(2\omega X) + \epsilon_i$$
-
-```{r}
-#| echo: false
-#| eval: true
-#| fig-align: "center"
-#| fig-width: 10
-
-P <- 360
-omega <- 2 * pi / P
-x <- seq(from = 0, to = 360, length.out = 1000)
-y <- sin(2 * omega * x)
-
-ggplot() +
-  geom_line(aes(x = x, y = sin(2 * omega * x)), cex = .6, col = cols[1]) +
-  geom_line(aes(x = x, y = cos(2 * omega * x)), cex = .6, col = cols[2]) +
-  theme_bw() +
-  xlab("") +
-  ylab("") -> p1
-
-chicagoNMMAPS %>%
-  filter(year == 1987) %>%
-  ggplot(aes(x = time, y = temp)) +
-  geom_point(cex = .8) +
-  theme_bw() +
-  geom_smooth(method = "lm", formula = y ~ I(sin(omega * x)) + I(cos(omega * x)) + I(sin(2 * omega * x)) + I(2 * cos(omega * x)), se = FALSE, cex = .6) -> p2
-
-p1 | p2
-```
-
-::: {style="font-size: 90%;"}
-## Pros and cons
-
-Pros
-
--   Excellent computational properties, especially if the observations are equally spaced.
-
--   Natural for describing periodic data, such as the annual weather cycle
-
--   The results are not sensitive to choice of boundaries (there aren't any)
-
-Cons
-
--   functions are periodic; this can be a problem if the data are, for example, growth curves.
-:::
-
-## Parametric non-linear effects
-
--   The following models captured the non-linear relationships using simple non-linear functions.
-
--   These types of models are to be preferred if possible, because again they are simpler to make inference from, e.g. the relationship is quadratic.
-
--   However, there may be times when the relationship being modelled does not look like a parametric function. Then what should you do?
-
-## Parametric non-linear effects
-
-Consider the following form
-
-```{r}
-set.seed(11)
-x <- rnorm(n = 1000)
-y <- numeric(1000)
-y[x < 0] <- 1 + 0.5 * x[x < 0] + 0.2 * x[x < 0]^2 + rnorm(n = length(x[x < 0]), sd = 0.2)
-y[x >= 0] <- 0.5 + sin(2 * pi / 2 * x[x >= 0]) + rnorm(n = length(x[x > 0]), sd = 0.3)
-
-ggplot() +
-  geom_point(aes(x = x, y = y), cex = 1.3, col = cols[1]) +
-  theme_bw() +
-  xlab("") +
-  ylab("") +
-  theme(text = element_text(size = 15))
-```
-
-It doesn't look like any simple parametric form (e.g. polynomial, sinusoidal, etc), so what do you do?
-
-## Smooth functions
-
--   There are many methods to estimate non-linear relationships such as that on the previous slide.
-
--   They are generically called smooth functions, and include splines (lots of different types), kernel smoothers and local linear smoothers.
-
--   We will focus on splines in this lab, because they are simple to understand graphically and are easy to fit to the data.
-
-## Splines
-
--   Splines were originally thin splints of wood used to trace complex, smooth curves in engineering and architectural.
-
--   Splines were pinned to the drawing at points where the spline changed its curvature.
-
-![](Figures/splinesExample.png){fig-align="center"}
-
 ```{r}
 #| echo: false
 #| eval: true
 
-dat <- data.frame(x = x, y = y)
-```
+chicagoNMMAPS$pm10_laggeg0 <- lag(chicagoNMMAPS$pm10, n = 0)
+chicagoNMMAPS$pm10_laggeg1 <- lag(chicagoNMMAPS$pm10, n = 1)
+chicagoNMMAPS$pm10_laggeg2 <- lag(chicagoNMMAPS$pm10, n = 2)
+chicagoNMMAPS$pm10_laggeg3 <- lag(chicagoNMMAPS$pm10, n = 3)
+chicagoNMMAPS$pm10_laggeg4 <- lag(chicagoNMMAPS$pm10, n = 4)
 
-## Piecewise constant (splines?)
+mgcv::gam(death ~ s(temp) +
+  s(time) + s(month) + dow + pm10_laggeg0 + pm10_laggeg1 + pm10_laggeg2 +
+  pm10_laggeg3 + pm10_laggeg4, data = chicagoNMMAPS, family = "poisson") -> mod_unc
 
-```{r}
-#| echo: false
-#| eval: true
+cri <- 
+  data.frame(
+    pointest = summary(mod_unc)$p.coef, 
+    LL = summary(mod_unc)$p.coef - 1.96*summary(mod_unc)$se[1:12],  
+    UL = summary(mod_unc)$p.coef + 1.96*summary(mod_unc)$se[1:12])
 
-dat %>%
-  dplyr::mutate(cat = cut(x, breaks = c(-10, -1, 0.5, 1.5, 3, 100))) %>%
-  dplyr::group_by(cat) %>%
-  dplyr::mutate(y.const = mean(y)) %>%
-  ungroup() %>%
+cri <- cri %>% 
+         filter(startsWith(rownames(cri), "pm10")) %>% 
+         mutate(lag = 0:4, type = "joint")
+
+rbind(
+  plotres[1:5,] %>% 
+  mutate(pointest = est.pm10_laggeg, 
+         LL = LL.pm10_laggeg, 
+         UL = UL.pm10_laggeg, 
+         lag = 0:4, 
+         type = "independent") %>% 
+  select(pointest, LL, UL, lag, type), 
+  cri
+) %>% 
   ggplot() +
-  geom_point(aes(x = x, y = y), cex = 1.3, col = cols[1]) +
-  geom_line(aes(x = x, y = y.const, group = y.const), lwd = 1) +
-  theme_bw() +
-  xlab("") +
-  ylab("") +
-  theme(text = element_text(size = 15))
+    geom_point(aes(x = lag, y = pointest, col = type),
+               position = position_dodge(width = .5), size = 2) +
+    geom_errorbar(aes(x = lag, ymin = LL,
+                    ymax = UL,col = type), width = 0.1, lwd = 1,  
+                  position = position_dodge(width = .5)) +
+    geom_hline(yintercept = 0, col = "red", linetype = "dotted") +
+    theme_bw() +
+    ylab("log risk PM10") +
+    xlab("Lags")
+
 ```
-
-## Piecewise Linear Splines
-
--   We begin fitting splines by dividing the range of exposure into pieces.
--   Instead of fitting a constant in each piece, we fit a separate linear term in each piece.
--   This has more power since it allows variation within categories to predict variation in outcome.
--   We can use fewer categories to capture the deviation from a strictly linear curve because we have slopes within category.
-
-::: {style="font-size: 80%;"}
-## Linear splines
-
-Linear threshold model
-
-```{=tex}
-\begin{align}
-Y_i &= \beta_0^{(1)} + \beta_1^{(1)}x + \epsilon_i \qquad x\leq-1\\
-Y_i &= \beta_0^{(2)} + \beta_1^{(2)}x + \epsilon_i \qquad -1<x\leq0.5\\
-Y_i &= \beta_0^{(3)} + \beta_1^{(3)}x + \epsilon_i \qquad 0.5<x\leq1.5\\
-Y_i &= \beta_0^{(4)} + \beta_1^{(4)}x + \epsilon_i \qquad 1.5<x\leq3\\
-Y_i &= \beta_0^{(5)} + \beta_1^{(5)}x + \epsilon_i \qquad x\geq3\\
-\end{align}
-```
-Linear spline model
-
-$Y_i = \beta_0 + \beta_1x + \beta_2(x+1)_+ + \beta_3(x-0.5)_+ + \beta_4 (x-1.5)_+ + \beta_5(x-3)_+ + \epsilon_i$
-
-$$(x-k)_+=\begin{cases} 0, \quad x<k \\ x-k, \quad x\geq k\\\end{cases}$$
 :::
 
-## Linear splines in R
+::: {style="font-size: 80%;"}
+## Considerations
 
--   You can use the `bs()` function in R to define the basis function:
+-   Easy implementation when lags are few; overparametrized when we want to assess a lot of lags
+
+-   Collinearity issues: The exposure is likely to be highly correlated with the values of the previous/after days. Weird behaviours in the point estimates (surprising protective effects), variance inflation.
+
+Alternative: to impose some constraints!
+
+-   A constant effect within lag intervals
+
+-   Average of the exposures in the previous $L$ day
+
+-   Describing the coefficients with a smooth curve using continuous functions such as splines, polynomials, and other basis functions.
+
+The idea: $\beta_{\ell}$ can be modelled using a basis function.
+:::
+
+::: {style="font-size: 80%;"}
+## Polynomial DLM
+
+Let $\beta_\ell = \sum_j^p\tau_j\ell^j, \;\;\; \ell = 0, \dots, q$ , lets write it for 2 lags using a 3rd degree polynomial to see it explicitly:
+
+\begin{align}Y_t &= \beta_0 + \beta_{10}X_t + \beta_{11}X_{t-1} + \beta_{12}X_{t-2} + \epsilon_t\\\beta_{10} &= \tau_0, \; \beta_{11} = \tau_0 + \tau_1 + \tau_2 + \tau_3, \; \beta_{12} = \tau_0 + \tau_1 2 + \tau_2 2^2 + \tau_3 2^3\end{align}
+
+and we can modify as per first lecture to model more localized structures using: $\beta_\ell = \sum_j^p\tau_j\ell^j + \sum_k^K\nu_k(\ell-\kappa_k)^p_+$, thus:
+
+\begin{align*}\beta_{10} &= \tau_0 + \nu_1(0-\kappa_1)^3_+ + \dots + \nu_K(0-\kappa_K)^3_+, \\\beta_{11} &= \tau_0 + \tau_1 + \tau_2 + \tau_3 + \nu_1(1-\kappa_1)^3_+ + \dots + \nu_K(1-\kappa_K)^3_+, \\\beta_{12} &= \tau_0 + \tau_1 2  + \tau_2 2^2 + \tau_3 2^3 + \nu_1(2-\kappa_1)^3_+ + \dots + \nu_K(2-\kappa_K)^3_+\end{align*}
+
+and similarly we can penalize it can estimate *the penalised spline distributed lag estimate* of $\beta_{\ell}$
+:::
+
+## Polynomial DLM in R: Chicago
 
 ```{r}
 #| echo: true
 #| eval: true
-
-bs(dat$x, degree = 1, knots = c(-1, 0.5, 1.5, 3)) %>%
-  head()
+cb1.pm <- crossbasis(chicagoNMMAPS$pm10,
+  lag = 15, argvar = list(fun = "lin"),
+  arglag = list(fun = "poly", degree = 4)
+)
+head(cb1.pm)
 ```
 
-## Linear splines in R
+```{r}
+#| echo: true
+#| eval: true
+cb1.pm[100:106,]
+```
 
--   And plot the result:
+## Polynomial DLM in R: Chicago
 
 ```{r}
 #| echo: false
 #| eval: true
-#| fig-align: "center"
-#| fig-width: 10
-#| message: false
-#| warning: false
-
-fit <- lm(y ~ bs(x, degree = 1, knots = c(-1, 0.5, 1.5, 3)), data = dat)
-
-ggplot() +
-  geom_point(aes(x = x, y = y), col = cols[1], cex = 1) +
-  theme_bw() +
-  xlab("") +
-  ylab("") +
-  geom_line(aes(x = dat$x, y = fit$fitted.values), lwd = 1) +
-  theme(text = element_text(size = 15))
-```
-
-::: {style="font-size: 80%;"}
-## Cubic splines
-
-Similarly we can define higher order polynomial splines, for instance:
-
-```{=tex}
-\begin{align}
-Y_i = \beta_0 &+ \beta_1 x + \beta_2 x^2 + \beta_3 x^3 + \\
-& \beta_4 (X+1)_+ + \beta_5 (X+1)_+^2 + \beta_6(X+1)_+^3 + \\
-& \beta_7 (x-0.5)_+ + \beta_8 (x-0.5)_+^2 + \beta_9 (x-0.5)_+^3 + \\
-&\dots + \epsilon_i \\
-(x-k)_+ & =
-\begin{cases}
-0, \quad x<k \\ x-k, \quad x\geq k
-\end{cases}
-\end{align}
-```
-which reduces to the following to ensure smooth curvature on the knots (it can be seen after deriving the first and second derivative):
-
-```{=tex}
-\begin{align}
-Y_i = \beta_0 & + \beta_1 x +\beta_2 x^2 + \beta_3 x_3 + \\
-&\beta_6 (x+1)_+^3 + \beta_9(x-0.5)_+^3 + \dots + \epsilon_i
-\end{align}
-```
-:::
-
-::: {style="font-size: 80%;"}
-## Cubic splines
-
--   Similar as before:
--   `bs(x, degree = 3, knots = c(-1, 0.5, 1.5, 3))`:
-
-```{r}
-#| echo: false
-#| eval: true
-fit_c <- lm(y ~ bs(x, degree = 3, knots = c(-1, 0.5, 1.5, 3)), data = dat)
-```
-
-without the splines package:
-
-```{r}
-#| echo: false
-#| eval: true
-fit_nopack <- lm(
-  y ~ x + I(x^2) + I(x^3) + I((x + 1)^3 * (x >= -1)) +
-    I((x - 0.5)^3 * (x >= 0.5)) + I((x - 1.5)^3 * (x >= 1.5)) + I((x - 3)^3 * (x >= 3)),
-  data = dat
+model_dlm <- mgcv::gam(death ~ s(temp) + s(time) + s(month) + dow + 
+                         cb1.pm,
+  family = poisson(), chicagoNMMAPS
 )
 ```
 
 ```{r}
-#| echo: false
+#| echo: true
 #| eval: true
-#| fig-align: "center"
-#| fig-width: 10
-ggplot() +
-  geom_point(aes(x = x, y = y), cex = 1.3, col = cols[1]) +
-  theme_bw() +
-  xlab("") +
-  ylab("") +
-  geom_line(aes(x = dat$x, y = fit_nopack$fitted.values), lwd = 1) +
-  theme(text = element_text(size = 15))
-```
-:::
-
-::: {style="font-size: 80%;"}
-## Splines
-
-A spline of order n is a piecewise polynomial function of degree $n-1$ in a variable $x$.
-
-(Basis) Splines can be:
-
--   Piecewise constant.
-
--   Linear.
-
--   Quadratic.
-
--   Cubic.
-
--   higher order polynomials.
-
--   etc.
-
-Why are the borders so wiggly?
-:::
-
-## Natural cubic splines
-
--   Splines can have high variance in the boundaries.
-
--   This problem aggravates if knots too few.
-
--   The natural spline constraints the fit to be linear before and after the first and last knots.
-
--   This stabilises the fitting and makes a more reasonable assumption.
-
-::: {style="font-size: 90%;"}
-## Natural cubic splines in R
-
--   To define natural cubic splines in R:
--   `ns(x, knots = c(-1, 0.5, 1.5, 3)):`
-
-```{r}
-#| echo: false
-#| eval: true
-#| fig-align: "center"
-#| fig-width: 10
-
-fit_ns <- lm(y ~ ns(x, knots = c(-1, 0.5, 1.5, 3)), data = dat)
-
-ggplot() +
-  geom_point(aes(x = x, y = y), cex = 1.3, col = cols[1]) +
-  theme_bw() +
-  xlab("") +
-  ylab("") +
-  geom_line(aes(x = dat$x, y = fit_ns$fitted.values), lwd = 1) +
-  theme(text = element_text(size = 15))
-```
-:::
-
-::: {style="font-size: 90%;"}
-## Well, better fit be achieved with more knots
-
--   `ns(x, df = 10)`
-
-```{r}
-#| echo: false
-#| eval: true
-#| fig-align: "center"
-#| fig-width: 10
-fit_ns2 <- lm(y ~ ns(x, df = 10), data = dat)
-
-ggplot() +
-  geom_point(aes(x = x, y = y), cex = 1.3, col = cols[1]) +
-  theme_bw() +
-  xlab("") +
-  ylab("") +
-  geom_line(aes(x = dat$x, y = fit_ns2$fitted.values), lwd = 1)
-```
-:::
-
-::: {style="font-size: 90%;"}
-## ... and more
-
-```{r}
-#| echo: false
-#| eval: true
-#| fig-align: "center"
-#| fig-width: 10
-fit_ns2 <- lm(y ~ ns(x, df = 50), data = dat)
-
-ggplot() +
-  geom_point(aes(x = x, y = y), cex = 1.3, col = cols[1]) +
-  theme_bw() +
-  xlab("") +
-  ylab("") +
-  geom_line(aes(x = dat$x, y = fit_ns2$fitted.values), lwd = 1)
-```
-:::
-
-::: {style="font-size: 90%;"}
-## ... and more
-
-```{r}
-#| echo: false
-#| eval: true
-#| fig-align: "center"
-#| fig-width: 10
-fit_ns3 <- lm(y ~ ns(x, df = 100), data = dat)
-
-ggplot() +
-  geom_point(aes(x = x, y = y), cex = 1.3, col = cols[1]) +
-  theme_bw() +
-  xlab("") +
-  ylab("") +
-  geom_line(aes(x = dat$x, y = fit_ns3$fitted.values), lwd = 1)
-```
-:::
-
-::: {style="font-size: 90%;"}
-## ... and more
-
-```{r}
-#| echo: false
-#| eval: true
-#| fig-align: "center"
-#| fig-width: 10
-fit_ns4 <- lm(y ~ ns(x, df = 1000), data = dat)
-
-ggplot() +
-  geom_point(aes(x = x, y = y), cex = 1.3, col = cols[1]) +
-  theme_bw() +
-  xlab("") +
-  ylab("") +
-  geom_line(aes(x = dat$x, y = fit_ns4$fitted.values), lwd = 1)
+pred1.pm <- crosspred(cb1.pm, model_dlm, at = 0:20, bylag = 0.2)
+plot(pred1.pm,
+  ptype = "slices", var = 1, cumul = FALSE, ylab = "RR",
+  main = "Association with a 1-unit increase in PM10"
+)
 ```
 
-is this a useful model?
-:::
+What is the main assumption here? Can we relax it?
 
-## Gaussian priors
+## Extension to distributed non-linear lag models
 
--   We will focus on random walks of order 2, which is the Bayesian analogue of (penalized) splines. Recall:
+-   We know that temperature and mortality have a U-shape relationship
 
-$$\Delta^2x_i = x_i - 2x_{i+1} + x_{i+2} \sim N(0, \tau^{-1})$$
+-   We know that high temperature has a lag effect on mortality
 
--   This is very similar with the categorical transformation example, but written in a more concise manner (this model is not overparametrised).
+-   Can we define models to combine these two components?
 
--   The penalty is given through the prior of the precision parameter. The prior controls smoothness: the strongest it is the smoother the result. (given the data)
+The idea: to calculate this bi-dimensional relationship, we need a basis function that combines the basis function in the lag dimension and the basis function in the exposure dimension: **Cross-basis function**
 
-## Random walk of order 2 (strong prior)
+## Linear-by-constant
+
+![](Figures/dlnm1.PNG){fig-align="center"}
+
+## Spline-by-constant
+
+![](Figures/dlnm2.PNG){fig-align="center"}
+
+## Step-by-step
+
+![](Figures/dlnm3.PNG){fig-align="center"}
+
+## Spline-by-spline
+
+![](Figures/dlnm4.PNG){fig-align="center"}
+
+## Example 3: Temperature in Chicago
 
 ```{r}
-#| echo: false
+#| echo: true
 #| eval: true
-#| fig-align: "center"
-#| fig-width: 10
+cb2.pm <- crossbasis(chicagoNMMAPS$pm10,
+  lag = 1, argvar = list(fun = "lin"),
+  arglag = list(fun = "strata")
+)
 
-library(INLA)
+varknots <- equalknots(chicagoNMMAPS$temp, fun = "bs", df = 5, degree = 2)
+lagknots <- logknots(10, 3)
+cb2.temp <- crossbasis(chicagoNMMAPS$temp, lag = 10, argvar = list(
+  fun = "bs",
+  knots = varknots
+), arglag = list(knots = lagknots))
 
-dat$x_cat <- INLA::inla.group(x, n = 50)
 
-hyper.rw2 <- list(theta = list(prior = "pc.prec", param = c(0.1, 0.01)))
-inla(
-  formula = y ~ f(x_cat, model = "rw2", hyper = hyper.rw2, scale.model = TRUE, constr = TRUE),
-  data = dat,
-  family = "gaussian"
-) -> inla_mod
+model_dlm2 <- mgcv::gam(death ~ cb2.pm + cb2.temp + s(time) + s(month) + dow,
+  family = poisson(), chicagoNMMAPS
+)
 
-data.frame(
-  x = inla_mod$summary.random$x_cat$ID,
-  med = inla_mod$summary.fixed$`0.5quant` + inla_mod$summary.random$x_cat$`0.5quant`,
-  LL = inla_mod$summary.fixed$`0.5quant` + inla_mod$summary.random$x_cat$`0.025quant`,
-  UL = inla_mod$summary.fixed$`0.5quant` + inla_mod$summary.random$x_cat$`0.975quant`
-) %>%
-  ggplot() +
-  geom_point(data = dat, aes(x = x, y = y)) +
-  geom_line(aes(x = x, y = med)) +
-  geom_ribbon(aes(x = x, ymin = LL, ymax = UL), alpha = 0.3, fill = "blue") +
-  theme_bw()
+pred2.temp <- crosspred(cb2.temp, model_dlm2, cen = 21, by = 1)
 ```
 
-## Random walk of order 2 (vague prior)
+## Example 3: Temperature in Chicago
 
 ```{r}
-#| echo: false
+#| echo: true
 #| eval: true
 #| fig-align: "center"
-#| fig-width: 10
-
-library(INLA)
-
-dat$x_cat <- INLA::inla.group(x, n = 50)
-
-hyper.rw2 <- list(theta = list(prior = "pc.prec", param = c(10, 0.8)))
-inla(
-  formula = y ~ f(x_cat, model = "rw2", hyper = hyper.rw2, scale.model = TRUE, constr = TRUE),
-  data = dat,
-  family = "gaussian"
-) -> inla_mod
-
-data.frame(
-  x = inla_mod$summary.random$x_cat$ID,
-  med = inla_mod$summary.fixed$`0.5quant` + inla_mod$summary.random$x_cat$`0.5quant`,
-  LL = inla_mod$summary.fixed$`0.5quant` + inla_mod$summary.random$x_cat$`0.025quant`,
-  UL = inla_mod$summary.fixed$`0.5quant` + inla_mod$summary.random$x_cat$`0.975quant`
-) %>%
-  ggplot() +
-  geom_point(data = dat, aes(x = x, y = y)) +
-  geom_line(aes(x = x, y = med)) +
-  geom_ribbon(aes(x = x, ymin = LL, ymax = UL), alpha = 0.3, fill = "blue") +
-  theme_bw()
+#| fig-width: 5
+plot(pred2.temp,
+  xlab = "Temperature", zlab = "RR", theta = 200, phi = 40, lphi = 100,
+  main = "3D graph of temperature effect"
+)
 ```
 
-## Example: Mortality and temperature in Italy
-
-::: columns
-::: {.column width="50%"}
--   1,946,755 summer deaths during 2011-2018 in Italy
-
--   Data is available at 107 administrative units
-
--   Temperature is available from ERA-5 at 9km resolution
-:::
-
-::: {.column width="50%"}
-```{r}
-#| echo: false
-#| eval: true
-#| fig.width: 7
-
-library(sf)
-library(ggplot2)
-read_sf("data/shp.shp") -> shp
-
-ggplot() +
-  geom_sf(data = shp) +
-  theme_bw()
-```
-:::
-:::
-
-## Example
-
--   Fit a linear, a categorical and a random walk model for capturing the effect of temperature.
+::: {style="font-size: 70%;"}
+## Example 3: Temperature in Chicago
 
 ```{r}
-#| echo: false
+#| echo: true
 #| eval: true
 #| fig-align: "center"
-#| fig-width: 12
+library(plotly)
+p <- plot_ly()
+p <- add_surface(p, x = 0:10, y = -20:30, z = pred2.temp$matRRfit)
 
-library(INLA)
-library(dplyr)
-library(patchwork)
-
-dat <- readRDS("data/dataItaly_2")
-
-##
-## Linear IID
-
-form <- deaths ~ offset(log(expected)) + mean.temp
-
-inla.linear <- inla(form, data = dat, family = "poisson")
-# summary(inla.linear)
-
-X <- seq(from = -3, to = 33)
-Y_med <- inla.linear$summary.fixed["mean.temp", "0.5quant"] %*% t(X)
-Y_LL <- inla.linear$summary.fixed["mean.temp", "0.025quant"] %*% t(X)
-Y_UL <- inla.linear$summary.fixed["mean.temp", "0.975quant"] %*% t(X)
-
-
-data.frame(
-  X = X,
-  Y_med = Y_med,
-  Y_LL = Y_LL,
-  Y_UL = Y_UL
-) %>%
-  ggplot() +
-  geom_point(aes(x = X, y = Y_med), size = 0.4) +
-  geom_ribbon(aes(x = X, ymin = Y_LL, ymax = Y_UL), alpha = 0.2, fill = "blue") +
-  ylim(-0.1, 0.3) +
-  xlim(c(-3, 33)) +
-  theme_bw() +
-  ylab("log-relative risk") +
-  xlab("") +
-  ggtitle("Linear") -> p1
-
-
-##
-## Quintiles
-
-dat$id_temp_quin <- inla.group(dat$mean.temp, n = 5)
-hyper.iid <- list(theta = list(
-  prior = "pc.prec",
-  param = c(1, 0.01)
+layout(p, scene = list(
+  xaxis = list(title = "Lag"),
+  yaxis = list(title = "Temperature", range = c(0, 30)),
+  zaxis = list(title = "Relative risk")
 ))
+```
+:::
 
-form <- deaths ~ offset(log(expected)) +
-  f(id_temp_quin, model = "iid", hyper = hyper.iid, constr = TRUE)
+## Example 3: Temperature in Chicago
 
-inla.iid <- inla(form, data = dat, family = "poisson")
-
-data.frame(
-  X = inla.iid$summary.random$id_temp$ID,
-  Y_med = inla.iid$summary.random$id_temp$`0.5quant`,
-  Y_LL = inla.iid$summary.random$id_temp$`0.025quant`,
-  Y_UL = inla.iid$summary.random$id_temp$`0.975quant`
-) %>%
-  ggplot() +
-  geom_point(aes(x = X, y = Y_med), size = 1) +
-  geom_errorbar(aes(x = X, ymin = Y_LL, ymax = Y_UL)) +
-  ylim(-0.1, 0.3) +
-  xlim(c(-3, 33)) +
-  theme_bw() +
-  ylab("") +
-  xlab("Temperature") +
-  ggtitle("Quintiles") -> p2
-
-##
-## Random walk of order 2
-
-dat$id_temp <- inla.group(dat$mean.temp, n = 50)
-hyper.rw2 <- list(theta = list(prior = "pc.prec", param = c(0.01, 0.01)))
-form <- deaths ~ offset(log(expected)) + f(id_temp, model = "rw2", hyper = hyper.rw2, scale.model = TRUE, constr = TRUE)
-
-inla.rw2 <- inla(form, data = dat, family = "poisson")
-
-
-data.frame(
-  X = inla.rw2$summary.random$id_temp$ID,
-  Y_med = inla.rw2$summary.random$id_temp$`0.5quant`,
-  Y_LL = inla.rw2$summary.random$id_temp$`0.025quant`,
-  Y_UL = inla.rw2$summary.random$id_temp$`0.975quant`
-) %>%
-  ggplot() +
-  geom_point(aes(x = X, y = Y_med), size = 0.8) +
-  geom_ribbon(aes(x = X, ymin = Y_LL, ymax = Y_UL), alpha = 0.2, fill = "blue") +
-  ylim(-0.1, 0.3) +
-  xlim(c(-3, 33)) +
-  theme_bw() +
-  ylab("") +
-  xlab("") +
-  ggtitle("Random walk 2") -> p3
-
-
-p1 | p2 | p3
+```{r}
+#| echo: true
+#| eval: true
+#| fig-align: "center"
+#| fig-width: 7
+plot(pred2.temp, "contour",
+  xlab = "Temperature", key.title = title("RR"),
+  plot.title = title("Contour plot", xlab = "Temperature", ylab = "Lag")
+)
 ```
 
-## Extensions
+## Example 3: Temperature in Chicago
 
--   It is straight forward to include confounders in the linear predictor.
+```{r}
+#| echo: true
+#| eval: true
+#| fig-align: "center"
+plot(pred2.temp, "slices",
+  var = 30, col = 1, ylim = c(0.95, 1.2), lwd = 1.5,
+  main = "Lag-response curves for different temperatures, ref. 21C"
+)
+```
 
--   Confounders can be included as linear or more flexible terms.
+## Example 3: Temperature in Chicago
 
--   We can account for spatiotemporal correlations.
+```{r}
+#| echo: true
+#| eval: true
+#| fig-align: "center"
+plot(pred2.temp, "slices",
+  var = c(-20, 33), lag = c(0, 5), col = 4,
+  ci.arg = list(density = 40, col = grey(0.7))
+)
+```
 
--   We can incorporate the delayed effect of temperature on health (lags)
+## Spatially varying coefficients
 
-    -   joint lag models
+-   So far we assumed a single effect of an exposure across the study region.
 
-    -   distributed non-linear lag models
+-   However, different populations might experience different vulnerabilities to the effect of the exposure.
+
+-   If these vulnerabilities have spatial structures, then the effect of the exposure will vary in space.
+
+-   Spatial effect modification or spatial interaction
+
+## Example 1: Heatwaves in Europe
+
+![](Figures/Bllester.png){fig-align="center"}
+
+## The model
+
+We can write: $$
+O_i \sim \text{Poisson}(\lambda_i E_i) \\
+\log \lambda_i = \alpha + \color{red}{(\beta_1 + \delta_i)X_{1i}} + \beta_2 X_{2i} + \dots + \beta_k X_{ki} + \theta_i + \phi_i \\
+\theta_i \sim \text{Normal}(0,\sigma_{\theta}^2)\\
+\phi \sim \text{ICAR}(W, \sigma^2_{\phi}) \\
+\color{red}{\delta \sim \text{ICAR}(W, \sigma^2_{\delta})}
+$$ And a step further:
+
+$$\delta_i = \gamma_0 + \sum \gamma_i Z_i + w_i$$
+
+## Example 2: Temperature and COPD
+
+::::: columns
+::: {.column width="50%"}
+-   3$^{\text{rd}}$ cause of death, 3.17 million deaths in 2015 globally,
+
+-   In England, 115,000 emergency admissions and 24,000 deaths per year.
+
+-   COPD exacerbations: Bacteria, viruses and air-pollution.
+
+-   The role of temperature is unclear.
+:::
+
+::: {.column width="50%"}
+![](Figures/COPD_HES.jpg){width="70%"}
+:::
+:::::
+
+## Example 2: Temperature and COPD
+
+::::: columns
+::: {.column width="60%"}
+-   Typically U-shaped relationship between temperature and health.
+
+-   Individual effect modifiers: age, sex, chronic conditions
+
+-   Temporal variation of the effect (adaptation)
+
+-   Environmental effect modifiers: green space, urban heat island
+
+-   Spatial vulnerabilities to heat exposure
+:::
+
+::: {.column width="40%"}
+![](Figures/TemperatureHealth.png)
+:::
+:::::
+
+## Example 2: Temperature and COPD
+
+![](Figures/analysis.png){fig-align="center"}
+
+## Example 2: Temperature and COPD
+
+$$
+Y{ijk} \sim \text{Poisson}(\mu_{ijk})\\
+\log(\mu_{ijk}) = \alpha_1 I(X_{1i}<c)X_{1i} +\\ \qquad \qquad \qquad \qquad \alpha_{2s} I(X_{1i}\geq c)X_{1i} + \sum \beta_mZ_{mi} + u_j + w_k \\
+\alpha_{2s} = \alpha_2 + \sum \gamma_l H_l + b_s
+$$
+
+-   Where should we put priors?
+
+-   How should we select the priors?
+
+## Example 2: Temperature and COPD
+
+![](Figures/Fig2_copd.png)
+
+## Example 2: Temperature and COPD
+
+![](Figures/Fig3_adjusted.jpg)
+
+## Example 2: Temperature and COPD
+
+::: {style="font-size: 70%;"}
+| Effect modifier              | Percentage increase | Pr   |
+|------------------------------|---------------------|------|
+| Green space                  | -1.46 (-6.99, 4.39) | 0.30 |
+| Average temperature          | -0.41 (-1.49, 0.71) | 0.22 |
+| IMD Q1                       | 1                   | \-   |
+| IMD Q2                       | 0.81 (-1.16, 3.08)  | 0.78 |
+| IMD Q3                       | 1.57 (-0.76, 4.06)  | 0.91 |
+| IMD Q4                       | 0.75 (-1.68, 3.36)  | 0.71 |
+| IMD Q5                       | 1.62 (-1.31, 4.49)  | 0.85 |
+| Predominantly Rural          | 1                   | \-   |
+| Urban with significant rural | -0.79 (-3.10, 1.51) | 0.25 |
+| Predominantly urban          | -1.57 (-4.16, 0.96) | 0.12 |
+:::
+
+## Example 2: Temperature and COPD
+
+![](Figures/lrexampler.png){fig-align="center"}
+
+## Modelling the Spatially Varying Non-Linear Effects of Heat Exposure
+
+Main issues: a. data sparsity, b. spatial correlation
+
+![](Figures/EDA_tempMap_fig.png){fig-align="center"}
+
+## Beyond linear models: Case study
+
+![](Figures/SpatialDLNM.png){fig-align="center"}
+
+## Beyond linear models: Effect modifiers
+
+![](Figures/p_SEM_com.png){fig-align="center"}
 
 ## Summary
 
--   Introduction to non-linear exposure models
+-   Introduction to distributed linear (and non-linear) lag models
+-   Introduction to spatially varying coefficients
+-   Spatial DLNMs
+-   Examples using air-pollution, radon and temperature
 
--   Theory and application of linear splines
-
--   Understand more flexible non-parametric functions (focus on splines)
-
--   Random walk of order 2 to model non-linearity
-
-Questions?
+::: {style="color: #58b364"}
+Next : Coding some of these models in INLA.
+:::

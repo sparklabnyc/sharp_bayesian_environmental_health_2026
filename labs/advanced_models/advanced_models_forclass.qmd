@@ -261,70 +261,18 @@ Following the previous steps:
 
 a. Modify the formula to add a spatially varying term for the rainfall. (HINT: don't forget to create a new ID)
 ```{r echo = FALSE, eval = FALSE, warning=FALSE}
-data_Brazil$id_space3 <- data_Brazil$id_space
 
-mod3 = cases ~ 1 + 
-  offset(log(population)) +  
-  
-  # long-term trends
-  f(id_year, model = "rw1", hyper = hyper.iid, constr = TRUE) + 
-  # seasonality
-  f(id_seasonal, model = "rw2", hyper = hyper.iid, constr = TRUE) + 
-
-  # spatial effect
-  f(id_space, model = "bym2", graph='W.adj', hyper = hyper.bym, constr = TRUE) + 
-  
-  # meteorological linear terms
-  rh + t2m_max + tp_sum +
-  
-  f(id_space2, t2m_max, model = "bym2", graph='W.adj', hyper = hyper.bym, constr = TRUE) + 
-  f(id_space3, tp_sum, model = "bym2", graph='W.adj', hyper = hyper.bym, constr = TRUE)
 ```
 
 
 b. Run `INLA` with the updated formula.
 ```{r echo = FALSE, eval = FALSE, warning=FALSE}
-inla(formula = as.formula(mod3),
-            data=data_Brazil,
-            family="poisson",
-            verbose = TRUE, 
-            
-            # priors fixed effects
-            control.fixed = list(
-              
-              mean = list(rh = 0, t2m_max = 0, tp_sum = 0), 
-              prec = list(rh = 0.01, t2m_max = 0.01, tp_sum = 0.01),
-              prec.intercept = 0.001, mean.intercept = 0),
-            
-            control.compute=list(dic=TRUE, cpo=TRUE, config = TRUE), 
-            control.inla=list(strategy="simplified.laplace", int.strategy="eb"),
-            control.mode=list(restart = T), 
-            num.threads = 1
-  ) -> mod3_res # 52 seconds
 
-saveRDS(mod3_res, file = "data/mod3.rds")
 ```
 
 
 c. Extract the spatial varying rainfall and plot it together with the exceedance probability. What do you observe?
 ```{r echo = FALSE, eval = FALSE, warning=FALSE, fig.width=12}
-# spatial effects
-shp$RR <- mod3_res$summary.random$id_space3$`0.5quant`[1:645]
-shp %>% 
-  ggplot() + 
-  geom_sf(aes(fill=RR), col = NA) +
-  scale_fill_viridis_c() -> p1
-
-# calculate exceedance probability: 
-shp$exceed <- 1 - sapply(mod3_res$marginals.random$id_space3, FUN = inla.pmarginal, q = 0)[1:645]
-
-shp %>% 
-  ggplot() + 
-  geom_sf(aes(fill=exceed), col = NA) +
-  scale_fill_viridis_c() -> p2
-
-
-p1|p2
 
 ```
 
