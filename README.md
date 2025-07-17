@@ -22,9 +22,9 @@ Below is the set of labs to follow throughout the two days:
 | ------------ | ------------------------ |
 | 8:30 - 9:00  | Check in and breakfast   |
 | 9:00 - 9:15  | [Welcome and introduction](/lectures/welcome_and_introduction/welcome_and_introduction.qmd) |
-| 9:15 - 10:00 | [Introduction to Bayesian methods](/lectures/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd) (Lecture) |
+| 9:15 - 10:00 | [Introduction to Bayesian regression](/lectures/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd) (Lecture) |
 | 10:00  - 10:15 | Break |
-| 10:15  - 11:00 | [Introduction to Bayesian methods](/labs/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd) (Hands-on Lab) |
+| 10:15  - 11:00 | [Introduction to Bayesian regression](/labs/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd) (Hands-on Lab) |
 | 11:00 - 11:15 | Break |
 | 11:15 - 12:00 | [Bayesian workflow (priors and other things)](/lectures/bayesian_workflow/bayesian_workflow.qmd) (Lecture) |
 | 12:00 - 1:00 | Networking lunch |
@@ -32,9 +32,9 @@ Below is the set of labs to follow throughout the two days:
 | 1:45  - 2:00 | Break |
 | 2:00  - 2:45 | [Hierarchical modelling](/labs/hierarchical_modelling/hierarchical_modelling.qmd) (Hands-on Lab) |
 | 2:45  - 3:00 | Questions and wrap-up |
-| 3:00  - 3:45 | [Bayesian regression and non-linear functions](/lectures/bayesian_regression_and_nonlinear_functions/bayesian_regression_and_nonlinear_functions.qmd) (Lecture) |
+| 3:00  - 3:45 | [Non-linear regression](/lectures/non_linear_regression/non_linear_regression.qmd) (Lecture) |
 | 3:45  - 4:00 | Break |
-| 4:00  - 4:45 | [Bayesian regression and non-linear functions](/labs/bayesian_regression_and_nonlinear_functions/bayesian_regression_and_nonlinear_functions.qmd) (Hands-on Lab) |
+| 4:00  - 4:45 | [Non-linear regression](/labs/non_linear_regression/non_linear_regression.qmd) (Hands-on Lab) |
 | 4:45  - 5:00 | Questions and wrap-up |
 
 ### Day 2 (August 15th 2025)
