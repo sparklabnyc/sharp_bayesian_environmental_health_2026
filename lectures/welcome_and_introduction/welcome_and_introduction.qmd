@@ -67,7 +67,7 @@ The __Bayesian Modeling for Environmental Health Workshop__ is a two-day intensi
 
 ![](assets/attendee_map.png)
 
-## Day 1 (August 21st 2024)
+## Day 1 (August 14th 2025)
 
 ::: {style="font-size: 50%;"}
 
@@ -79,7 +79,7 @@ The __Bayesian Modeling for Environmental Health Workshop__ is a two-day intensi
 | 10:00 - 10:15 | Break |
 | 10:15 - 11:00 | [Introduction to Bayesian methods and regression](/labs/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd) (Hands-on Lab) |
 | 11:00 - 11:15 | Break |
-| 11:15 - 12:00 | [Bayesian workflow (priors and other things)](/lectures/bayesian_workflow/bayesian_workflow.qmd) (Lecture) |
+| 11:15 - 12:00 | [Bayesian workflow](/lectures/bayesian_workflow/bayesian_workflow.qmd) (Lecture) |
 | 12:00 - 1:00 | Lunch |
 | 1:00 - 1:45 | [Hierarchical modeling](/lectures/hierarchical_modelling/hierarchical_modelling.qmd) (Lecture) |
 | 1:45 - 2:00 | Break |
@@ -92,7 +92,7 @@ The __Bayesian Modeling for Environmental Health Workshop__ is a two-day intensi
 
 :::
 
-## Day 2 (August 22nd 2024)
+## Day 2 (August 15th 2025)
 
 ::: {style="font-size: 50%;"}
 
