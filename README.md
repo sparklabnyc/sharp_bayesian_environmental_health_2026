@@ -19,7 +19,7 @@ Below is the set of labs to follow throughout the two days:
 ### Day 1 (August 14th 2025)
 
 | Time | Activity |
-|----|----|
+|-------------------------|----------------------------------------------|
 | 8:30 - 9:00 | Check in and breakfast |
 | 9:00 - 9:15 | [Welcome and introduction](/lectures/welcome_and_introduction/welcome_and_introduction.qmd) |
 | 9:15 - 10:00 | [Introduction to Bayesian methods and regression](/lectures/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd) (Lecture) |
@@ -40,7 +40,7 @@ Below is the set of labs to follow throughout the two days:
 ### Day 2 (August 15th 2025)
 
 | Time | Activity |
-|----|----|
+|-------------------------|----------------------------------------------|
 | 8:30 - 9:00 | Check in and breakfast |
 | 9:00 - 10:00 | [Spatial and spatio-temporal modeling](/lectures/spatial_and_spatiotemporal_modeling/spatial_and_spatiotemporal_modeling.qmd) (Lecture) |
 | 10:00 - 10:15 | Break |
