@@ -1,7 +1,7 @@
 ---
 title: "Hierarchical modelling"
 subtitle: "SHARP Bayesian Modeling for Environmental Health Workshop"
-author: "Theo Rashid, Elizaveta Semenova"
+author: "Robbie M. Parks, Theo Rashid, Elizaveta Semenova"
 date: "August 21 2024"
 format: html
 ---
