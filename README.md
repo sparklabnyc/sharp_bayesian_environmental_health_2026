@@ -26,7 +26,7 @@ Below is the set of labs to follow throughout the two days:
 | 10:00 - 10:15 | Break |
 | 10:15 - 11:00 | [Introduction to Bayesian methods and regression](/labs/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd) (Hands-on Lab) |
 | 11:00 - 11:15 | Break |
-| 11:15 - 12:00 | [Bayesian workflow (priors and other things)](/lectures/bayesian_workflow/bayesian_workflow.qmd) (Lecture) |
+| 11:15 - 12:00 | [Bayesian workflow](/lectures/bayesian_workflow/bayesian_workflow.qmd) (Lecture) |
 | 12:00 - 1:00 | Lunch |
 | 1:00 - 1:45 | [Hierarchical modeling](/lectures/hierarchical_modelling/hierarchical_modelling.qmd) (Lecture) |
 | 1:45 - 2:00 | Break |
