@@ -28,35 +28,35 @@ format:
 
 ## Logistics {.smaller}
 
-- __Wi-Fi__ Network: guest-net (no password). Open any webpage on your browser, a pop-up will appear to connect to guest Wi-Fi. Accept terms to gain access.
-- __Restrooms__. Directly outside the classroom.
-- __Course materials__. All Material (lectures/labs) is located on Posit Cloud. You were invited to the ‘sharp_bayesian_environmental_health_2025’ Workspace via email earlier this week.
-- __Name tags__. Please wear during workshop to make connecting with others easier! Please return after the Workshop to help us be greener.
-- Contact Meaghan Doherty __914-522-8114__ for assistance
+-   **Wi-Fi** Network: guest-net (no password). Open any webpage on your browser, a pop-up will appear to connect to guest Wi-Fi. Accept terms to gain access.
+-   **Restrooms**. Directly outside the classroom.
+-   **Course materials**. All Material (lectures/labs) is located on Posit Cloud. You were invited to the ‘sharp_bayesian_environmental_health_2025’ Workspace via email earlier this week.
+-   **Name tags**. Please wear during workshop to make connecting with others easier! Please return after the Workshop to help us be greener.
+-   Contact Meaghan Doherty **914-522-8114** for assistance
 
 ## Overview of workshop {.bigger}
 
 ::: {style="font-size: 130%;"}
-The __Bayesian Modeling for Environmental Health Workshop__ is a two-day intensive course of seminars and hands-on sessions to provide an _approachable_ and _practical_ overview of __concepts__, __techniques__, and __data analysis methods__ used in Bayesian modeling with applications in Environmental Health.
+The **Bayesian Modeling for Environmental Health Workshop** is a two-day intensive course of seminars and hands-on sessions to provide an *approachable* and *practical* overview of **concepts**, **techniques**, and **data analysis methods** used in Bayesian modeling with applications in Environmental Health.
 :::
 
 ## Overview of workshop {.smaller}
 
 ::: incremental
-- By the end of the workshop, participants should be familiar with the following topics:
+-   By the end of the workshop, participants should be familiar with the following topics:
 
-  - Principles of Bayesian statistics
-  - Practicalities of Bayesian inference
-  - Priors and choosing them
-  - Advantages and drawbacks of Bayesian approaches
-  - Bayesian workflow
-  - Temporal modeling
-  - Spatial modeling
-  - Spatio-temporal modeling
-  - Hierarchical modeling
-  - Exposure-response functions
-  - Software options
-  - Advanced uses
+    -   Principles of Bayesian statistics
+    -   Practicalities of Bayesian inference
+    -   Priors and choosing them
+    -   Advantages and drawbacks of Bayesian approaches
+    -   Bayesian workflow
+    -   Temporal modeling
+    -   Spatial modeling
+    -   Spatio-temporal modeling
+    -   Hierarchical modeling
+    -   Exposure-response functions
+    -   Software options
+    -   Advanced uses
 :::
 
 ## Bayesian Modelling Workshop Team (needs to update)
@@ -74,9 +74,8 @@ The __Bayesian Modeling for Environmental Health Workshop__ is a two-day intensi
 ## Day 1 (August 14th 2025)
 
 ::: {style="font-size: 50%;"}
-
 | Time | Activity |
-|-------------------------|----------------------------------------------|
+|--------------------------|----------------------------------------------|
 | 8:30 - 9:00 | Check in and breakfast |
 | 9:00 - 9:15 | [Welcome and introduction](/lectures/welcome_and_introduction/welcome_and_introduction.qmd) |
 | 9:15 - 10:00 | [Introduction to Bayesian methods and regression](/lectures/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd) (Lecture) |
@@ -93,15 +92,13 @@ The __Bayesian Modeling for Environmental Health Workshop__ is a two-day intensi
 | 3:45 - 4:00 | Break |
 | 4:00 - 4:45 | [Non-linear regression](/labs/non_linear_regression/non_linear_regression.qmd) (Hands-on Lab) |
 | 4:45 - 5:00 | Questions and wrap-up |
-
 :::
 
 ## Day 2 (August 15th 2025)
 
 ::: {style="font-size: 50%;"}
-
 | Time | Activity |
-|-------------------------|----------------------------------------------|
+|--------------------------|----------------------------------------------|
 | 8:30 - 9:00 | Check in and breakfast |
 | 9:00 - 10:00 | [Spatial and spatio-temporal modeling](/lectures/spatial_and_spatiotemporal_modeling/spatial_and_spatiotemporal_modeling.qmd) (Lecture) |
 | 10:00 - 10:15 | Break |
@@ -116,7 +113,6 @@ The __Bayesian Modeling for Environmental Health Workshop__ is a two-day intensi
 | 3:00 - 3:45 | [Advanced models](/labs/advanced_models/advanced_models.qmd) (Hands-on Lab) |
 | 3:45 - 4:30 | Workshop summary, interactive panel discussion & course wrap-up |
 | 4:30 - 5:00 | Final farewell |
-
 :::
 
 ## What is your experience level with R? (need to update) {.smaller}
@@ -143,69 +139,85 @@ plot(p)
 <!-- ## What does a 50% chance of rain mean to you? {.smaller} -->
 
 <!-- - given the data used to generate prediction, there is equal likelihood of raining and not raining. Also it means I’ll be bringing my umbrella. -->
+
 <!-- - I am definitely not a meteorologist but our snow forecasters tell us its a combination of % described catchment area and confidence that any given area in that catchment will receive precipitation -->
+
 <!-- - There is a 50% chance that rain will occur in the allotted time period -->
+
 <!-- - I'm not a meteorologist, but I assume it means there is a 50% likelihood that any location within the forecast area will experience rain during the forecast period. It might also mean that rain will cover 50% of the forecasted region/area. -->
+
 <!-- - If you were to stay in one location, there is a 50% likelihood that you will experience rain. If you were to travel around local areas, 50% of those areas will likely experience rain. -->
 
 <!-- ## What does a 50% chance of rain mean to you? {.smaller} -->
 
 <!-- - based on previous data with similar starting weather conditions, 50% of those instances resulted in rain -->
+
 <!-- - Have not actually given it too much thought before. Beyond it being just as likely to rain and not rain... I think it means that there is 100% chance that 50% of the area covered will get rain or for 100% of the area considered, 50% chance there will be rain? Combination of area covered and predicted likelihood, I think? -->
+
 <!-- - There is a 0.5 probability that it will rain. -->
+
 <!-- - 50% of locations in a predicted area will rain (?) -->
+
 <!-- - In the area where the forecast model is being run, 50% of the pixels are predicted to experience rain. -->
 
 <!-- ## What does a 50% chance of rain mean to you? {.smaller} -->
 
 <!-- - That it is equally likely to rain as it is to not rain. -->
+
 <!-- - 50% of the time it will rain and 50% of the time it will not. -->
+
 <!-- - there is an equal likelihood of rain occurring or not occurring -->
+
 <!-- - 1 out 2 chance that it will rain. -->
+
 <!-- - There is a 50% chance it will rain. -->
 
 <!-- ## What does a 50% chance of rain mean to you? {.smaller} -->
 
 <!-- - There is a 50% chance of rain occurring in the reporting area -->
+
 <!-- - a 50 percent chance for any one spot in the forecast area to get wet during the forecast period -->
+
 <!-- - For the region, there is a half and half chance that some point within the area will see rain. -->
+
 <!-- - 50/100 days with the same or similar conditions had rain, which means that today there is a 50/100 chance of there being any rain -->
+
 <!-- - There is an equal chance that it will rain versus not rain -->
 
 <!-- ## What does a 50% chance of rain mean to you? {.smaller} -->
 
 <!-- - Met Office (UK): A 50% chance of rain represents a 5 in 10 chance that rain will fall at some point during that period. -->
 
-## What do you understand from a 95% Confidence Interval (CI)?{.smaller}
+## What do you understand from a 95% Confidence Interval (CI)? {.smaller}
 
-- XX
+-   XX
 
-## What do you understand from a 95% Confidence Interval (CI)?{.smaller}
+## What do you understand from a 95% Confidence Interval (CI)? {.smaller}
 
-- XX
+-   XX
 
-## What do you understand from a 95% Confidence Interval (CI)?{.smaller}
+## What do you understand from a 95% Confidence Interval (CI)? {.smaller}
 
-- XX
+-   XX
 
-## What do you understand from a 95% Confidence Interval (CI)?{.smaller}
+## What do you understand from a 95% Confidence Interval (CI)? {.smaller}
 
-- XX
+-   XX
 
 ## What do you understand from a 95% Confidence Interval (CI)? {.smaller}
 
 ::: incremental
-- Frequentist framework: If we were to repeat the data collection process 100 times and construct confidence intervals for each sample, 95 of those would contain the true parameter (i.e., the target parameter is fixed but unknown, and the interval is random, in other words, there exists a true value of the target parameter, and we may or may not be capturing it with the 95% CI).
-- Bayesian framework: Given the observed data and our prior beliefs, there is a 95% probability that the true parameter value falls within the credible interval (i.e., target parameter is random but interval is fixed).
-- Philosophical difference but with differences in methodology and use cases.
+-   Frequentist framework: If we were to repeat the data collection process 100 times and construct confidence intervals for each sample, 95 of those would contain the true parameter (i.e., the target parameter is fixed but unknown, and the interval is random, in other words, there exists a true value of the target parameter, and we may or may not be capturing it with the 95% CI).
+-   Bayesian framework: Given the observed data and our prior beliefs, there is a 95% probability that the true parameter value falls within the credible interval (i.e., target parameter is random but interval is fixed).
+-   Philosophical difference but with differences in methodology and use cases.
 :::
 
 ## Logistics {.smaller}
 
-- __Wi-Fi__ Network: guest-net (no password). Open any webpage (i.e. BBC News, Amazon, etc.) on your browser, a pop-up will appear to connect to guest Wi-Fi. Accept terms to gain access.
-- __Restrooms__. Directly outside the classroom (women on the left, men on the right)
-- __Course materials__. All Material (lectures/labs) is located on Posit Cloud. You were invited to the ‘sharp_bayesian_environmental_health_2023’ Workspace via email on Sunday 8/12.
-- __Name tags__. Please wear during workshop to make connecting with others easier! Please return after the Workshop to help us be greener.
-- Contact Meaghan Doherty __914-522-8114__ for assistance
+-   **Wi-Fi** Network: guest-net (no password). Open any webpage (i.e. BBC News, Amazon, etc.) on your browser, a pop-up will appear to connect to guest Wi-Fi. Accept terms to gain access.
+-   **Restrooms**. Directly outside the classroom (women on the left, men on the right)
+-   **Course materials**. All Material (lectures/labs) is located on Posit Cloud. You were invited to the ‘sharp_bayesian_environmental_health_2023’ Workspace via email on Sunday 8/12.
+-   **Name tags**. Please wear during workshop to make connecting with others easier! Please return after the Workshop to help us be greener.
+-   Contact Meaghan Doherty **914-522-8114** for assistance
 
 # Questions?
