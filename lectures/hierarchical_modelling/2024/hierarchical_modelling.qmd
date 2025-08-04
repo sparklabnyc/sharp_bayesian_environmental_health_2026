@@ -1,11 +1,11 @@
 ---
-title: "Hierarchical modelling"
+title: "Hierarchical Bayesian modelling"
 subtitle: ""
 author:
- - name: "Robbie M. Parks, Elizaveta Semenova"
-   email: "robbie.parks@columbia.edu"
-institute: "Environmental Health Sciences, Columbia University"
-date: 2025-08-14
+ - name: "Elizaveta Semenova, Robbie M. Parks"
+   email: "elizaveta.p.semenova@gmail.com"
+institute: "Computer Science Department, University of Oxford"
+date: 2024-08-21
 date-format: medium
 title-slide-attributes:
   data-background-color: "#f3f4f4"
@@ -25,53 +25,56 @@ format:
 
 # Outline
 
-- Models characterized by several parameters
-- Limitations of standard linear models
-- Why use hierarchical models?
-- Hierarchical modelling framework
-  - Exchangeability
-  - Random effects
-  - Hierarchical regression
-  - Types of nestedness
-- Bayesian persepctive
-  - Models with multiple parameters
-  - Posterior inference and variance modeling
+- Assumptions of linear models
+- Why are linear models not enough?
+- Two extremes of hierarchy: __complete pooling__ and __no pooling__
+- The golden middle: __partial pooling__
+- Random effects
+- Types of nestedness
 
-## Models characterized by several parameters
+## Assumptions of linear models
 
-- In many statistical applications, the model is characterized by several parameters.
-- Many real-world problems involve data grouped by source, area, time, etc.
-- Classical models assume independence - often inappropriate.
-- Hierarchical models:
-  - Allow varying group-specific effects.
-  - Improve estimates through sharing information.
+- Homoskedasticity
 
-## Limitations of standard linear models
+<center>![](assets/dogs1.jpeg){width=40%}
 
-- Assumptions of linear models:
-  - Homoskedasticity (equal variance across groups).
-  - No error in predictors.
-  - Observations *$y_i$* are independent.
-  - Normally distributed errors.
-  - No missing data.
+## Assumptions of linear models
 
-## What we want beyond standard linear model
+- Homoskedasticity
+  - equal or similar variances in different groups
+  - sometimes it is appropriate
+  - ![](assets/dogs1.jpeg){width=30%}
+
+
+## Assumptions of linear models
+
+- Homoskedasticity?
+
+<center>
+![](assets/dogs1.jpeg){width=40%}
+![](assets/dogs4.jpeg){width=40%}
+
+## Assumptions of linear models
+- Homoskedasticity: equal or similar variances in different groups
+- No error in predictors *x*
+- No missing data
+- Normally distributed errors
+- Observations *$y_i$* are independent
+
+## We want
 - To model variance
 - Capture errors in variables
 - Missing data models
 - Use generalised linear models (GLMs)
 - Use spatial and/or temporal error structure
 
-## Why use hierarchical models?
-
-- XX
-
-## Hierarchical models
+# Hierarchical models
 
 Exist on the continuum of two extreme cases:
 
-- Complete pooling
-- No pooling
+- __complete pooling__
+- __no pooling__
+
 
 ## Complete pooling
 <center>
@@ -80,6 +83,25 @@ Exist on the continuum of two extreme cases:
 - A *pooled* model implies that the data are sampled from the same model.
 - This ignores all variation  among the units being sampled.
 - All observations share common parameter $\theta.$
+
+<font size="1"> Image: courtesy of Chris Fonnesbeck</font>
+
+
+## Excercise
+
+- Complete pooling?
+
+<center>
+![](assets/dogs1.jpeg){width=30%}
+![](assets/dogs4.jpeg){width=30%}
+
+## Excercise
+
+- Complete pooling:
+
+<center>
+![](assets/dogs1.jpeg){width=30%}
+![](assets/dogs4.jpeg){width=30%}
 
 - It ignores any differences between measurement blocks and does not acknowledge variability block to block.
 - Observations within each unit are more likely to be like each other.
@@ -94,16 +116,42 @@ Exist on the continuum of two extreme cases:
 
 <font size="1"> Image: courtesy of Chris Fonnesbeck</font>
 
+## Excercise
+
+- No pooling?
+
+<center>
+![](assets/dogs1.jpeg){width=30%}
+![](assets/dogs4.jpeg){width=30%}
+
+- Captures variability, but not the overall pattern.
+- Assumes that there is no relationship between the models.
+- Does not provide ways to extrapolate.
+
+
 ## Partial pooling
 <center>
 ![](assets/partial_pooled_model.png){width=60%}
 
 - In a *partially pooled* or *multilevel* or *hierarchical* model, parameters are viewed as a sample from a distribution of parameters.
 
-## Hierarchical modeling framework
+## Hierarchical models
 
 - Hierarchical models fill in the continuum between the two extremes.
 - They allow us to estimate models for each measurement block where each dataset is being fit to its own model. - There is a higher level model, a *hierarchical model*, describing variability in parameters of those sub-models.
+
+## Excercise
+
+- Partial pooling?
+
+<center>
+![](assets/dogs1.jpeg){width=30%}
+![](assets/dogs4.jpeg){width=30%}
+</center>
+
+- Variability can be captured at different scales.
+- We can make predictions.
+
 
 ## Example
 Normal model: common mean
@@ -132,52 +180,28 @@ Hyperpriors
 $$ \mu \sim N(\mu_0, v_0), \\
 \tau^2 \sim IG(t_1, t_2)$$
 
-## Hierarchical modelling framework
-- Exchangeability
-- Random effects
-- Hierarchical regression
-- Types of nestedness
-
-## Exchangeability
-
-- XX
-
-## Random effects
-
-- XX
-
-## Hierarchical regression
-
-- XX
-
-## Types of nestedness
-
-- XX
-
-## Bayesian persepctive
-- Models with multiple parameters
-- Posterior inference and variance modeling
-
-## Models with multiple parameters
-
-- XX
-
-## Posterior inference and variance modeling
-
-- XX
-
 ## Levels of hierarchy
 
-- Data
-- Process model (likelihood)
-- Parameter model (priors)
-- Hyperparameters (hyperpriors)
+- Data model
+- Process model
+- Parameter model
+- Hyperparameters
 
 ## Key points about hierarchical models
 - They allow to write down models that explain *variability in the parameters* of a model.
 - *Partition variability* more explicitly into multiple terms.
 - *Borrow strength* across data sets.
 - 'Hierarchy' is with respect to parameters.
+
+## Excercise
+
+- How would you model these observations?
+
+<center>
+![](assets/dogs1.jpeg){width=30%}
+![](assets/dogs4.jpeg){width=30%}
+![](assets/cats1.jpeg){width=28%}
+</center>
 
 ## Model comparison
 - Frequentist way:
@@ -198,20 +222,5 @@ k - \text{number of parameters}$$
 - BIC (Bayesian Information Criterion):
 $$\text{BIC} = -2 \ln(L) + k \ln(n)$$
 - Widely Applicable Information Criterion (WAIC)
-
-# Getting ready for the lab
-
-## The lab for this session {.smaller}
-
-- This lab will involve XX
-
-- During this lab session, we will:
-1. Explore how `NIMBLE` is written and works;
-2. Write some common regression models (Normal, logistic regression, Poisson);
-3. Understand how basic model assessment is made; and
-4. Test out how adjustments of models are made via different priors and more samples.
-
-# Questions?
-
 
 # Questions?

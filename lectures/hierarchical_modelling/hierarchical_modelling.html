@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="welcome_and_introduction_files/libs/clipboard/clipboard.min.js"></script>
-<script src="welcome_and_introduction_files/libs/quarto-html/tabby.min.js"></script>
-<script src="welcome_and_introduction_files/libs/quarto-html/popper.min.js"></script>
-<script src="welcome_and_introduction_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="welcome_and_introduction_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="welcome_and_introduction_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="welcome_and_introduction_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="hierarchical_modelling_files/libs/clipboard/clipboard.min.js"></script>
+<script src="hierarchical_modelling_files/libs/quarto-html/tabby.min.js"></script>
+<script src="hierarchical_modelling_files/libs/quarto-html/popper.min.js"></script>
+<script src="hierarchical_modelling_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="hierarchical_modelling_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="hierarchical_modelling_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="hierarchical_modelling_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.475">
 
-  <title>Bayesian Model(l)ing for Environmental Health</title>
+  <meta name="author" content="Robbie M. Parks, Elizaveta Semenova">
+  <title>Hierarchical modelling</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="welcome_and_introduction_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="welcome_and_introduction_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="hierarchical_modelling_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="hierarchical_modelling_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -28,13 +29,13 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="welcome_and_introduction_files/libs/revealjs/dist/theme/quarto.css" id="theme">
-  <link href="welcome_and_introduction_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="welcome_and_introduction_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="welcome_and_introduction_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="welcome_and_introduction_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="welcome_and_introduction_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="welcome_and_introduction_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="hierarchical_modelling_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="hierarchical_modelling_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="hierarchical_modelling_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="hierarchical_modelling_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="hierarchical_modelling_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="hierarchical_modelling_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="hierarchical_modelling_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -324,296 +325,274 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-color="#f3f4f4" data-background-image="../../assets/bmeh_normal.png" data-background-position="60% 120%" data-background-size="80%" subparagraph="yes" class="quarto-title-block center">
-  <h1 class="title">Bayesian Model(l)ing for Environmental Health</h1>
-  <p class="subtitle">Welcome and Introduction</p>
+<section id="title-slide" data-background-color="#f3f4f4" data-background-image="../../assets/bmeh_normal.png" data-background-position="60% 120%" data-background-size="80%" class="quarto-title-block center">
+  <h1 class="title">Hierarchical modelling</h1>
 
 <div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Robbie M. Parks, Elizaveta Semenova 
+</div>
+<div class="quarto-title-author-email">
+<a href="mailto:robbie.parks@columbia.edu">robbie.parks@columbia.edu</a>
+</div>
+        <p class="quarto-title-affiliation">
+            Environmental Health Sciences, Columbia University
+          </p>
+    </div>
 </div>
 
   <p class="date">Aug 14, 2025</p>
 </section>
 <section>
-<section id="welcome" class="title-slide slide level1 center">
-<h1>Welcome!</h1>
-
-</section>
-<section id="logistics" class="slide level2 smaller">
-<h2>Logistics</h2>
+<section id="outline" class="title-slide slide level1 center">
+<h1>Outline</h1>
 <ul>
-<li><strong>Wi-Fi</strong> Network: guest-net (no password). Open any webpage on your browser, a pop-up will appear to connect to guest Wi-Fi. Accept terms to gain access.</li>
-<li><strong>Restrooms</strong>. Directly outside the classroom.</li>
-<li><strong>Course materials</strong>. All Material (lectures/labs) is located on Posit Cloud. You were invited to the ‘sharp_bayesian_environmental_health_2025’ Workspace via email earlier this week.</li>
-<li><strong>Name tags</strong>. Please wear during workshop to make connecting with others easier! Please return after the Workshop to help us be greener.</li>
-<li>Contact Meaghan Doherty <strong>914-522-8114</strong> for assistance</li>
-</ul>
-</section>
-<section id="overview-of-workshop" class="slide level2 bigger">
-<h2>Overview of workshop</h2>
-<div style="font-size: 130%;">
-<p>The <strong>Bayesian Modeling for Environmental Health Workshop</strong> is a two-day intensive course of seminars and hands-on sessions to provide an <em>approachable</em> and <em>practical</em> overview of <strong>concepts</strong>, <strong>techniques</strong>, and <strong>data analysis methods</strong> used in Bayesian modeling with applications in Environmental Health.</p>
-</div>
-</section>
-<section id="overview-of-workshop-1" class="slide level2 smaller">
-<h2>Overview of workshop</h2>
-<div>
+<li class="fragment">Models characterized by several parameters</li>
+<li class="fragment">Limitations of standard linear models</li>
+<li class="fragment">Why use hierarchical models?</li>
+<li class="fragment">Hierarchical modelling framework
 <ul>
-<li class="fragment"><p>By the end of the workshop, participants should be familiar with the following topics:</p>
+<li class="fragment">Exchangeability</li>
+<li class="fragment">Random effects</li>
+<li class="fragment">Hierarchical regression</li>
+<li class="fragment">Types of nestedness</li>
+</ul></li>
+<li class="fragment">Bayesian persepctive
 <ul>
-<li class="fragment">Principles of Bayesian statistics</li>
-<li class="fragment">Practicalities of Bayesian inference</li>
-<li class="fragment">Priors and choosing them</li>
-<li class="fragment">Advantages and drawbacks of Bayesian approaches</li>
-<li class="fragment">Bayesian workflow</li>
-<li class="fragment">Temporal modeling</li>
-<li class="fragment">Spatial modeling</li>
-<li class="fragment">Spatio-temporal modeling</li>
-<li class="fragment">Hierarchical modeling</li>
-<li class="fragment">Exposure-response functions</li>
-<li class="fragment">Software options</li>
-<li class="fragment">Advanced uses</li>
+<li class="fragment">Models with multiple parameters</li>
+<li class="fragment">Posterior inference and variance modeling</li>
 </ul></li>
 </ul>
-</div>
 </section>
-<section id="bayesian-modelling-workshop-team-needs-to-update" class="slide level2">
-<h2>Bayesian Modelling Workshop Team (needs to update)</h2>
-
-<img data-src="assets/instructor.png" class="r-stretch"></section></section>
-<section>
-<section id="workshop-2024-needs-to-update-with-photo-from-last-year" class="title-slide slide level1 center">
-<h1>Workshop 2024 (needs to update with photo from last year)</h1>
-
-<img data-src="assets/instructor.png" class="r-stretch"></section>
-<section id="us-states-1-country-needs-to-update" class="slide level2">
-<h2>13 US States + 1 country (needs to update)</h2>
-
-<img data-src="assets/attendee_map.png" class="r-stretch"></section>
-<section id="day-1-august-14th-2025" class="slide level2">
-<h2>Day 1 (August 14th 2025)</h2>
-<div style="font-size: 50%;">
-<table>
-<thead>
-<tr class="header">
-<th>Time</th>
-<th>Activity</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>8:30 - 9:00</td>
-<td>Check in and breakfast</td>
-</tr>
-<tr class="even">
-<td>9:00 - 9:15</td>
-<td><a href="/lectures/welcome_and_introduction/welcome_and_introduction.qmd">Welcome and introduction</a></td>
-</tr>
-<tr class="odd">
-<td>9:15 - 10:00</td>
-<td><a href="/lectures/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd">Introduction to Bayesian methods and regression</a> (Lecture)</td>
-</tr>
-<tr class="even">
-<td>10:00 - 10:15</td>
-<td>Break</td>
-</tr>
-<tr class="odd">
-<td>10:15 - 11:00</td>
-<td><a href="/labs/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd">Introduction to Bayesian methods and regression</a> (Hands-on Lab)</td>
-</tr>
-<tr class="even">
-<td>11:00 - 11:15</td>
-<td>Break</td>
-</tr>
-<tr class="odd">
-<td>11:15 - 12:00</td>
-<td><a href="/lectures/bayesian_workflow/bayesian_workflow.qmd">Bayesian workflow</a> (Lecture)</td>
-</tr>
-<tr class="even">
-<td>12:00 - 1:00</td>
-<td>Lunch</td>
-</tr>
-<tr class="odd">
-<td>1:00 - 1:45</td>
-<td><a href="/lectures/hierarchical_modelling/hierarchical_modelling.qmd">Hierarchical modeling</a> (Lecture)</td>
-</tr>
-<tr class="even">
-<td>1:45 - 2:00</td>
-<td>Break</td>
-</tr>
-<tr class="odd">
-<td>2:00 - 2:45</td>
-<td><a href="/labs/hierarchical_modelling/hierarchical_modelling.qmd">Hierarchical modelling</a> (Hands-on Lab)</td>
-</tr>
-<tr class="even">
-<td>2:45 - 3:00</td>
-<td>Questions and wrap-up</td>
-</tr>
-<tr class="odd">
-<td>3:00 - 3:45</td>
-<td><a href="/lectures/non_linear_regression/non_linear_regression.qmd">Non-linear regression</a> (Lecture)</td>
-</tr>
-<tr class="even">
-<td>3:45 - 4:00</td>
-<td>Break</td>
-</tr>
-<tr class="odd">
-<td>4:00 - 4:45</td>
-<td><a href="/labs/non_linear_regression/non_linear_regression.qmd">Non-linear regression</a> (Hands-on Lab)</td>
-</tr>
-<tr class="even">
-<td>4:45 - 5:00</td>
-<td>Questions and wrap-up</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="day-2-august-15th-2025" class="slide level2">
-<h2>Day 2 (August 15th 2025)</h2>
-<div style="font-size: 50%;">
-<table>
-<thead>
-<tr class="header">
-<th>Time</th>
-<th>Activity</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>8:30 - 9:00</td>
-<td>Check in and breakfast</td>
-</tr>
-<tr class="even">
-<td>9:00 - 10:00</td>
-<td><a href="/lectures/spatial_and_spatiotemporal_modeling/spatial_and_spatiotemporal_modeling.qmd">Spatial and spatio-temporal modeling</a> (Lecture)</td>
-</tr>
-<tr class="odd">
-<td>10:00 - 10:15</td>
-<td>Break</td>
-</tr>
-<tr class="even">
-<td>10:15 - 11:00</td>
-<td><a href="/labs/spatial_and_spatiotemporal_modeling/spatial_and_spatiotemporal_modeling.qmd">Spatial and spatio-temporal modelling</a> (Hands-on Lab)</td>
-</tr>
-<tr class="odd">
-<td>11:00 - 11:15</td>
-<td>Break</td>
-</tr>
-<tr class="even">
-<td>11:15 - 12:00</td>
-<td><a href="lectures/software_options/software_options.qmd">Software options</a> (Lecture)</td>
-</tr>
-<tr class="odd">
-<td>12:00 - 1:00</td>
-<td>Lunch</td>
-</tr>
-<tr class="even">
-<td>1:00 - 1:45</td>
-<td><a href="/labs/software_options/software_options.qmd">Software options</a> (Hands-on Lab)</td>
-</tr>
-<tr class="odd">
-<td>1:45 - 2:00</td>
-<td>Break</td>
-</tr>
-<tr class="even">
-<td>2:00 - 2:45</td>
-<td><a href="lectures/advanced_models/advanced_models.qmd">Advanced models</a> (Lecture)</td>
-</tr>
-<tr class="odd">
-<td>2:45 - 3:00</td>
-<td>Break</td>
-</tr>
-<tr class="even">
-<td>3:00 - 3:45</td>
-<td><a href="/labs/advanced_models/advanced_models.qmd">Advanced models</a> (Hands-on Lab)</td>
-</tr>
-<tr class="odd">
-<td>3:45 - 4:30</td>
-<td>Workshop summary, interactive panel discussion &amp; course wrap-up</td>
-</tr>
-<tr class="even">
-<td>4:30 - 5:00</td>
-<td>Final farewell</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="what-is-your-experience-level-with-r-need-to-update" class="slide level2 smaller">
-<h2>What is your experience level with R? (need to update)</h2>
-
-<!-- ## What does a 50% chance of rain mean to you? {.smaller} -->
-<!-- - given the data used to generate prediction, there is equal likelihood of raining and not raining. Also it means I’ll be bringing my umbrella. -->
-<!-- - I am definitely not a meteorologist but our snow forecasters tell us its a combination of % described catchment area and confidence that any given area in that catchment will receive precipitation -->
-<!-- - There is a 50% chance that rain will occur in the allotted time period -->
-<!-- - I'm not a meteorologist, but I assume it means there is a 50% likelihood that any location within the forecast area will experience rain during the forecast period. It might also mean that rain will cover 50% of the forecasted region/area. -->
-<!-- - If you were to stay in one location, there is a 50% likelihood that you will experience rain. If you were to travel around local areas, 50% of those areas will likely experience rain. -->
-<!-- ## What does a 50% chance of rain mean to you? {.smaller} -->
-<!-- - based on previous data with similar starting weather conditions, 50% of those instances resulted in rain -->
-<!-- - Have not actually given it too much thought before. Beyond it being just as likely to rain and not rain... I think it means that there is 100% chance that 50% of the area covered will get rain or for 100% of the area considered, 50% chance there will be rain? Combination of area covered and predicted likelihood, I think? -->
-<!-- - There is a 0.5 probability that it will rain. -->
-<!-- - 50% of locations in a predicted area will rain (?) -->
-<!-- - In the area where the forecast model is being run, 50% of the pixels are predicted to experience rain. -->
-<!-- ## What does a 50% chance of rain mean to you? {.smaller} -->
-<!-- - That it is equally likely to rain as it is to not rain. -->
-<!-- - 50% of the time it will rain and 50% of the time it will not. -->
-<!-- - there is an equal likelihood of rain occurring or not occurring -->
-<!-- - 1 out 2 chance that it will rain. -->
-<!-- - There is a 50% chance it will rain. -->
-<!-- ## What does a 50% chance of rain mean to you? {.smaller} -->
-<!-- - There is a 50% chance of rain occurring in the reporting area -->
-<!-- - a 50 percent chance for any one spot in the forecast area to get wet during the forecast period -->
-<!-- - For the region, there is a half and half chance that some point within the area will see rain. -->
-<!-- - 50/100 days with the same or similar conditions had rain, which means that today there is a 50/100 chance of there being any rain -->
-<!-- - There is an equal chance that it will rain versus not rain -->
-<!-- ## What does a 50% chance of rain mean to you? {.smaller} -->
-<!-- - Met Office (UK): A 50% chance of rain represents a 5 in 10 chance that rain will fall at some point during that period. -->
-<img data-src="welcome_and_introduction_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
-<section id="what-do-you-understand-from-a-95-confidence-interval-ci" class="slide level2 smaller">
-<h2>What do you understand from a 95% Confidence Interval (CI)?</h2>
+<section id="models-characterized-by-several-parameters" class="slide level2">
+<h2>Models characterized by several parameters</h2>
 <ul>
-<li>XX</li>
+<li class="fragment">In many statistical applications, the model is characterized by several parameters.</li>
+<li class="fragment">Many real-world problems involve data grouped by source, area, time, etc.</li>
+<li class="fragment">Classical models assume independence - often inappropriate.</li>
+<li class="fragment">Hierarchical models:
+<ul>
+<li class="fragment">Allow varying group-specific effects.</li>
+<li class="fragment">Improve estimates through sharing information.</li>
+</ul></li>
 </ul>
 </section>
-<section id="what-do-you-understand-from-a-95-confidence-interval-ci-1" class="slide level2 smaller">
-<h2>What do you understand from a 95% Confidence Interval (CI)?</h2>
+<section id="limitations-of-standard-linear-models" class="slide level2">
+<h2>Limitations of standard linear models</h2>
 <ul>
-<li>XX</li>
+<li class="fragment">Assumptions of linear models:
+<ul>
+<li class="fragment">Homoskedasticity (equal variance across groups).</li>
+<li class="fragment">No error in predictors.</li>
+<li class="fragment">Observations <em><span class="math inline">\(y_i\)</span></em> are independent.</li>
+<li class="fragment">Normally distributed errors.</li>
+<li class="fragment">No missing data.</li>
+</ul></li>
 </ul>
 </section>
-<section id="what-do-you-understand-from-a-95-confidence-interval-ci-2" class="slide level2 smaller">
-<h2>What do you understand from a 95% Confidence Interval (CI)?</h2>
+<section id="what-we-want-beyond-standard-linear-model" class="slide level2">
+<h2>What we want beyond standard linear model</h2>
 <ul>
-<li>XX</li>
+<li class="fragment">To model variance</li>
+<li class="fragment">Capture errors in variables</li>
+<li class="fragment">Missing data models</li>
+<li class="fragment">Use generalised linear models (GLMs)</li>
+<li class="fragment">Use spatial and/or temporal error structure</li>
 </ul>
 </section>
-<section id="what-do-you-understand-from-a-95-confidence-interval-ci-3" class="slide level2 smaller">
-<h2>What do you understand from a 95% Confidence Interval (CI)?</h2>
+<section id="why-use-hierarchical-models" class="slide level2">
+<h2>Why use hierarchical models?</h2>
 <ul>
-<li>XX</li>
+<li class="fragment">XX</li>
 </ul>
 </section>
-<section id="what-do-you-understand-from-a-95-confidence-interval-ci-4" class="slide level2 smaller">
-<h2>What do you understand from a 95% Confidence Interval (CI)?</h2>
-<div>
+<section id="hierarchical-models" class="slide level2">
+<h2>Hierarchical models</h2>
+<p>Exist on the continuum of two extreme cases:</p>
 <ul>
-<li class="fragment">Frequentist framework: If we were to repeat the data collection process 100 times and construct confidence intervals for each sample, 95 of those would contain the true parameter (i.e., the target parameter is fixed but unknown, and the interval is random, in other words, there exists a true value of the target parameter, and we may or may not be capturing it with the 95% CI).</li>
-<li class="fragment">Bayesian framework: Given the observed data and our prior beliefs, there is a 95% probability that the true parameter value falls within the credible interval (i.e., target parameter is random but interval is fixed).</li>
-<li class="fragment">Philosophical difference but with differences in methodology and use cases.</li>
+<li class="fragment">Complete pooling</li>
+<li class="fragment">No pooling</li>
 </ul>
-</div>
 </section>
-<section id="logistics-1" class="slide level2 smaller">
-<h2>Logistics</h2>
+<section id="complete-pooling" class="slide level2">
+<h2>Complete pooling</h2>
+<center>
+<p><img data-src="assets/pooled_model.png" style="width:60.0%"></p>
 <ul>
-<li><strong>Wi-Fi</strong> Network: guest-net (no password). Open any webpage (i.e.&nbsp;BBC News, Amazon, etc.) on your browser, a pop-up will appear to connect to guest Wi-Fi. Accept terms to gain access.</li>
-<li><strong>Restrooms</strong>. Directly outside the classroom (women on the left, men on the right)</li>
-<li><strong>Course materials</strong>. All Material (lectures/labs) is located on Posit Cloud. You were invited to the ‘sharp_bayesian_environmental_health_2023’ Workspace via email on Sunday 8/12.</li>
-<li><strong>Name tags</strong>. Please wear during workshop to make connecting with others easier! Please return after the Workshop to help us be greener.</li>
-<li>Contact Meaghan Doherty <strong>914-522-8114</strong> for assistance</li>
+<li class="fragment"><p>A <em>pooled</em> model implies that the data are sampled from the same model.</p></li>
+<li class="fragment"><p>This ignores all variation among the units being sampled.</p></li>
+<li class="fragment"><p>All observations share common parameter <span class="math inline">\(\theta.\)</span></p></li>
+<li class="fragment"><p>It ignores any differences between measurement blocks and does not acknowledge variability block to block.</p></li>
+<li class="fragment"><p>Observations within each unit are more likely to be like each other.</p></li>
+</ul>
+</center></section>
+<section id="no-pooling" class="slide level2">
+<h2>No pooling</h2>
+<center>
+<p><img data-src="assets/unpooled_model.png" style="width:60.0%"></p>
+<ul>
+<li class="fragment">An <em>unpooled</em> model implies that the data are sampled from independent parameters.</li>
+<li class="fragment">Parameter <span class="math inline">\(\theta_i\)</span> is different for each observation.</li>
+</ul>
+<p><font size="1"> Image: courtesy of Chris Fonnesbeck</font></p>
+</center></section>
+<section id="partial-pooling" class="slide level2">
+<h2>Partial pooling</h2>
+<center>
+<p><img data-src="assets/partial_pooled_model.png" style="width:60.0%"></p>
+<ul>
+<li class="fragment">In a <em>partially pooled</em> or <em>multilevel</em> or <em>hierarchical</em> model, parameters are viewed as a sample from a distribution of parameters.</li>
+</ul>
+</center></section>
+<section id="hierarchical-modeling-framework" class="slide level2">
+<h2>Hierarchical modeling framework</h2>
+<ul>
+<li class="fragment">Hierarchical models fill in the continuum between the two extremes.</li>
+<li class="fragment">They allow us to estimate models for each measurement block where each dataset is being fit to its own model. - There is a higher level model, a <em>hierarchical model</em>, describing variability in parameters of those sub-models.</li>
+</ul>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<p>Normal model: common mean</p>
+<p><span class="math display">\[y_i \sim N(\mu, \sigma^2), \quad i=1, ..., N\]</span></p>
+</section>
+<section id="example-1" class="slide level2">
+<h2>Example</h2>
+<p>Normal model: common variance</p>
+<p><span class="math display">\[y_i \sim N(\mu_i, \sigma^2) \]</span> <span class="math display">\[\mu_i \sim N(\mu, \tau^2) \]</span> <span class="math display">\[\sigma^2 \sim IG(\alpha, \beta) \]</span></p>
+<p>Instead of assuming that <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\tau\)</span> are <em>fixed known values</em>, we assume they are <em>uknown parameters</em> which need to estimate.</p>
+</section>
+<section id="example-2" class="slide level2">
+<h2>Example</h2>
+<p>Normal model: common variance</p>
+<p><span class="math display">\[y_i \sim N(\mu_i, \sigma^2) \]</span> <span class="math display">\[\mu_i \sim N(\mu, \tau^2) \]</span> <span class="math display">\[\sigma^2 \sim IG(\alpha, \beta) \]</span> Hyperpriors</p>
+<p><span class="math display">\[ \mu \sim N(\mu_0, v_0), \\
+\tau^2 \sim IG(t_1, t_2)\]</span></p>
+</section>
+<section id="hierarchical-modelling-framework" class="slide level2">
+<h2>Hierarchical modelling framework</h2>
+<ul>
+<li class="fragment">Exchangeability</li>
+<li class="fragment">Random effects</li>
+<li class="fragment">Hierarchical regression</li>
+<li class="fragment">Types of nestedness</li>
+</ul>
+</section>
+<section id="exchangeability" class="slide level2">
+<h2>Exchangeability</h2>
+<ul>
+<li class="fragment">XX</li>
+</ul>
+</section>
+<section id="random-effects" class="slide level2">
+<h2>Random effects</h2>
+<ul>
+<li class="fragment">XX</li>
+</ul>
+</section>
+<section id="hierarchical-regression" class="slide level2">
+<h2>Hierarchical regression</h2>
+<ul>
+<li class="fragment">XX</li>
+</ul>
+</section>
+<section id="types-of-nestedness" class="slide level2">
+<h2>Types of nestedness</h2>
+<ul>
+<li class="fragment">XX</li>
+</ul>
+</section>
+<section id="bayesian-persepctive" class="slide level2">
+<h2>Bayesian persepctive</h2>
+<ul>
+<li class="fragment">Models with multiple parameters</li>
+<li class="fragment">Posterior inference and variance modeling</li>
+</ul>
+</section>
+<section id="models-with-multiple-parameters" class="slide level2">
+<h2>Models with multiple parameters</h2>
+<ul>
+<li class="fragment">XX</li>
+</ul>
+</section>
+<section id="posterior-inference-and-variance-modeling" class="slide level2">
+<h2>Posterior inference and variance modeling</h2>
+<ul>
+<li class="fragment">XX</li>
+</ul>
+</section>
+<section id="levels-of-hierarchy" class="slide level2">
+<h2>Levels of hierarchy</h2>
+<ul>
+<li class="fragment">Data</li>
+<li class="fragment">Process model (likelihood)</li>
+<li class="fragment">Parameter model (priors)</li>
+<li class="fragment">Hyperparameters (hyperpriors)</li>
+</ul>
+</section>
+<section id="key-points-about-hierarchical-models" class="slide level2">
+<h2>Key points about hierarchical models</h2>
+<ul>
+<li class="fragment">They allow to write down models that explain <em>variability in the parameters</em> of a model.</li>
+<li class="fragment"><em>Partition variability</em> more explicitly into multiple terms.</li>
+<li class="fragment"><em>Borrow strength</em> across data sets.</li>
+<li class="fragment">‘Hierarchy’ is with respect to parameters.</li>
+</ul>
+</section>
+<section id="model-comparison" class="slide level2">
+<h2>Model comparison</h2>
+<ul>
+<li class="fragment">Frequentist way:
+<ul>
+<li class="fragment">optimise different models on the <strong>training set</strong>,</li>
+<li class="fragment">and compare them on the <strong>test set</strong>.</li>
+</ul></li>
+<li class="fragment">Bayesian way:
+<ul>
+<li class="fragment">use <strong>model evidence</strong> <span class="math inline">\(p(Data | Model_i)\)</span></li>
+<li class="fragment">It tends to choose models which are just complex enough to model the data, but not overly complex (by which it avoids <strong>overfitting</strong>).</li>
+</ul></li>
+</ul>
+</section>
+<section id="information-criteria" class="slide level2">
+<h2>Information criteria</h2>
+<p><em>Information criteria</em> are popular tools for model selection that provide a quantitative measure of the trade-off between model fit and complexity. The <em>lower</em> the value of IC, the better.</p>
+</section>
+<section id="examples-of-information-criteria" class="slide level2">
+<h2>Examples of Information Criteria:</h2>
+<ul>
+<li class="fragment">AIC (Akaike Information Criterion): <span class="math display">\[\text{AIC} = -2* \ln(L) + 2k,\\
+L - \text{maximum value of likelihood},\\
+k - \text{number of parameters}\]</span></li>
+<li class="fragment">BIC (Bayesian Information Criterion): <span class="math display">\[\text{BIC} = -2 \ln(L) + k \ln(n)\]</span></li>
+<li class="fragment">Widely Applicable Information Criterion (WAIC)</li>
 </ul>
 </section></section>
+<section>
+<section id="getting-ready-for-the-lab" class="title-slide slide level1 center">
+<h1>Getting ready for the lab</h1>
+
+</section>
+<section id="the-lab-for-this-session" class="slide level2 smaller">
+<h2>The lab for this session</h2>
+<ul>
+<li class="fragment"><p>This lab will involve XX</p></li>
+<li class="fragment"><p>During this lab session, we will:</p></li>
+</ul>
+<ol type="1">
+<li class="fragment">Explore how <code>NIMBLE</code> is written and works;</li>
+<li class="fragment">Write some common regression models (Normal, logistic regression, Poisson);</li>
+<li class="fragment">Understand how basic model assessment is made; and</li>
+<li class="fragment">Test out how adjustments of models are made via different priors and more samples.</li>
+</ol>
+</section></section>
 <section id="questions" class="title-slide slide level1 center">
+<h1>Questions?</h1>
+
+</section>
+
+<section id="questions-1" class="title-slide slide level1 center">
 <h1>Questions?</h1>
 
 <img src="../../assets/bmeh_normal.png" class="slide-logo r-stretch"><div class="footer footer-default">
@@ -624,20 +603,20 @@
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="welcome_and_introduction_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="hierarchical_modelling_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="hierarchical_modelling_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="hierarchical_modelling_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="hierarchical_modelling_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="hierarchical_modelling_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="hierarchical_modelling_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="hierarchical_modelling_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="welcome_and_introduction_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="hierarchical_modelling_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="hierarchical_modelling_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="hierarchical_modelling_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="hierarchical_modelling_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -833,44 +812,6 @@
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
