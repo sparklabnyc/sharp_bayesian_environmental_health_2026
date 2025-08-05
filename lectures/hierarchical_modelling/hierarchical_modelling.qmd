@@ -302,8 +302,8 @@ $$
 
 ## Comparing to frequenist random effects
 
--   Frequentist random effects models are similar in some ways to
-    Bayesian hierarchical models.
+-   Frequentist random effects models are analagous in some ways to
+    Bayesian hierarchical models, but with important differences.
 -   They allow for group-specific effects and account for intra-group
     correlation.
 -   However, they do not:
@@ -316,16 +316,18 @@ $$
     -   Allow for uncertainty quantification at multiple levels.
     -   Provide a coherent framework for model comparison and selection.
     -   Enable the incorporation of prior knowledge and beliefs.
+    -   Allow for extensions in complexity on multiple levels (e.g.,
+        spatiotemporal models).
 
 ## Bayesian advantages
 
-- Handles complex multilevel and spatial hierarchies.
-- Uses structured priors (CAR, GMRF) for spatial dependence.
-- Supports flexible, non-Gaussian priors.
-- Provides full uncertainty via posterior distributions.
-- Easily incorporates expert knowledge through priors.
-- Enables spatiotemporal and nonstationary extensions.
-- Frequentist methods often limited or approximate.
+-   Handles complex multilevel and spatial hierarchies.
+-   Uses structured priors (CAR, GMRF) for spatial dependence.
+-   Supports flexible, non-Gaussian priors.
+-   Provides full uncertainty via posterior distributions.
+-   Easily incorporates expert knowledge through priors.
+-   Enables spatiotemporal and nonstationary extensions.
+-   Frequentist methods often limited or approximate.
 
 ## Model selection
 
