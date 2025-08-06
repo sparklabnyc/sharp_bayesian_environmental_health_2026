@@ -1,11 +1,11 @@
 ---
 title: "Software Options for Bayesian Modelling"
-subtitle: "Should we still use WinBugs?"
+subtitle: "R-INLA and other probabilistic programming languages"
 author:
- - name: "Theo Rashid"
-   email: "theo.rashid15@imperial.ac.uk"
-institute: "Imperial College London"
-date: 2024-08-22
+ - name: "Robbie M. Parks, Theo Rashid"
+   email: "robbie.parks@columbia.edu"
+institute: "Environmental Health Sciences, Columbia University"
+date: 2025-08-15
 date-format: medium
 title-slide-attributes:
   data-background-color: "#f3f4f4"

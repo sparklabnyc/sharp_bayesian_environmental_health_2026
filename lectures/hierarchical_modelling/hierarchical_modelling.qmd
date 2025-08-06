@@ -120,7 +120,7 @@ summary(data)
     have different parameters.]{style="color:red"}
 -   No measurement error in predictors. [Predictors are often
     noisy.]{style="color:red"}
--   Complete data. Missingness is common. [Missingness is
+-   Complete data. [Missingness is
     common]{style="color:red"}.
 
 ## What we want beyond linear model
