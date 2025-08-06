@@ -6,8 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Robbie M. Parks, Theo Rashid, Elizaveta Semenova">
-<meta name="dcterms.date" content="2024-08-21">
+<meta name="author" content="Theo Rashid, Elizaveta Semenova, Robbie M. Parks">
+<meta name="dcterms.date" content="2025-08-14">
 
 <title>Hierarchical modelling</title>
 <style>
@@ -95,14 +95,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Robbie M. Parks, Theo Rashid, Elizaveta Semenova </p>
+             <p>Theo Rashid, Elizaveta Semenova, Robbie M. Parks </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 21, 2024</p>
+      <p class="date">August 14, 2025</p>
     </div>
   </div>
   
@@ -239,7 +239,7 @@ $ week                    &lt;dbl&gt; 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 20
 <pre><code>Joining with `by = join_by(SIGLA)`</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We have a variable <code>expected</code>, which gives a good (if a slight underestimation) approximation to the number of deaths.</p>
@@ -249,7 +249,7 @@ $ week                    &lt;dbl&gt; 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 20
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
@@ -260,7 +260,7 @@ $ week                    &lt;dbl&gt; 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 20
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We are going to estimate the region-specific SMR. This is the ratio of actual deaths to expected deaths in each region.</p>
@@ -316,10 +316,11 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">nburnin =</span> <span class="dv">1000</span>,</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">thin =</span> <span class="dv">1</span>,</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">nchains =</span> <span class="dv">2</span>,</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">setSeed =</span> <span class="dv">1</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># setSeed = 1,</span></span>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">samplesAsCodaMCMC =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">progressBar =</span> <span class="cn">TRUE</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">progressBar =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">WAIC =</span> <span class="cn">TRUE</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Defining model</code></pre>
 </div>
@@ -367,24 +368,24 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 </div>
 <p>Follow the Bayesian workflow: look at MCMC outputs, check convergence using r-hat.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise_draws</span>(full_pooling_samples, <span class="fu">default_summary_measures</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise_draws</span>(full_pooling_samples<span class="sc">$</span>samples, <span class="fu">default_summary_measures</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 7
   variable   mean median      sd     mad     q5    q95
   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1 alpha    -0.109 -0.109 0.00464 0.00459 -0.117 -0.102</code></pre>
+1 alpha    -0.109 -0.110 0.00436 0.00430 -0.117 -0.102</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise_draws</span>(full_pooling_samples, <span class="fu">default_convergence_measures</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise_draws</span>(full_pooling_samples<span class="sc">$</span>samples, <span class="fu">default_convergence_measures</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 4
   variable  rhat ess_bulk ess_tail
   &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-1 alpha     1.00     344.     569.</code></pre>
+1 alpha     1.00     517.     522.</code></pre>
 </div>
 </div>
 <p>Let’s plot the SMR in each province.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>full_pooling_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_array</span>(full_pooling_samples)</span>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>full_pooling_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_array</span>(full_pooling_samples<span class="sc">$</span>samples)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>SMR_full_pooling <span class="ot">&lt;-</span> <span class="fu">exp</span>(full_pooling_posterior[, , <span class="st">"alpha"</span>]) <span class="sc">|&gt;</span></span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">apply</span>(<span class="at">MARGIN =</span> <span class="dv">3</span>, <span class="at">FUN =</span> median)</span>
@@ -398,7 +399,7 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 <span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>p_full</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Pretty boring, eh?</p>
@@ -451,10 +452,11 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 <span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">nburnin =</span> <span class="dv">1000</span>,</span>
 <span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">thin =</span> <span class="dv">1</span>,</span>
 <span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">nchains =</span> <span class="dv">2</span>,</span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">setSeed =</span> <span class="dv">1</span>,</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># setSeed = 1,</span></span>
 <span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">samplesAsCodaMCMC =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">progressBar =</span> <span class="cn">TRUE</span></span>
-<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">progressBar =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">WAIC =</span> <span class="cn">TRUE</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Defining model</code></pre>
 </div>
@@ -491,48 +493,49 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>|-------------|-------------|-------------|-------------|
-|-------------------------------------------------------|</code></pre>
+|-------------------------------------------------------|
+  [Warning] There are 4 individual pWAIC values that are greater than 0.4. This may indicate that the WAIC estimate is unstable (Vehtari et al., 2017), at least in cases without grouping of data nodes or multivariate data nodes.</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise_draws</span>(no_pooling_samples, <span class="fu">default_summary_measures</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise_draws</span>(no_pooling_samples<span class="sc">$</span>samples, <span class="fu">default_summary_measures</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 107 × 7
-   variable      mean   median     sd    mad      q5      q95
-   &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
- 1 alpha[1]  -0.00889 -0.00494 0.0552 0.0553 -0.101   0.0793 
- 2 alpha[2]  -0.00852 -0.00731 0.0431 0.0442 -0.0817  0.0602 
- 3 alpha[3]  -0.169   -0.169   0.0491 0.0490 -0.252  -0.0915 
- 4 alpha[4]  -0.134   -0.135   0.0966 0.0976 -0.298   0.0273 
- 5 alpha[5]  -0.0901  -0.0896  0.0729 0.0708 -0.207   0.0383 
- 6 alpha[6]  -0.0525  -0.0529  0.0616 0.0612 -0.156   0.0473 
- 7 alpha[7]  -0.137   -0.136   0.0590 0.0612 -0.234  -0.0459 
- 8 alpha[8]  -0.119   -0.115   0.0706 0.0695 -0.235  -0.00976
- 9 alpha[9]  -0.138   -0.136   0.0554 0.0579 -0.228  -0.0496 
-10 alpha[10] -0.145   -0.145   0.0346 0.0339 -0.199  -0.0862 
+   variable      mean   median     sd    mad      q5        q95
+   &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+ 1 alpha[1]  -0.00930 -0.00951 0.0525 0.0523 -0.0922  0.0781   
+ 2 alpha[2]  -0.00762 -0.00608 0.0461 0.0488 -0.0808  0.0657   
+ 3 alpha[3]  -0.164   -0.165   0.0516 0.0484 -0.243  -0.0726   
+ 4 alpha[4]  -0.148   -0.150   0.104  0.101  -0.311   0.0217   
+ 5 alpha[5]  -0.0889  -0.0892  0.0733 0.0757 -0.208   0.0259   
+ 6 alpha[6]  -0.0540  -0.0580  0.0608 0.0640 -0.152   0.0457   
+ 7 alpha[7]  -0.125   -0.127   0.0575 0.0549 -0.221  -0.0320   
+ 8 alpha[8]  -0.117   -0.124   0.0720 0.0780 -0.230  -0.0000123
+ 9 alpha[9]  -0.138   -0.136   0.0547 0.0539 -0.227  -0.0473   
+10 alpha[10] -0.144   -0.145   0.0358 0.0358 -0.203  -0.0843   
 # ℹ 97 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise_draws</span>(no_pooling_samples, <span class="fu">default_convergence_measures</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise_draws</span>(no_pooling_samples<span class="sc">$</span>samples, <span class="fu">default_convergence_measures</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 107 × 4
    variable   rhat ess_bulk ess_tail
    &lt;chr&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
- 1 alpha[1]   1.01     448.     557.
- 2 alpha[2]   1.00     655.     510.
- 3 alpha[3]   1.01     387.     376.
- 4 alpha[4]   1.00     538.     528.
- 5 alpha[5]   1.00     351.     264.
- 6 alpha[6]   1.00     426.     483.
- 7 alpha[7]   1.01     448.     375.
- 8 alpha[8]   1.01     511.     558.
- 9 alpha[9]   1.01     441.     591.
-10 alpha[10]  1.01     464.     588.
+ 1 alpha[1]   1.01     506.     486.
+ 2 alpha[2]   1.01     434.     453.
+ 3 alpha[3]   1.00     459.     505.
+ 4 alpha[4]   1.00     452.     379.
+ 5 alpha[5]   1.02     560.     590.
+ 6 alpha[6]   1.01     508.     498.
+ 7 alpha[7]   1.00     490.     425.
+ 8 alpha[8]   1.01     565.     558.
+ 9 alpha[9]   1.00     494.     761.
+10 alpha[10]  1.00     446.     454.
 # ℹ 97 more rows</code></pre>
 </div>
 </div>
 <p>The SMR in each province</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>no_pooling_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_array</span>(no_pooling_samples)</span>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>no_pooling_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_array</span>(no_pooling_samples<span class="sc">$</span>samples)</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>SMR_no_pooling <span class="ot">&lt;-</span> <span class="fu">exp</span>(no_pooling_posterior[, , <span class="dv">1</span><span class="sc">:</span><span class="dv">107</span>]) <span class="sc">|&gt;</span></span>
 <span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">apply</span>(<span class="at">MARGIN =</span> <span class="dv">3</span>, <span class="at">FUN =</span> median)</span>
@@ -546,7 +549,7 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 <span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>p_no</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -608,10 +611,11 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 <span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">nburnin =</span> <span class="dv">1000</span>,</span>
 <span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">thin =</span> <span class="dv">1</span>,</span>
 <span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">nchains =</span> <span class="dv">2</span>,</span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">setSeed =</span> <span class="dv">1</span>,</span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># setSeed = 1,</span></span>
 <span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">samplesAsCodaMCMC =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">progressBar =</span> <span class="cn">TRUE</span></span>
-<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">progressBar =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">WAIC =</span> <span class="cn">TRUE</span></span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Defining model</code></pre>
 </div>
@@ -652,51 +656,51 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise_draws</span>(partial_pooling_samples, <span class="fu">default_summary_measures</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise_draws</span>(partial_pooling_samples<span class="sc">$</span>samples, <span class="fu">default_summary_measures</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 109 × 7
-   variable     mean   median      sd     mad        q5     q95
-   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
- 1 alpha    -0.110   -0.110   0.00849 0.00873 -0.124    -0.0958
- 2 sigma_p   0.0676   0.0670  0.00726 0.00693  0.0556    0.0802
- 3 theta[1]  0.0614   0.0607  0.0424  0.0400  -0.00735   0.132 
- 4 theta[2]  0.0647   0.0640  0.0394  0.0369   0.000999  0.131 
- 5 theta[3] -0.0400  -0.0369  0.0398  0.0378  -0.107     0.0224
- 6 theta[4] -0.00912 -0.00536 0.0555  0.0546  -0.0974    0.0780
- 7 theta[5]  0.0137   0.0125  0.0508  0.0489  -0.0682    0.104 
- 8 theta[6]  0.0337   0.0305  0.0446  0.0428  -0.0366    0.108 
- 9 theta[7] -0.0137  -0.0123  0.0450  0.0448  -0.0865    0.0567
-10 theta[8]  0.00298  0.00716 0.0505  0.0486  -0.0783    0.0843
+   variable     mean   median      sd     mad       q5     q95
+   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;
+ 1 alpha    -0.112   -0.112   0.00846 0.00902 -0.125   -0.0982
+ 2 sigma_p   0.0682   0.0682  0.00791 0.00845  0.0552   0.0807
+ 3 theta[1]  0.0665   0.0651  0.0424  0.0389  -0.00165  0.137 
+ 4 theta[2]  0.0694   0.0686  0.0401  0.0412   0.00502  0.135 
+ 5 theta[3] -0.0349  -0.0333  0.0383  0.0400  -0.0986   0.0288
+ 6 theta[4] -0.00675 -0.0108  0.0574  0.0510  -0.0999   0.0859
+ 7 theta[5]  0.0113   0.00998 0.0475  0.0452  -0.0644   0.0900
+ 8 theta[6]  0.0356   0.0356  0.0464  0.0440  -0.0480   0.114 
+ 9 theta[7] -0.0122  -0.00940 0.0419  0.0432  -0.0796   0.0543
+10 theta[8] -0.00292 -0.00411 0.0530  0.0524  -0.0922   0.0820
 # ℹ 99 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise_draws</span>(partial_pooling_samples, <span class="fu">default_convergence_measures</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise_draws</span>(partial_pooling_samples<span class="sc">$</span>samples, <span class="fu">default_convergence_measures</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 109 × 4
    variable  rhat ess_bulk ess_tail
    &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
- 1 alpha     1.01     80.2     170.
- 2 sigma_p   1.01    100.      219.
- 3 theta[1]  1.01    485.      533.
- 4 theta[2]  1.01    303.      319.
- 5 theta[3]  1.00    380.      418.
- 6 theta[4]  1.00    483.      387.
- 7 theta[5]  1.00    501.      428.
- 8 theta[6]  1.01    437.      479.
- 9 theta[7]  1.01    494.      454.
-10 theta[8]  1.01    470.      399.
+ 1 alpha    1.02      83.0     204.
+ 2 sigma_p  1.01      74.8     173.
+ 3 theta[1] 1.01     481.      465.
+ 4 theta[2] 1.01     447.      464.
+ 5 theta[3] 1.00     381.      533.
+ 6 theta[4] 1.01     434.      389.
+ 7 theta[5] 1.00     447.      448.
+ 8 theta[6] 1.000    416.      454.
+ 9 theta[7] 1.00     531.      573.
+10 theta[8] 1.01     442.      275.
 # ℹ 99 more rows</code></pre>
 </div>
 </div>
 <p>With more complicated models, sometimes it’s nice to see if the traceplots are working too.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_trace</span>(partial_pooling_samples, <span class="at">regex_pars =</span> <span class="st">"alpha"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mcmc_trace</span>(partial_pooling_samples<span class="sc">$</span>samples, <span class="at">regex_pars =</span> <span class="st">"alpha"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>There is a little bit more manipulation required to estimate the SMR for the more complicated model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>partial_pooling_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_array</span>(partial_pooling_samples)</span>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>partial_pooling_posterior <span class="ot">&lt;-</span> <span class="fu">as_draws_array</span>(partial_pooling_samples<span class="sc">$</span>samples)</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>SMR_partial_pooling <span class="ot">&lt;-</span> <span class="fu">exp</span>(</span>
 <span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sweep</span>(</span>
@@ -717,7 +721,7 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 <span id="cb71-19"><a href="#cb71-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb71-20"><a href="#cb71-20" aria-hidden="true" tabindex="-1"></a>p_partial</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -727,18 +731,55 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 <div class="cell">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>p_full <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">caption =</span> <span class="st">"Full pooling model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>p_no <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">caption =</span> <span class="st">"No pooling model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-24-2.png" class="img-fluid" width="672"></p>
+<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-23-2.png" class="img-fluid" width="672"></p>
 </div>
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>p_partial <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">caption =</span> <span class="st">"Partial pooling model"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-24-3.png" class="img-fluid" width="672"></p>
+<p><img src="hierarchical_modelling_files/figure-html/unnamed-chunk-23-3.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>There is clearly more smoothing in the partial pooling model.</p>
+<p>What about information criteria of each model (remember, lowest is the preferred choice)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>full_pooling_samples<span class="sc">$</span>WAIC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>nimbleList object of type waicNimbleList
+Field "WAIC":
+[1] 17275.76
+Field "lppd":
+[1] -8636.775
+Field "pWAIC":
+[1] 1.106235</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>no_pooling_samples<span class="sc">$</span>WAIC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>nimbleList object of type waicNimbleList
+Field "WAIC":
+[1] 17173.81
+Field "lppd":
+[1] -8475.219
+Field "pWAIC":
+[1] 111.6852</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>partial_pooling_samples<span class="sc">$</span>WAIC</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>nimbleList object of type waicNimbleList
+Field "WAIC":
+[1] 17127.24
+Field "lppd":
+[1] -8493.867
+Field "pWAIC":
+[1] 69.75487</code></pre>
+</div>
+</div>
 </section>
 <section id="closing-remarks" class="level2">
 <h2 class="anchored" data-anchor-id="closing-remarks">Closing remarks</h2>

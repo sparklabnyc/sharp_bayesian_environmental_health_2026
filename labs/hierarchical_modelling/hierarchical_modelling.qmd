@@ -1,8 +1,8 @@
 ---
 title: "Hierarchical modelling"
 subtitle: "SHARP Bayesian Modeling for Environmental Health Workshop"
-author: "Robbie M. Parks, Theo Rashid, Elizaveta Semenova"
-date: "August 21 2024"
+author: "Theo Rashid, Elizaveta Semenova, Robbie M. Parks"
+date: "August 14 2025"
 format: html
 ---
 
@@ -189,13 +189,13 @@ full_pooling_samples <- nimbleMCMC(
 
 Follow the Bayesian workflow: look at MCMC outputs, check convergence using r-hat.
 ```{r}
-summarise_draws(full_pooling_samples, default_summary_measures())
-summarise_draws(full_pooling_samples, default_convergence_measures())
+summarise_draws(full_pooling_samples$samples, default_summary_measures())
+summarise_draws(full_pooling_samples$samples, default_convergence_measures())
 ```
 
 Let's plot the SMR in each province.
 ```{r}
-full_pooling_posterior <- as_draws_array(full_pooling_samples)
+full_pooling_posterior <- as_draws_array(full_pooling_samples$samples)
 
 SMR_full_pooling <- exp(full_pooling_posterior[, , "alpha"]) |>
   apply(MARGIN = 3, FUN = median)
@@ -241,6 +241,7 @@ inits <- list(
   )
 )
 ```
+
 ```{r}
 no_pooling_model <- nimbleCode({
   # priors
@@ -275,13 +276,13 @@ no_pooling_samples <- nimbleMCMC(
 ```
 
 ```{r}
-summarise_draws(no_pooling_samples, default_summary_measures())
-summarise_draws(no_pooling_samples, default_convergence_measures())
+summarise_draws(no_pooling_samples$samples, default_summary_measures())
+summarise_draws(no_pooling_samples$samples, default_convergence_measures())
 ```
 
 The SMR in each province
 ```{r}
-no_pooling_posterior <- as_draws_array(no_pooling_samples)
+no_pooling_posterior <- as_draws_array(no_pooling_samples$samples)
 
 SMR_no_pooling <- exp(no_pooling_posterior[, , 1:107]) |>
   apply(MARGIN = 3, FUN = median)
@@ -334,6 +335,7 @@ inits <- list(
   )
 )
 ```
+
 ```{r}
 partial_pooling_model <- nimbleCode({
   # priors
@@ -371,18 +373,18 @@ partial_pooling_samples <- nimbleMCMC(
 ```
 
 ```{r}
-summarise_draws(partial_pooling_samples, default_summary_measures())
-summarise_draws(partial_pooling_samples, default_convergence_measures())
+summarise_draws(partial_pooling_samples$samples, default_summary_measures())
+summarise_draws(partial_pooling_samples$samples, default_convergence_measures())
 ```
 
 With more complicated models, sometimes it's nice to see if the traceplots are working too.
 ```{r}
-mcmc_trace(partial_pooling_samples, regex_pars = "alpha")
+mcmc_trace(partial_pooling_samples$samples, regex_pars = "alpha")
 ```
 
 There is a little bit more manipulation required to estimate the SMR for the more complicated model.
 ```{r}
-partial_pooling_posterior <- as_draws_array(partial_pooling_samples)
+partial_pooling_posterior <- as_draws_array(partial_pooling_samples$samples)
 
 SMR_partial_pooling <- exp(
   sweep(
@@ -415,6 +417,19 @@ p_partial + labs(caption = "Partial pooling model")
 ```
 
 There is clearly more smoothing in the partial pooling model.
+
+What about information criteria of each model (remember, lowest is the preferred choice)
+```{r}
+full_pooling_samples$WAIC
+```
+
+```{r}
+no_pooling_samples$WAIC
+```
+
+```{r}
+partial_pooling_samples$WAIC
+```
 
 ## Closing remarks
 
