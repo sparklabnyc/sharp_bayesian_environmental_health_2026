@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Bayesian Methods"
+title: "Principles of Bayesian statistics"
 subtitle: "Key ideas and concepts"
 author:
  - name: "Robbie M. Parks"
