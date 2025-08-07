@@ -2,7 +2,7 @@
 title: "Principles of Bayesian statistics"
 subtitle: "SHARP Bayesian Modeling for Environmental Health Workshop"
 author: "Robbie M. Parks, Theo Rashid"
-date: "August 21 2024"
+date: "August 14 2025"
 format: html
 ---
 
@@ -576,6 +576,8 @@ mcmc_trace(nimbleMCMC_samples_poisson)
 
 In this lab session, we have explored how to fit some basic models using Bayesian regression in `NIMBLE`.
 We looked at the three most common likelihoods: Normal, Binomial, and Poisson.
+
+Typically we would run more than one chain to ensure that the model has converged properly, and we would also check the effective sample size of each parameter to ensure that we have enough samples to make inferences about the posterior distributions. We will do this later in the workshop when we look at more complex models.
 
 We used simulated data here, so we had complete control over the complexity in the data.
 However, in the real world, we would often try many different models if we do not know how the data were generated.

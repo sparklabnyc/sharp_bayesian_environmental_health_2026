@@ -2,8 +2,8 @@
 title: "Bayesian Model(l)ing for Environmental Health"
 subtitle: "Welcome and Introduction"
 author:
- - name: ""
-   email: ""
+ - name: "Robbie M. Parks, Garyfallos Konstantinoudis"
+   email: "robbie.parks@columbia.edu, g.konstantinoudis@imperial.ac.uk"
 institute: ""
 date: 2025-08-14
 date-format: medium
@@ -30,7 +30,7 @@ format:
 
 -   **Wi-Fi** Network: guest-net (no password). Open any webpage on your browser, a pop-up will appear to connect to guest Wi-Fi. Accept terms to gain access.
 -   **Restrooms**. Directly outside the classroom to the right.
--   **Course materials**. All Material (lectures/labs) is located on Posit Cloud. You were invited to the ‘sharp_bayesian_environmental_health_2025’ workspace via email earlier this week.
+-   **Course materials**. All Material (lectures/labs) is located on Posit Cloud. You were invited to the ‘sharp_bayesian_environmental_health_2025’ workspace via email a few days ago.
 -   **Name tags**. Please wear during workshop to make connecting with others easier! Please return after the Workshop to help us be greener.
 -   Contact Meaghan Doherty **914-522-8114** for assistance.
 
@@ -55,6 +55,11 @@ The **Bayesian Modeling for Environmental Health Workshop** is a two-day intensi
 ## Bayesian Modelling Workshop Team
 
 ![](assets/instructor.png)
+
+
+## Special thank you
+
+![](assets/theo_liza.png)
 
 ## 13 US States + 1 country
 

@@ -112,11 +112,10 @@ plot(p)
 
 ## `Posit` (`RStudio`) `Cloud` {.smaller}
 
-- We will assume you have done the preliminary homework, which includes learning the basics of `RStudio` `Cloud`.
-- `RStudio` `Cloud` is a cloud-based `RStudio` which runs projects and code in the cloud.
-- `RStudio` `Cloud` allows convenient scaling and sharing of code, including for training programs such as SHARP.
+- `Posit` `Cloud` is a cloud-based `RStudio` which runs projects and code in the cloud.
+- `Posit` `Cloud` allows convenient scaling and sharing of code, including for training programs such as SHARP.
 - Registration for free is available via [https://posit.cloud/](https://posit.cloud/).
-- We will go through how to navigate `RStudio` `Cloud` together
+- We will go through how to navigate `RStudio` `Cloud` together.
 - More details are available via [https://docs.posit.co/cloud/](https://docs.posit.co/cloud/).
 
 ## `GitHub`
@@ -188,7 +187,7 @@ code <- nimbleCode({
 ## `R` with `NIMBLE` (from lab immediately after this) {.smaller}
 
 ::: nonincremental
-- Comparing frequentist (top) with `NIMBLE` code (bottom):
+- Comparing frequentist code...:
 :::
 
 ``` R
@@ -197,6 +196,9 @@ model_freq <- lm(
   data = df
 )
 ```
+
+- ...with `NIMBLE` code:
+
 ``` R
 code <- nimbleCode({
   # priors for parameters
@@ -344,19 +346,19 @@ ggplot(data) +
   theme_bw()
 ```
 
-## Subjective probability
+## Subjective probability {.smaller}
 
-![](assets/rain_nyt_small.jpg){.r-stretch}
+- What is it?
+  - Probability as degree of belief, not long-run frequency.
+  - Quantifies uncertainty based on prior knowledge, expert opinion, or experience.
 
-## Subjective probability
+- Key Features
+  - Personal: Two people can assign different probabilities to the same event — both valid
+  - Coherent: Must follow the rules of probability (e.g., total = 1).
+  - Updatable: Modified via Bayes’ Theorem when new data arrives.
 
-- What about the probability that it will rain tomorrow?
-- What is the probability that the next president will be a very old man?
-- What is the probability that aliens built the pyramids?
-- Such questions cannot be answered by long-run probability.
-- Degree of belief involved.
-- However, long-run reasoning can inform these estimations.
-- Foundation of Bayesian thinking.
+- Example
+  - A researcher believes there's a 70% chance a new intervention reduces mortality, based on past studies and domain knowledge — even before seeing the data.
 
 ## Thomas Bayes and Simon Pierre Laplace
 
@@ -370,61 +372,99 @@ ggplot(data) +
 
 ![](assets/big_red_cross.png){.absolute top=350 right=50 width="200" height="200"}
 
-<!-- ## Bayes theorem -->
-
-<!-- - Conditional probability is the axis on which Bayesian statistics turns. -->
-<!-- - Same equation... -->
-<!-- - ...but different interpretation. -->
-
-<!-- - $$ -->
-<!--   P(B|A) = \frac{P(A|B) P(B)}{P(A)} -->
-<!--   $$ -->
-
 ## Bayes theorem, prior, likelihood and posterior
 
-- $$
-  P(\theta|y) \propto P(y|\theta) P(\theta)
-  $$
-- $P(\theta)$ is the prior.
-- $P(y|\theta)$ is the likelihood.
-- $P(\theta|y)$ is the posterior.
+- $$P(\theta|y) \propto P(y|\theta) P(\theta)$$
 
-- Prior is what is known or estimated a priori.
-- Likelihood is probability of data given parameters of interest.
-- Posterior is probability of parameters of interest given data.
+- $P(\theta)$ is the `prior` (known or estimated a priori).
+- $P(y|\theta)$ is the `likelihood` (probability of data given parameters of interest).
+- $P(\theta|y)$ is the `posterior` (parameters of interest given data).
 
 ## Bayesian inference
 
-- Leaving behind Frequentist inference here.
-- Bayesian when prior is unknown and is distribution is specified.
+- Leaving behind `frequentist` inference here.
+- `Bayesian` when prior is unknown and is distribution is specified.
 - Bayes theorem exists in frequentist world, but here prior is a distribution.
 - Prior + Data -> Posterior.
 
 ![](assets/bmeh_normal.png){.r-stretch}
 
-## Choosing the prior distribution (conjugate or not)
+## Choosing the prior distribution
 
 - Prior choice can be vital.
+- Priors reflect subjective probability.
 - Type of distribution (we will see in a second).
-- Hyperparameters/hyperpriors.
-- Often a 'natural' candidate for prior choice.
-- Mathematically solvable or not.
-- Some are solvable (conjugate).
-- Most are not (non-conjugate)...
 
 ## Conjugacy
 
-- When the posterior is an analytical solution of the prior and data.
+- When the posterior is an analytical solution of the prior and likelihood.
 - Examples include:
-- Normal data and Normal prior (you'll see an example in a minute).
-- Binomial data and Beta prior (logistic regression).
-- Poisson data and Gamma prior (useful for counts).
+  - Normal data and Normal prior.
+  - Binomial data and Beta prior.
+  - Poisson data and Gamma prior.
 
-## Non-conjugacy (most of the time)
+## Normal-normal conjugacy example {.smaller}
 
-- Because most prior-data-posterior relationships are non-conjugate.
+Let:
+
+- Observations: $y_1, \dots, y_n \sim N(\theta, \sigma^2)$, with known $\sigma^2$
+
+- Prior: $\theta \sim N(\mu_0, \sigma_0^2)$
+
+- Then the **posterior** is:
+
+$$
+\theta \mid y \sim N(\mu_n, \sigma_n^2)
+$$
+
+- where:
+
+$$
+\sigma_n^2 = \left( \frac{n}{\sigma^2} + \frac{1}{\sigma_0^2} \right)^{-1}
+$$
+
+$$
+\mu_n = \sigma_n^2 \left( \frac{n\bar{y}}{\sigma^2} + \frac{\mu_0}{\sigma_0^2} \right)
+$$
+
+## Non-conjugacy (most of the time in real world)
+
+- Because most prior-likelihood-posterior relationships are non-conjugate.
+- No closed-form posterior (unlike normal-normal example).
+- Need to approximate posterior from sampling methods.
 - Need non-analytical solution to infer distributions.
 - This is where 'brute force' sampling of distributions takes place.
+
+## Obtaining approximate posterior distribution {.smaller}
+
+- Many different types of MCMC:
+  - **Metropolis-Hastings**:  
+    - Proposes moves; accepts with probability based on posterior ratio.
+    - General-purpose, but can mix slowly in high dimensions.
+
+  - **Gibbs Sampling**:  
+    - Samples each parameter conditionally.  
+    -  Requires full conditional distributions.  
+    -  Efficient when conditionals are tractable.
+
+  - **Hamiltonian Monte Carlo (HMC)**:  
+    - Uses gradient information to propose informed moves.  
+    - Efficient in high dimensions, fewer correlated samples.  
+    - Implemented in **Stan**, **PyMC**, etc.
+    
+## Obtaining approximate posterior distribution {.smaller}
+
+- Many different types of MCMC:
+  - **No-U-Turn Sampler (NUTS)**:  
+    - An extension of HMC that automatically tunes parameters. 
+    - Avoids manual tuning of step size and trajectory length.  
+    - Used in **Stan** and **PyMC**
+
+- Also non-MCMC:
+  - **Variational Inference (VI)**:  
+    - Optimizes a simpler distribution to approximate the posterior.  
+    - Much faster than MCMC, but gives an **approximation**, not exact samples.  
+    - Useful in large-scale models (e.g., deep learning).
 
 ## Sampling posterior
 ::: nonincremental
@@ -447,13 +487,14 @@ $$
 
 ![](assets/sample_example.png){.r-stretch}
 
-## Informative or non-informative priors
 
-- Main source of intrigue from non-Bayesians is how priors are chosen.
-- Priors should be informed by existing knowledge.
+## Informative or non-informative priors?
+
+- A source of intrigue from pre-Bayesians is how priors are chosen.
+- Priors can be informed by existing knowledge.
 - But what if we don't know anything really prior to inference?
-- Most of the time we will not have analytical solutions (more on that later).
-- Non-informative/informative priors outside scope of this but something to pay attention to.
+- Most of the time we will not have analytical solutions.
+- We will discuss choosing priors in more detail in Bayesian workflow lecture.
 
 ## Example of influence of priors on sampling
 
@@ -516,12 +557,6 @@ code_worse_priors <- nimbleCode({
 :::
 
 ![](assets/worse_priors.png)
-
-## MCMC, Gibbs, approximations to sampling (variational inference)
-
-- Many different types.
-- Others in the workshop will discuss these briefly
-- For now, let us focus on building a simple model.
 
 ## Non-conjugate how to get posterior?
 

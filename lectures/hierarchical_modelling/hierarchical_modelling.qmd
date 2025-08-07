@@ -1,6 +1,6 @@
 ---
 title: "Hierarchical modelling"
-subtitle: ""
+subtitle: "Bayesian multilevel models"
 author:
  - name: "Robbie M. Parks, Elizaveta Semenova"
    email: "robbie.parks@columbia.edu"

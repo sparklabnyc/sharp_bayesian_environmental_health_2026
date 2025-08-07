@@ -1,5 +1,6 @@
 ---
 title: "Spatial and Spatio-temporal Modelling"
+subtitle: "Structured space-time dependence"
 author:
  - name: "Garyfallos Konstantinoudis"
    email: "g.konstantinoudis@imperial.ac.uk"

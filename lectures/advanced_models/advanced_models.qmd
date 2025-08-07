@@ -1,5 +1,6 @@
 ---
 title: "Advanced Environmental Modelling"
+subtitle: "Distributed non-linear lag models, spatially varying coefficients, and spatial DLNMs"
 author:
  - name: "Garyfallos Konstantinoudis"
    email: "g.konstantinoudis@imperial.ac.uk"

@@ -1,5 +1,6 @@
 ---
 title: "Introduction to non-linear regression"
+subtitle: "Beyond the linear model"
 author:
  - name: "Garyfallos Konstantinoudis"
    email: "g.konstantinoudis@imperial.ac.uk"

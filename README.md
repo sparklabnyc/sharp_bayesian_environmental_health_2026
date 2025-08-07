@@ -53,7 +53,7 @@ Below is the set of labs to follow throughout the two days:
 | 2:00 - 2:45 | [Advanced models](lectures/advanced_models/advanced_models.qmd) (Lecture) |
 | 2:45 - 3:00 | Break |
 | 3:00 - 3:45 | [Advanced models](/labs/advanced_models/advanced_models.qmd) (Hands-on Lab) |
-| 3:45 - 4:30 | Workshop summary, interactive panel discussion & course wrap-up |
+| 3:45 - 4:30 | Interactive panel discussion & course wrap-up |
 | 4:30 - 5:00 | Final farewell |
 
 ## Notes for those working on the repo
