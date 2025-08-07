@@ -22,9 +22,9 @@ Below is the set of labs to follow throughout the two days:
 |----|----|
 | 8:30 - 9:00 | Check in and breakfast |
 | 9:00 - 9:15 | [Welcome and introduction](/lectures/welcome_and_introduction/welcome_and_introduction.qmd) |
-| 9:15 - 10:00 | [Introduction to Bayesian methods and regression](/lectures/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd) (Lecture) |
+| 9:15 - 10:00 | [Principles of Bayesian statistics](/lectures/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd) (Lecture) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:00 | [Introduction to Bayesian methods and regression](/labs/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd) (Hands-on Lab) |
+| 10:15 - 11:00 | [Principles of Bayesian statistics](/labs/introduction_to_bayesian_methods/introduction_to_bayesian_methods.qmd) (Hands-on Lab) |
 | 11:00 - 11:15 | Break |
 | 11:15 - 12:00 | [Bayesian workflow](/lectures/bayesian_workflow/bayesian_workflow.qmd) (Lecture) |
 | 12:00 - 1:00 | Lunch |
