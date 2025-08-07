@@ -532,33 +532,202 @@ formula_iid <- y ~ 1 + f(x, model = "iid")
 - So it's easier to specify models, and there's a lot of built in functionality.
 - __But__ it's more difficult to *customise*.
 
-## Previous examples from `NIMBLE` in `INLA`
+## Running `INLA`
 
-- Linear regression.
+- We will focus on `INLA` as it is very useful and practical, and we will use it for the remainder of the course.
 
-## Previous examples from `NIMBLE` in `INLA`
+- First, write the model:
+```{.R}
+formula_iid <- y ~ 1 + f(x, model = "iid")
+```
 
-- Hierarchical model.
+- Then, run the model using the `inla` function in `R`:
+```{.R}
+model <- inla(
+  formula_iid,
+  data = data,
+  E = expected,
+  family = "poisson",
+  control.predictor = list(link = 1), # log-link
+  control.compute = list(config = TRUE) # so that we can simulate 
+                                        # draws of posterior
+)
+```
 
-## Previous examples from `NIMBLE` in `INLA`
+## Customising priors in `INLA`
 
-- Non-linear exposure-response.
+- If you don't specify priors in `INLA`, it will choose some default ones.
+- The formula from before gives us an IID effect, but no control over the hyperprior for the variance of the effect.
+```{.R}
+formula_iid <- y ~ 1 + f(x, model = "iid")
+```
 
-## Previous examples from `NIMBLE` in `INLA`
+- `INLA` usually chooses some good defaults for you, but here, we can put a non-default prior on the precision (`1/sigma**2`).
+```{.R}
+formula_iid_priors <- deaths ~ 1 + f(SIGLA, model = "iid", 
+    hyper = list(prec = list(prior = "loggamma", param = c(0.01, 0.01))))
+```
 
-- Spatial model.
+# Previous examples from `NIMBLE` in `INLA`
 
-## Previous examples from `NIMBLE` in `INLA`
+## Linear regression
+- `NIMBLE` formula:
+```{.R}
+code <- nimbleCode({
+  # priors for parameters
+  alpha ~ dnorm(0, sd = 100) # prior for alpha
+  beta1 ~ dnorm(0, sd = 100) # prior for beta1
+  beta2 ~ dnorm(0, sd = 100) # prior for beta2
+  beta3 ~ dnorm(0, sd = 100) # prior for beta3
+  sigma ~ dunif(0, 100) # prior for variance components
 
-- Spatio-temporal model.
+  # regression formula
+  for (i in 1:n) {
+    # n is the number of observations we have in the data
+    mu[i] <- alpha + beta1 * x1[i] + beta2 * x2[i] + beta3 * x3[i] # manual entry of linear predictors
+    y[i] ~ dnorm(mu[i], sd = sigma)
+  }
+})
+```
+
+## Linear regression
+- `INLA` formula (default priors):
+```{.R}
+formula_linear <- y ~ 1 + x1 + x2 + x3
+```
+
+- Run model using inla function:
+```{.R}
+model_linear <- inla(
+  formula_linear,
+  data = data,
+  family = "gaussian")
+```
+
+## Linear regression
+- `INLA` formula (custom priors):
+```{.R}
+formula_linear <- y ~ 1 + x1 + x2 + x3
+```
+
+- Run model using inla function:
+```{.R}
+model_linear <- inla(
+  formula_linear,
+  data = data,
+  family = "gaussian",
+  ccontrol.fixed = list(
+    mean = 0,
+    prec = 0.0001
+  ),
+  control.family = list(
+    hyper = list(
+      prec = list(
+        prior = "loggamma", 
+        param = c(1, 0.0001)
+      )
+    )
+  )
+)
+```
+
+## Hierarchical model
+- `NIMBLE` formula:
+```{.R}
+partial_pooling_model <- nimbleCode({
+  # priors
+  alpha ~ dnorm(0, 5)
+  sigma_p ~ T(dnorm(0, 1), 0, Inf) # half-normal
+
+  for (j in 1:Np) {
+    theta[j] ~ dnorm(0, sd = sigma_p)
+  }
+
+  # likelihood
+  for (i in 1:N) {
+    y[i] ~ dpois(mu[i])
+    log(mu[i]) <- log(E[i]) + alpha + theta[province[i]]
+  }
+})
+```
+
+## Hierarchical model
+- `INLA` formula (custom priors):
+```{.R}
+formula_partial_pooling <- y ~ 1 + f(SIGLA, model = "iid",
+           hyper = list(
+             prec = list(
+               prior = "pc.prec",
+               param = c(1, 0.01)
+             )
+```
+
+- Run model using inla function:
+```{.R}
+model_partial_pooling <- inla(
+  formula_partial_pooling,
+  data = data,
+  E = expected,
+  family = "poisson",
+  control.predictor = list(link = 1),
+  control.compute = list(config = TRUE)
+)
+```
+
+## Non-linear exposure-response
+
+- `NIMBLE` formula:
+```{.R}
+Model3_ecoCode <- nimbleCode({
+  # priors
+  alpha ~ dflat() # vague prior (Unif(-inf, +inf))
+  overallRR <- exp(alpha) # overall RR across study region
+
+  for (j in 1:K) {
+    beta[j] ~ dnorm(0, tau = 1)
+  }
+
+  # likelihood
+  for (i in 1:N) {
+    O[i] ~ dpois(mu[i]) # Poisson likelihood for observed counts
+    log(mu[i]) <- log(E[i]) + alpha + inprod(beta[], X[i, ]) 
+  }
+})
+```
+
+## Non-linear exposure-response
+
+- `INLA` formula:
+```{.R}
+formula_non_linear <- O ~ 1 + X1 + X2 + X3
+```
+
+- Run model using inla function:
+```{.R}
+model_non_linear <- inla(
+  formula = formula_non_linear,
+  family = "poisson",
+  data = covid_data,
+  offset = E,
+  control.fixed = list(
+    mean = c("(Intercept)" = 0, X1 = 0, X2 = 0, X3 = 0),
+    prec = c("(Intercept)" = 1e-6, X1 = 1, X2 = 1, X3 = 1)
+  ),
+  control.compute = list(dic = TRUE, waic = TRUE, cpo = TRUE)
+)
+```
+
+## Spatial model.
+
+- You will see in lab!
 
 ## I think I'm <span style="color:#f928d2;">`INLA`</span> (sorry)
 
 - Good, we'll cover more in the practical.
 
-## Shout out to `Theo Rashid`
+<!-- ## Shout out to `Theo Rashid` -->
 
-![](assets/probabilistic-programming.png)
+<!-- ![](assets/probabilistic-programming.png) -->
 
 # Getting ready for the lab
 

@@ -458,6 +458,7 @@ ggplot() +
 X_basis <- splines::ns(data_england$NO2, knots = c(10, 20))
 head(X_basis)
 ```
+
 You can also visualise the basis function:
 ```{r warning = FALSE, fig.width=10}
 X_basis <- splines::ns(data_england$NO2, knots = c(10, 20))
