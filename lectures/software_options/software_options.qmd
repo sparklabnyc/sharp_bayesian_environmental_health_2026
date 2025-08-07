@@ -1,6 +1,6 @@
 ---
 title: "Software Options for Bayesian Modelling"
-subtitle: "R-INLA and other probabilistic programming languages"
+subtitle: "`INLA` and other probabilistic programming languages"
 author:
  - name: "Robbie M. Parks, Theo Rashid"
    email: "robbie.parks@columbia.edu"
@@ -75,9 +75,9 @@ def rw_metropolis_kernel(logpdf, data, position, log_prob):
     return position, log_prob
 ```
 
-## You are not Arianna Rosenbluth
+## We (probably) do not need to do this
 
-- You will make a mistake.
+- We will all (probably) make a mistake.
 - Why write code that people have written before?
 - Do you enjoy calibrating samplers?
 
@@ -91,15 +91,18 @@ It turns out that he and Arianna Rosenbluth (his wife) did most of the work. Mor
 
 # Probabilistic programming languages
 
-# "Monolithic"
+<!-- # "Monolithic" -->
 
-::: {.notes}
-Thomas Wiecki, PyMC dev
-:::
+<!-- ::: {.notes} -->
+<!-- Thomas Wiecki, PyMC dev -->
+<!-- ::: -->
 
-# WinBUGS
+# `WinBUGS`
 
 ## Write models in the BUGS language
+
+- `BUGS` stands for Bayesian inference Using Gibbs Sampling.
+- Syntax may look familiar...
 
 ```{.R}
 model(
@@ -117,11 +120,11 @@ model(
 )
 ```
 
-## Look at this <span style="color:#f928d2;">thrilling</span> output.
+## Output looks like this...
 
 ![](assets/winbugs_screenshot.jpeg)
 
-## Is WinBugs still good?^[No]
+## What do we think of `WinBugs` nowadays?
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -134,17 +137,17 @@ model(
 ::: {.column width="50%"}
 ::: {style="color: #fc6161"}
 - Slow
-- Old
+- Old school
 :::
 :::
 
 ::::
 
-- No
+- Not really used widely these days...
 
-# Stan
+# `Stan`
 
-## Model in Stan
+## Model in `Stan` (inspired by `C++`)
 
 ```
 data {
@@ -201,9 +204,11 @@ Stanislaw Ulam is probably best known for realising that electronic computers ma
 
 - Using `brms` or `rstanarm`, you can write models like base `R` (like `y ~ 1 + x`) and the inference is done in Stan.
 
-# NIMBLE
+# `NIMBLE`
 
-## NIMBLE model is like WinBUGS, but more flexible
+## `NIMBLE` model is like `WinBUGS`, but more flexible
+
+- You are now quite familiar with `NIMBLE` syntax.
 
 ```{.R}
 model(
@@ -220,7 +225,7 @@ model(
 )
 ```
 
-## I like NIMBLE, but
+## We like `NIMBLE`!
 
 :::: {.columns}
 
@@ -229,6 +234,7 @@ model(
 - Compiles `R` to `C++` for speed and scalability
 - Automatically finds conjugate relationships
 - Can pick a different sampler for each parameter
+- Good for teaching the fundamentals of Bayesian inference
 :::
 :::
 
@@ -240,250 +246,250 @@ model(
 
 ::::
 
-## Ranking these PPLs^[Entirely subjective]
+<!-- ## Ranking these PPLs^[Entirely subjective] -->
 
-Usability:
+<!-- Usability: -->
 
-- How easy is it to fit a model?
-- How easy is it to run the model?
-- How good is the documentation?
-- Does it have everything I need?
-- How good is the performance?
+<!-- - How easy is it to fit a model? -->
+<!-- - How easy is it to run the model? -->
+<!-- - How good is the documentation? -->
+<!-- - Does it have everything I need? -->
+<!-- - How good is the performance? -->
 
-## Ranking these PPLs^[Entirely subjective]
+<!-- ## Ranking these PPLs^[Entirely subjective] -->
 
-Extensibility:
+<!-- Extensibility: -->
 
-- If it can't do something, how easily can I make it do that?
-- How modular is it? Can other packages work with it?
+<!-- - If it can't do something, how easily can I make it do that? -->
+<!-- - How modular is it? Can other packages work with it? -->
 
-## Ranking these PPLs
+<!-- ## Ranking these PPLs -->
 
-![](assets/usability-extensibility.png)
+<!-- ![](assets/usability-extensibility.png) -->
 
-![](assets/stan.png){.fragment .absolute top="72%" left="74%" width="6%"}
-![](assets/winbugs.png){.fragment .absolute top="82%" left="10%" width="6%"}
-![](assets/nimble.jpeg){.fragment .absolute top="55%" left="65%" width="6%"}
+<!-- ![](assets/stan.png){.fragment .absolute top="72%" left="74%" width="6%"} -->
+<!-- ![](assets/winbugs.png){.fragment .absolute top="82%" left="10%" width="6%"} -->
+<!-- ![](assets/nimble.jpeg){.fragment .absolute top="55%" left="65%" width="6%"} -->
 
-# Decoupled
+<!-- # Decoupled -->
 
-## Decoupled
+<!-- ## Decoupled -->
 
-Separate the __model__ from the __inference__.
+<!-- Separate the __model__ from the __inference__. -->
 
-- PPL defines the __log posterior probability density__
-- Makes use of great tensor libraries (`jax`, `tensorflow`, `PyTorch`, `PyTensor`) to do the maths
+<!-- - PPL defines the __log posterior probability density__ -->
+<!-- - Makes use of great tensor libraries (`jax`, `tensorflow`, `PyTorch`, `PyTensor`) to do the maths -->
 
-## tensorflow probability
+<!-- ## tensorflow probability -->
 
-```{.python}
-def model(np, x):
-    def joint_dist():
-        alpha = yield tfd.Normal(loc=0.0, scale=10.0)
-        sigma = yield tfd.Uniform(low=0.0, high=100.0)
+<!-- ```{.python} -->
+<!-- def model(np, x): -->
+<!--     def joint_dist(): -->
+<!--         alpha = yield tfd.Normal(loc=0.0, scale=10.0) -->
+<!--         sigma = yield tfd.Uniform(low=0.0, high=100.0) -->
 
-        beta = yield tfd.Normal(loc=tf.zeros(np), scale=1.0)
+<!--         beta = yield tfd.Normal(loc=tf.zeros(np), scale=1.0) -->
 
-        mu = alpha + tf.linalg.matmul(x, beta)
+<!--         mu = alpha + tf.linalg.matmul(x, beta) -->
 
-        yield tfd.Normal(loc=mu, scale=sigma)
+<!--         yield tfd.Normal(loc=mu, scale=sigma) -->
 
-    return tfd.JointDistributionCoroutineAutoBatched(joint_dist)
-```
+<!--     return tfd.JointDistributionCoroutineAutoBatched(joint_dist) -->
+<!-- ``` -->
 
-This is terrible.
+<!-- This is terrible. -->
 
-Don't use it.
+<!-- Don't use it. -->
 
-## Ranking these PPLs
+<!-- ## Ranking these PPLs -->
 
-![](assets/usability-extensibility.png)
+<!-- ![](assets/usability-extensibility.png) -->
 
-![](assets/stan.png){.absolute top="72%" left="74%" width="6%"}
-![](assets/winbugs.png){.absolute top="82%" left="10%" width="6%"}
-![](assets/nimble.jpeg){.absolute top="55%" left="65%" width="6%"}
-![](assets/tensorflow.png){.fragment .absolute top="55%" left="35%" width="6%"}
+<!-- ![](assets/stan.png){.absolute top="72%" left="74%" width="6%"} -->
+<!-- ![](assets/winbugs.png){.absolute top="82%" left="10%" width="6%"} -->
+<!-- ![](assets/nimble.jpeg){.absolute top="55%" left="65%" width="6%"} -->
+<!-- ![](assets/tensorflow.png){.fragment .absolute top="55%" left="35%" width="6%"} -->
 
-## PyMC
+<!-- ## PyMC -->
 
-```{.python}
-import pymc as pm
+<!-- ```{.python} -->
+<!-- import pymc as pm -->
 
-with pm.Model() as model:
-    alpha = pm.Normal("alpha", 0.0, sigma=10.0)
-    sigma = pm.Uniform("sigma", low=0.0, high=100.0)
-    beta = pm.Normal("beta", 0, sigma=1.0, shape=(np,))
+<!-- with pm.Model() as model: -->
+<!--     alpha = pm.Normal("alpha", 0.0, sigma=10.0) -->
+<!--     sigma = pm.Uniform("sigma", low=0.0, high=100.0) -->
+<!--     beta = pm.Normal("beta", 0, sigma=1.0, shape=(np,)) -->
 
-    mu = alpha + pt.matmul(x, beta)
+<!--     mu = alpha + pt.matmul(x, beta) -->
 
-    likelihood = pm.Normal("y", mu=mu, sigma=sigma, observed=y)
-```
+<!--     likelihood = pm.Normal("y", mu=mu, sigma=sigma, observed=y) -->
+<!-- ``` -->
 
-## PyMC is the dev choice
+<!-- ## PyMC is the dev choice -->
 
-:::: {.columns}
+<!-- :::: {.columns} -->
 
-::: {.column width="50%"}
-::: {style="color: #58b364"}
-- Great open source community
-- `PyTensor` backend can compile to `jax`, `C`, `numba` (and more)
-- Runs on GPU easily
-- Best documentation
-:::
-:::
+<!-- ::: {.column width="50%"} -->
+<!-- ::: {style="color: #58b364"} -->
+<!-- - Great open source community -->
+<!-- - `PyTensor` backend can compile to `jax`, `C`, `numba` (and more) -->
+<!-- - Runs on GPU easily -->
+<!-- - Best documentation -->
+<!-- ::: -->
+<!-- ::: -->
 
-::: {.column width="50%"}
-::: {style="color: #fc6161"}
-- Always in development/flux
-- Multiple backends can be confusing
-:::
-:::
+<!-- ::: {.column width="50%"} -->
+<!-- ::: {style="color: #fc6161"} -->
+<!-- - Always in development/flux -->
+<!-- - Multiple backends can be confusing -->
+<!-- ::: -->
+<!-- ::: -->
 
-::::
+<!-- :::: -->
 
-## Ranking these PPLs
+<!-- ## Ranking these PPLs -->
 
-![](assets/usability-extensibility.png)
+<!-- ![](assets/usability-extensibility.png) -->
 
-![](assets/stan.png){.absolute top="72%" left="74%" width="6%"}
-![](assets/winbugs.png){.absolute top="82%" left="10%" width="6%"}
-![](assets/nimble.jpeg){.absolute top="55%" left="65%" width="6%"}
-![](assets/tensorflow.png){.absolute top="55%" left="35%" width="6%"}
-![](assets/pymc.png){.fragment .absolute top="25%" left="75%" width="8%"}
+<!-- ![](assets/stan.png){.absolute top="72%" left="74%" width="6%"} -->
+<!-- ![](assets/winbugs.png){.absolute top="82%" left="10%" width="6%"} -->
+<!-- ![](assets/nimble.jpeg){.absolute top="55%" left="65%" width="6%"} -->
+<!-- ![](assets/tensorflow.png){.absolute top="55%" left="35%" width="6%"} -->
+<!-- ![](assets/pymc.png){.fragment .absolute top="25%" left="75%" width="8%"} -->
 
-## numpyro
+<!-- ## numpyro -->
 
-```{.python}
-import jax.numpy as jnp
+<!-- ```{.python} -->
+<!-- import jax.numpy as jnp -->
 
-def model(np, x, y=None):
-    alpha = numpyro.sample("alpha", dist.Normal(0.0, 10.0))
-    sigma = numpyro.sample("sigma", dist.Uniform(0.0, 100.0))
+<!-- def model(np, x, y=None): -->
+<!--     alpha = numpyro.sample("alpha", dist.Normal(0.0, 10.0)) -->
+<!--     sigma = numpyro.sample("sigma", dist.Uniform(0.0, 100.0)) -->
 
-    with numpyro.plate("plate_predictors", np):
-        beta = numpyro.sample("beta", dist.Normal(0.0, 1.0))
+<!--     with numpyro.plate("plate_predictors", np): -->
+<!--         beta = numpyro.sample("beta", dist.Normal(0.0, 1.0)) -->
 
-    mu = alpha + jnp.matmul(x, beta)
+<!--     mu = alpha + jnp.matmul(x, beta) -->
 
-    with numpyro.plate("data", len(x)):
-        numpyro.sample("y", dist.Normal(mu, sigma), obs=y)
-```
+<!--     with numpyro.plate("data", len(x)): -->
+<!--         numpyro.sample("y", dist.Normal(mu, sigma), obs=y) -->
+<!-- ``` -->
 
-::: aside
-There is a related package called Pyro with a PyTorch backend, but numpyro's `jax` backend is better for sampling.
-:::
+<!-- ::: aside -->
+<!-- There is a related package called Pyro with a PyTorch backend, but numpyro's `jax` backend is better for sampling. -->
+<!-- ::: -->
 
-## numpyro is my favourite (for now)
+<!-- ## numpyro is my favourite (for now) -->
 
-:::: {.columns}
+<!-- :::: {.columns} -->
 
-::: {.column width="50%"}
-::: {style="color: #58b364"}
-- Really quick
-- Runs on GPU easily
-- Works with entire `jax` ecosystem
-:::
-:::
+<!-- ::: {.column width="50%"} -->
+<!-- ::: {style="color: #58b364"} -->
+<!-- - Really quick -->
+<!-- - Runs on GPU easily -->
+<!-- - Works with entire `jax` ecosystem -->
+<!-- ::: -->
+<!-- ::: -->
 
-::: {.column width="50%"}
-::: {style="color: #fc6161"}
-- Small learning curve to get used to `plate` notation
-:::
-:::
+<!-- ::: {.column width="50%"} -->
+<!-- ::: {style="color: #fc6161"} -->
+<!-- - Small learning curve to get used to `plate` notation -->
+<!-- ::: -->
+<!-- ::: -->
 
-::::
+<!-- :::: -->
 
-## Ranking these PPLs
+<!-- ## Ranking these PPLs -->
 
-![](assets/usability-extensibility.png)
+<!-- ![](assets/usability-extensibility.png) -->
 
-![](assets/stan.png){.absolute top="72%" left="74%" width="6%"}
-![](assets/winbugs.png){.absolute top="82%" left="10%" width="6%"}
-![](assets/nimble.jpeg){.absolute top="55%" left="65%" width="6%"}
-![](assets/tensorflow.png){.absolute top="55%" left="35%" width="6%"}
-![](assets/pymc.png){.absolute top="25%" left="75%" width="8%"}
-![](assets/numpyro.png){.fragment .absolute top="22%" left="78%" width="10%"}
+<!-- ![](assets/stan.png){.absolute top="72%" left="74%" width="6%"} -->
+<!-- ![](assets/winbugs.png){.absolute top="82%" left="10%" width="6%"} -->
+<!-- ![](assets/nimble.jpeg){.absolute top="55%" left="65%" width="6%"} -->
+<!-- ![](assets/tensorflow.png){.absolute top="55%" left="35%" width="6%"} -->
+<!-- ![](assets/pymc.png){.absolute top="25%" left="75%" width="8%"} -->
+<!-- ![](assets/numpyro.png){.fragment .absolute top="22%" left="78%" width="10%"} -->
 
-## Other packages
+<!-- ## Other packages -->
 
-`JAGS`, `greta`, `beanmachine`, `Turing.jl` etc
+<!-- `JAGS`, `greta`, `beanmachine`, `Turing.jl` etc -->
 
-## Ranking these PPLs
+<!-- ## Ranking these PPLs -->
 
-![](assets/usability-extensibility.png)
+<!-- ![](assets/usability-extensibility.png) -->
 
-![](assets/stan.png){.absolute top="72%" left="74%" width="6%"}
-![](assets/winbugs.png){.absolute top="82%" left="10%" width="6%"}
-![](assets/nimble.jpeg){.absolute top="55%" left="65%" width="6%"}
-![](assets/tensorflow.png){.absolute top="55%" left="35%" width="6%"}
-![](assets/pymc.png){.absolute top="25%" left="75%" width="8%"}
-![](assets/numpyro.png){.absolute top="22%" left="78%" width="10%"}
-![](assets/jags.png){.fragment .absolute top="81%" left="30%" width="8%"}
-![](assets/greta.png){.fragment .absolute top="68%" left="34%" width="8%"}
-![](assets/beanmachine.png){.fragment .absolute top="65%" left="25%" width="6%"}
-![](assets/turing.png){.fragment .absolute top="40%" left="62%" width="6%"}
+<!-- ![](assets/stan.png){.absolute top="72%" left="74%" width="6%"} -->
+<!-- ![](assets/winbugs.png){.absolute top="82%" left="10%" width="6%"} -->
+<!-- ![](assets/nimble.jpeg){.absolute top="55%" left="65%" width="6%"} -->
+<!-- ![](assets/tensorflow.png){.absolute top="55%" left="35%" width="6%"} -->
+<!-- ![](assets/pymc.png){.absolute top="25%" left="75%" width="8%"} -->
+<!-- ![](assets/numpyro.png){.absolute top="22%" left="78%" width="10%"} -->
+<!-- ![](assets/jags.png){.fragment .absolute top="81%" left="30%" width="8%"} -->
+<!-- ![](assets/greta.png){.fragment .absolute top="68%" left="34%" width="8%"} -->
+<!-- ![](assets/beanmachine.png){.fragment .absolute top="65%" left="25%" width="6%"} -->
+<!-- ![](assets/turing.png){.fragment .absolute top="40%" left="62%" width="6%"} -->
 
-## A note on blackjax
-1. Write any log probability function (either manually or in numpyro, PyMC, tfp etc)
-2. Sample using a vast array of samplers/inference algorithms written in `jax`
+<!-- ## A note on blackjax -->
+<!-- 1. Write any log probability function (either manually or in numpyro, PyMC, tfp etc) -->
+<!-- 2. Sample using a vast array of samplers/inference algorithms written in `jax` -->
 
-## A note on blackjax
-```{.python}
-logdensity = lambda x: logdensity_fn(**x)
+<!-- ## A note on blackjax -->
+<!-- ```{.python} -->
+<!-- logdensity = lambda x: logdensity_fn(**x) -->
 
-def inference_loop(rng_key, kernel, initial_state, num_samples):
-    @jax.jit
-    def one_step(state, rng_key):
-        state, _ = kernel(rng_key, state)
-        return state, state
+<!-- def inference_loop(rng_key, kernel, initial_state, num_samples): -->
+<!--     @jax.jit -->
+<!--     def one_step(state, rng_key): -->
+<!--         state, _ = kernel(rng_key, state) -->
+<!--         return state, state -->
 
-    keys = jax.random.split(rng_key, num_samples)
-    _, states = jax.lax.scan(one_step, initial_state, keys)
-    return states
+<!--     keys = jax.random.split(rng_key, num_samples) -->
+<!--     _, states = jax.lax.scan(one_step, initial_state, keys) -->
+<!--     return states -->
 
-nuts = blackjax.nuts(logdensity, **nuts_params)
-states = inference_loop(rng_key, jax.jit(nuts.step), nuts.init(initial_position), 10_000)
-```
+<!-- nuts = blackjax.nuts(logdensity, **nuts_params) -->
+<!-- states = inference_loop(rng_key, jax.jit(nuts.step), nuts.init(initial_position), 10_000) -->
+<!-- ``` -->
 
-## And what about the samples
+<!-- ## And what about the samples -->
 
-Use `posterior` for `R`.
+<!-- Use `posterior` for `R`. -->
 
-```{.R}
-eight_schools_df <- as_draws_df(eight_schools_array)
-summarise_draws(eight_schools_df)
-#> # A tibble: 10 × 10
-#>    variable  mean median    sd   mad      q5   q95  rhat ess_bulk ess_tail
-#>    <chr>    <num>  <num> <num> <num>   <num> <num> <num>    <num>    <num>
-#>  1 mu        4.18   4.16  3.40  3.57  -0.854  9.39  1.02     558.     322.
-#>  2 tau       4.16   3.07  3.58  2.89   0.309 11.0   1.01     246.     202.
-#>  3 theta[1]  6.75   5.97  6.30  4.87  -1.23  18.9   1.01     400.     254.
-#>  4 theta[2]  5.25   5.13  4.63  4.25  -1.97  12.5   1.02     564.     372.
-#>  5 theta[3]  3.04   3.99  6.80  4.94 -10.3   11.9   1.01     312.     205.
-```
+<!-- ```{.R} -->
+<!-- eight_schools_df <- as_draws_df(eight_schools_array) -->
+<!-- summarise_draws(eight_schools_df) -->
+<!-- #> # A tibble: 10 × 10 -->
+<!-- #>    variable  mean median    sd   mad      q5   q95  rhat ess_bulk ess_tail -->
+<!-- #>    <chr>    <num>  <num> <num> <num>   <num> <num> <num>    <num>    <num> -->
+<!-- #>  1 mu        4.18   4.16  3.40  3.57  -0.854  9.39  1.02     558.     322. -->
+<!-- #>  2 tau       4.16   3.07  3.58  2.89   0.309 11.0   1.01     246.     202. -->
+<!-- #>  3 theta[1]  6.75   5.97  6.30  4.87  -1.23  18.9   1.01     400.     254. -->
+<!-- #>  4 theta[2]  5.25   5.13  4.63  4.25  -1.97  12.5   1.02     564.     372. -->
+<!-- #>  5 theta[3]  3.04   3.99  6.80  4.94 -10.3   11.9   1.01     312.     205. -->
+<!-- ``` -->
 
-## And what about the samples
+<!-- ## And what about the samples -->
 
-And `ArviZ` for `python` or `Julia`
+<!-- And `ArviZ` for `python` or `Julia` -->
 
-```{.python}
-data = az.from_pystan(posterior=fit)
-az.summary(data, var_names=["mu", "tau"])
+<!-- ```{.python} -->
+<!-- data = az.from_pystan(posterior=fit) -->
+<!-- az.summary(data, var_names=["mu", "tau"]) -->
 
-Out[1]:
-      mean     sd  hdi_3%  hdi_97%  ...  mcse_sd  ess_bulk  ess_tail  r_hat
-mu   4.486  3.487  -1.623   10.693  ...    0.160     241.0     659.0   1.02
-tau  4.124  3.102   0.896    9.668  ...    0.186      67.0      38.0   1.06
+<!-- Out[1]: -->
+<!--       mean     sd  hdi_3%  hdi_97%  ...  mcse_sd  ess_bulk  ess_tail  r_hat -->
+<!-- mu   4.486  3.487  -1.623   10.693  ...    0.160     241.0     659.0   1.02 -->
+<!-- tau  4.124  3.102   0.896    9.668  ...    0.186      67.0      38.0   1.06 -->
 
-[2 rows x 9 columns]
-```
+<!-- [2 rows x 9 columns] -->
+<!-- ``` -->
 
-# Is sampling the only way?
+# Is sampling the only way (introducing `INLA`)?
 
 ## Variational inference
 
-- Turn the inference problem into an optimisation problem
-- Minimise the difference between true posterior distribution, $p(z|x)$, and variational distribution, $q(z)$
+- Turn the inference problem into an optimisation problem.
+- Minimise the difference between true posterior distribution, $p(z|x)$, and variational distribution, $q(z)$.
 
 ![](assets/variational_inference.png)
 
@@ -491,47 +497,66 @@ tau  4.124  3.102   0.896    9.668  ...    0.186      67.0      38.0   1.06
 No guarantees like sampling of true posterior.
 Minimise the ELBO (minimise the sum of the log likelihood and the KL divergence between the variation distribution and the prior).
 Optimise the variational parameters of the variational (surrogate) distribution.
-In this case, variational approximation is a Gaussian (Laplace approximation)
+In this case, variational approximation is a Gaussian (Laplace approximation).
 :::
 
-## I've heard people talk about INLA. What is INLA?
+## I've heard people talk about `INLA.` What is `INLA`?
+- `INLA` stands for Integrated Nested Laplace Approximation.
+- Approximate Bayesian inference for latent Gaussian models.
+- Really good for spatial statistics.
+- Really quick (if you don't have too many hyperparameters).
+- Most real world cases are latent Gaussian – it just works.
+- A growing community of users, 2 of whom are here today.
 
-- Approximate Bayesian inference for latent Gaussian models^[has extensions for non-Gaussian]
-- Really good for spatial statistics
-- Really quick^[if you don't have too many hyperparameters]
-- Most real world cases are latent Gaussian – it just works
-- Only used by 3 people, 2 of whom are here today
+## How does `INLA` work?
 
-## So how does it work?
+`INLA` computes accurate and fast approximations to the posterior marginals of the components of the latent Gaussian variables.
 
-INLA computes accurate and fast approximations to the posterior marginals of the components of the latent Gaussian variables.
-
-## So how does it work???
+## How does `INLA` work?
 
 ![](assets/laplace_approximation.png)
 
-Basically, the Laplace Approximation (IN __LA__) means that we approximate the latent field with a Gaussian.
+- The Laplace Approximation (`IN'LA'`) means that we approximate the latent field with a Gaussian.
 Most things in the real world are Gaussian, so this works well.
 
 ## Do I fit models like all the PPLs above?
 
-No, actually, the syntax is really similar to base `R`.
-
-For example, this is how to specify a model with an intercept and a random effect.
+- No, actually, the syntax is quite similar to base `R`.
+- Use `R` package `R-INLA` to fit models.
+- For example, this is how to specify a model with an intercept and a random effect:
 
 ```{.R}
 formula_iid <- y ~ 1 + f(x, model = "iid")
 ```
 
-So it's easier to specify models, and there's a lot of inbuilt functionality.
+- So it's easier to specify models, and there's a lot of built in functionality.
+- __But__ it's more difficult to *customise*.
 
-__But__ it's much more difficult to *customise*.
+## Previous examples from `NIMBLE` in `INLA`
 
-## I think I'm <span style="color:#f928d2;">INLA</span>
+- Linear regression.
 
-Good, we'll cover more in the practical.
+## Previous examples from `NIMBLE` in `INLA`
 
----
+- Hierarchical model.
+
+## Previous examples from `NIMBLE` in `INLA`
+
+- Non-linear exposure-response.
+
+## Previous examples from `NIMBLE` in `INLA`
+
+- Spatial model.
+
+## Previous examples from `NIMBLE` in `INLA`
+
+- Spatio-temporal model.
+
+## I think I'm <span style="color:#f928d2;">`INLA`</span> (sorry)
+
+- Good, we'll cover more in the practical.
+
+## Shout out to `Theo Rashid`
 
 ![](assets/probabilistic-programming.png)
 

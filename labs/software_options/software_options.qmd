@@ -1,8 +1,8 @@
 ---
 title: "Software Options"
 subtitle: "SHARP Bayesian Modeling for Environmental Health Workshop"
-author: "Theo Rashid"
-date: "August 22 2024"
+author: "Robbie M. Parks, Theo Rashid"
+date: "August 15 2025"
 format: html
 ---
 
