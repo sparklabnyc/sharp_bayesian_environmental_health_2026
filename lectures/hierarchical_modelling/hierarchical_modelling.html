@@ -393,6 +393,7 @@
 
 <section id="title-slide" data-background-color="#f3f4f4" data-background-image="../../assets/bmeh_normal.png" data-background-position="60% 120%" data-background-size="80%" class="quarto-title-block center">
   <h1 class="title">Hierarchical modelling</h1>
+  <p class="subtitle">Bayesian multilevel models</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -733,8 +734,8 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 \end{split}
 \]</span></p>
 </section>
-<section id="comparing-to-frequenist-random-effects" class="slide level2">
-<h2>Comparing to frequenist random effects</h2>
+<section id="comparing-to-frequentist-random-effects" class="slide level2">
+<h2>Comparing to frequentist random effects</h2>
 <ul>
 <li class="fragment">Frequentist random effects models are analagous in some ways to Bayesian hierarchical models, but with important differences.</li>
 <li class="fragment">They allow for group-specific effects and account for intra-group correlation.</li>
@@ -745,7 +746,7 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 </ul></li>
 </ul>
 </section>
-<section id="comparing-to-frequentist-random-effects" class="slide level2">
+<section id="comparing-to-frequentist-random-effects-1" class="slide level2">
 <h2>Comparing to frequentist random effects</h2>
 <ul>
 <li class="fragment">Bayesian hierarchical models:
@@ -767,6 +768,33 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 <li class="fragment">Easily incorporates expert knowledge through priors.</li>
 <li class="fragment">Enables spatiotemporal and nonstationary extensions.</li>
 <li class="fragment">Frequentist methods often limited or approximate.</li>
+</ul>
+</section>
+<section id="extending-hierarchy" class="slide level2">
+<h2>Extending hierarchy</h2>
+<ul>
+<li class="fragment">Suppose there’s another level of hierarchy, e.g.,
+<ul>
+<li class="fragment">another level of geographic region below the regional level (e.g., city),</li>
+<li class="fragment">or individuals within regions.</li>
+<li class="fragment">We can extend the hierarchy by adding another level of parameters.</li>
+</ul></li>
+<li class="fragment">For example, we can add a level for individuals within regions.</li>
+<li class="fragment">This allows us to model individual-level variability while still accounting for regional effects.</li>
+</ul>
+</section>
+<section id="extending-hierarchy-1" class="slide level2">
+<h2>Extending hierarchy</h2>
+<ul>
+<li class="fragment">The model can be expressed as: <span class="math display">\[
+\begin{split}
+y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
+\log(\mu_i) &amp;= \log(E_i) + \alpha + \theta_{j[i]} + \phi_{k[i]} \\
+\phi_k &amp;\sim N(0, \sigma^2_\phi) \quad k = 1,..., N_r
+\end{split}
+\]</span></li>
+<li class="fragment">Here, <span class="math inline">\(\phi_{k[i]}\)</span> represents the individual-level effects, and <span class="math inline">\(\sigma^2_\phi\)</span> is the variance of these effects.</li>
+<li class="fragment">This allows us to capture individual-level variability while still accounting for regional effects.</li>
 </ul>
 </section>
 <section id="model-selection" class="slide level2">

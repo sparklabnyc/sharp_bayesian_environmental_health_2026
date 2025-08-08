@@ -300,7 +300,7 @@ y_i &\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 $$
 
 
-## Comparing to frequenist random effects
+## Comparing to frequentist random effects
 
 -   Frequentist random effects models are analagous in some ways to
     Bayesian hierarchical models, but with important differences.
@@ -329,6 +329,31 @@ $$
 -   Enables spatiotemporal and nonstationary extensions.
 -   Frequentist methods often limited or approximate.
 
+## Extending hierarchy
+
+- Suppose there's another level of hierarchy, e.g.,
+    -   another level of geographic region below the regional level (e.g., city),
+    -   or individuals within regions.
+    -   We can extend the hierarchy by adding another level of parameters.
+
+-   For example, we can add a level for individuals within regions.
+-   This allows us to model individual-level variability while still
+    accounting for regional effects.
+
+## Extending hierarchy
+-   The model can be expressed as:
+$$
+\begin{split}
+y_i &\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
+\log(\mu_i) &= \log(E_i) + \alpha + \theta_{j[i]} + \phi_{k[i]} \\
+\phi_k &\sim N(0, \sigma^2_\phi) \quad k = 1,..., N_r
+\end{split}
+$$
+-   Here, $\phi_{k[i]}$ represents the individual-level effects, and
+    $\sigma^2_\phi$ is the variance of these effects.
+-   This allows us to capture individual-level variability while still
+    accounting for regional effects.
+      
 ## Model selection
 
 -   Model selection is the process of choosing between different models
