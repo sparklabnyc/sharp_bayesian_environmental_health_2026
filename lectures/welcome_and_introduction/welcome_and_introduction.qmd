@@ -30,8 +30,8 @@ format:
 
 -   **Wi-Fi** Network: guest-net (no password). Open any webpage on your browser, a pop-up will appear to connect to guest Wi-Fi. Accept terms to gain access.
 -   **Restrooms**. Directly outside the classroom to the right.
--   **Course materials**. All Material (lectures/labs) is located on Posit Cloud. You were invited to the ‘sharp_bayesian_environmental_health_2025’ workspace via email a few days ago.
--   **Name tags**. Please wear during workshop to make connecting with others easier! Please return after the Workshop to help us be greener.
+-   **Course materials**. All material (lectures/labs) is located on Posit Cloud. You were invited to the ‘sharp_bayesian_environmental_health_2025’ workspace via email a few days ago.
+-   **Name tags**. Please wear during workshop to make connecting with others easier! Please return them after the Workshop to help us be greener.
 -   Contact Meaghan Doherty **914-522-8114** for assistance.
 
 ## Overview of workshop
@@ -72,19 +72,19 @@ The **Bayesian Modeling for Environmental Health Workshop** is a two-day intensi
 |--------------------------|----------------------------------------------|
 | 8:30 - 9:00 | Check in and breakfast |
 | 9:00 - 9:15 | Welcome and introduction|
-| 9:15 - 10:00 | Principles of Bayesian statistics (lecture) |
+| 9:15 - 10:00 | Principles of Bayesian statistics (Lecture) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:00 | Principles of Bayesian statistics (hands-on lab) |
+| 10:15 - 11:00 | Principles of Bayesian statistics (Hands-on Lab) |
 | 11:00 - 11:15 | Break |
-| 11:15 - 12:00 | Bayesian workflow (lecture) |
+| 11:15 - 12:00 | Bayesian workflow (Lecture) |
 | 12:00 - 1:00 | Lunch |
-| 1:00 - 1:45 | Hierarchical modeling (lecture) |
+| 1:00 - 1:45 | Hierarchical modeling (Lecture) |
 | 1:45 - 2:00 | Break |
-| 2:00 - 2:45 | Hierarchical modelling (hands-on lab) |
+| 2:00 - 2:45 | Hierarchical modelling (Hands-on Lab) |
 | 2:45 - 3:00 | Questions and wrap-up |
-| 3:00 - 3:45 | Non-linear regression (lecture) |
+| 3:00 - 3:45 | Non-linear regression (Lecture) |
 | 3:45 - 4:00 | Break |
-| 4:00 - 4:45 | Non-linear regression (hands-on lab) |
+| 4:00 - 4:45 | Non-linear regression (Hands-on Lab) |
 | 4:45 - 5:00 | Questions and wrap-up |
 :::
 
@@ -134,8 +134,8 @@ plot(p)
 
 -   **Wi-Fi** Network: guest-net (no password). Open any webpage on your browser, a pop-up will appear to connect to guest Wi-Fi. Accept terms to gain access.
 -   **Restrooms**. Directly outside the classroom to the right.
--   **Course materials**. All Material (lectures/labs) is located on Posit Cloud. You were invited to the ‘sharp_bayesian_environmental_health_2025’ workspace via email earlier this week.
--   **Name tags**. Please wear during workshop to make connecting with others easier! Please return after the Workshop to help us be greener.
+-   **Course materials**. All material (lectures/labs) is located on Posit Cloud. You were invited to the ‘sharp_bayesian_environmental_health_2025’ workspace via email earlier this week.
+-   **Name tags**. Please wear during workshop to make connecting with others easier! Please return them after the Workshop to help us be greener.
 -   Contact Meaghan Doherty **914-522-8114** for assistance.
 
 # Questions?
