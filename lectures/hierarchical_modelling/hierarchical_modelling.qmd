@@ -123,7 +123,7 @@ summary(data)
 -   Complete data. [Missingness is
     common]{style="color:red"}.
 
-## What we want beyond linear model
+## What we want beyond linear model {.smaller}
 
 -   To appropriately model grouped or nested data (e.g., individuals
     within regions, time within subjects).
@@ -137,7 +137,7 @@ summary(data)
 -   To introduce structure in parameters, linking them through shared
     hyperparameters.
 
-## What we want beyond linear model
+## What we want beyond linear model {.smaller}
 
 -   To propagate uncertainty across levels of the model (data,
     parameters, hyperparameters).
@@ -166,11 +166,11 @@ summary(data)
 
 ## Complete pooling (from lab)
 
-Priors $$
+Priors: $$
 \alpha \sim N(0, 5)
 $$
 
-Likelihood $$
+Likelihood: $$
 \begin{split}
 y_i &\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 \log(\mu_i) &= \log(E_i) + \alpha
@@ -196,11 +196,11 @@ $$
 
 ## No pooling (from lab)
 
-Priors $$
+Priors: $$
 \alpha_j \sim N(0, 1) \quad j = 1,..., N_p
 $$
 
-Likelihood $$
+Likelihood: $$
 \begin{split}
 y_i &\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 \log(\mu_i) &= \log(E_i) + \alpha_{j[i]}
@@ -239,7 +239,7 @@ Exist on the continuum between two extreme cases:
 
 ## Partial pooling (from lab)
 
-Priors $$
+Priors: $$
 \begin{split}
 \alpha &\sim N(0,5), \\
 \sigma_p &\sim N^+(1) \\
@@ -247,7 +247,7 @@ Priors $$
 \end{split}
 $$
 
-Likelihood $$
+Likelihood: $$
 \begin{split}
 y_i &\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 \log(\mu_i) &= \log(E_i) + \alpha + \theta_{j[i]}
@@ -284,7 +284,7 @@ $$
 
 ## Partial pooling again
 
-Priors $$
+Priors: $$
 \begin{split}
 \alpha &\sim N(0,5), \\
 \sigma_p &\sim N^+(1) \\
@@ -292,7 +292,7 @@ Priors $$
 \end{split}
 $$
 
-Likelihood $$
+Likelihood: $$
 \begin{split}
 y_i &\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 \log(\mu_i) &= \log(E_i) + \alpha + \theta_{j[i]}
@@ -359,10 +359,10 @@ $$
 -   Model selection is the process of choosing between different models
     based on their performance on a given dataset.
 -   Frequentist:
-    -   optimise different models on the **training set**,
-    -   and compare them on the **test set**.
+    -   Optimise different models on the **training set**.
+    -   Compare them on the **test set**.
 -   Bayesian:
-    -   use **model evidence** $p(Data | Model_i)$
+    -   Use **model evidence** $p(Data | Model_i)$
     -   It tends to choose models which are just complex enough to model
         the data, but not overly complex (by which it avoids
         **overfitting**).
@@ -381,7 +381,7 @@ complexity. The *lower* the value of IC, the better.
     k - \text{number of parameters}$$
 -   BIC (Bayesian Information Criterion):
     $$\text{BIC} = -2 \ln(L) + k \ln(n)$$
--   Widely Applicable Information Criterion (WAIC)
+-   Widely Applicable Information Criterion (WAIC):
     $$\text{WAIC} = -2 \sum_{i=1}^{n} \left( \ln(\hat{p}(y_i)) - \text{Var}(\ln(p(y_i))) \right)$$
 
 # Getting ready for the lab
