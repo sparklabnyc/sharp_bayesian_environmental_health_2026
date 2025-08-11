@@ -181,7 +181,7 @@ Stan, not STAN
 Stanislaw Ulam is probably best known for realising that electronic computers made it practical to apply statistical methods to functions without known solutions, and as computers have developed, the Monte Carlo method has become a common and standard approach to many problems.
 :::
 
-## The granddaddy of PPLs
+## The grandfather of PPLs
 
 :::: {.columns}
 
@@ -206,7 +206,7 @@ Stanislaw Ulam is probably best known for realising that electronic computers ma
 
 # `NIMBLE`
 
-## `NIMBLE` model is like `WinBUGS`, but more flexible
+## `NIMBLE` model is like `WinBUGS`, but more flexible.
 
 - You are now quite familiar with `NIMBLE` syntax.
 
@@ -231,16 +231,16 @@ model(
 
 ::: {.column width="50%"}
 ::: {style="color: #58b364"}
-- Compiles `R` to `C++` for speed and scalability
-- Automatically finds conjugate relationships
-- Can pick a different sampler for each parameter
-- Good for teaching the fundamentals of Bayesian inference
+- Compiles `R` to `C++` for speed and scalability.
+- Automatically finds conjugate relationships.
+- Can pick a different sampler for each parameter.
+- Good for teaching the fundamentals of Bayesian inference.
 :::
 :::
 
 ::: {.column width="50%"}
 ::: {style="color: #fc6161"}
-- If the sampler is not conjugate, it can mix poorly
+- If the sampler is not conjugate, it can mix poorly.
 :::
 :::
 
