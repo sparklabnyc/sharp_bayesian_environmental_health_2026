@@ -27,8 +27,8 @@ format:
 
 -   Bayesian inference recap: What? Why? How?
 -   What is a Bayesian workflow and why do we need it?
--   Principles of Bayesian workflow
--   Modern Bayesian workflow
+-   Principles of Bayesian workflow.
+-   Modern Bayesian workflow.
 
 # Bayesian inference
 
@@ -44,9 +44,9 @@ $$p(\theta|y) = \frac{p(y | \theta) p(\theta)}{p(y)}$$ Can you recall what the c
 
 ![](assets/bmeh_normal.png){.r-stretch}
 
--   $p(\theta)$ is the *prior* distribution, i.e. what is known *a priori*
--   $p(y|\theta)$ is the *likelihood*, i.e. probability of observing the data given parameters $\theta$
--   $p(\theta|y)$ is the *posterior* distribution, i.e. the distribution of parameters of interest after data were observed
+-   $p(\theta)$ is the *prior* distribution, i.e. what is known *a priori*.
+-   $p(y|\theta)$ is the *likelihood*, i.e. probability of observing the data given parameters $\theta$.
+-   $p(\theta|y)$ is the *posterior* distribution, i.e. the distribution of parameters of interest after data were observed.
 
 ## Bayes rule:
 
@@ -63,19 +63,19 @@ A lot can go wrong!
 ## General principle of Bayesian inference:
 
 -   Specify a complete Bayesian model:
-    -   specify likelihood
-    -   specify priors for all parameters (saying "I don't know" is also a prior)
+    -   Specify likelihood.
+    -   Specify priors for all parameters. (saying "I don't know" is also a prior)
 
 ## General principle of Bayesian inference:
 
 -   Example:
-    -   consider **data** $y = \{ y_1, ..., y_n\}$
-    -   specify an **observation model**, e.g. $$p(y|\theta) = \prod_i N(y_i | \theta, \sigma^2)$$ <!-- - here $\theta$ is a parameter which we want to infer-->
+    -   Consider **data** $y = \{ y_1, ..., y_n\}$
+    -   Specify an **observation model**, e.g. $$p(y|\theta) = \prod_i N(y_i | \theta, \sigma^2)$$ <!-- - here $\theta$ is a parameter which we want to infer-->
     -   complete the model with a prior distribution, e.g. $$p(\theta)=N(0,1)$$
 
 ## General principle of Bayesian inference:
 
--   Specify a complete Bayesian model
+-   Specify a complete Bayesian model.
 -   Sample the posterior distribution of the parameter $\theta$.
 
 . . .
@@ -84,22 +84,22 @@ Sometimes posterior is available in a closed form.
 
 . . .
 
--   Examples of *conjugate* models include the normal-normal, Gamma-Poisson Beta-binomial
+-   Examples of *conjugate* models include the normal-normal, Gamma-Poisson Beta-binomial.
 
 ## Probabilistic programming languages
 
 Probabilistic programming languages (PPLs) from a user's perspective:
 
 -   PPLs are designed to let the user **focus on modelling** while inference happens automatically.
--   Users need to specify
-    -   prior,
-    -   likelihood.
--   Inference is performed via powerful algorithms such as, for example, Markov Chain Monte Carlo (**MCMC**).
+-   Users need to specify:
+    -   Prior.
+    -   Likelihood.
+-   Inference is performed via powerful algorithms such as, Markov Chain Monte Carlo (**MCMC**).
 -   Availability of **diagnostic tools**.
 
 ## Remark on inference methods
 
--   Alongside "exact"methods such as MCMC, there also exist approximate methods, such as Variation Inference (VI) and integrated nested Laplace approximation.
+-   Alongside "exact"methods such as MCMC, there also exists approximate methods, such as Variation Inference (VI) and integrated nested Laplace approximation.
 -   The approximate methods are less flexible and there is no guaranteed *convergence*.
 -   We are opting to use MCMC whenever possible since it has theoretical guarantees (conditional on time the chain will *converge*).
 
@@ -107,7 +107,7 @@ Probabilistic programming languages (PPLs) from a user's perspective:
 
 ## Workflows as a 'good practice'
 
-Workflows exist in a variety of disciplines. For example, in machine learning workflow standards are being formalised under the name of MLOps:
+Workflows exist in a variety of disciplines. For example, in machine learning, workflow standards are being formalised under the name of MLOps:
 
 <center>
 
@@ -131,24 +131,24 @@ A systematic review of the steps within the modern Bayesian workflow, described 
 
 ## Iterative model building
 
--   Understand the **domain** and problem,
--   Formulate the model **mathematically**,
--   Implement model, test, **debug**,
--   Perform **prior predictive** check,
--   Fit the model,
--   Assess **convergence diagnostics**,
--   Perform **posterior predictive** check,
+-   Understand the **domain** and problem.
+-   Formulate the model **mathematically**.
+-   Implement model, test, **debug**.
+-   Perform **prior predictive** check.
+-   Fit the model.
+-   Assess **convergence diagnostics**.
+-   Perform **posterior predictive** check.
 -   Improve the model **iteratively**: from baseline to complex and computationally efficient models.
 
 ## Some generic checks
 
--   Priors
+-   Priors:
 
     -   How to select a prior? (partly philosophical)
 
     -   Is our prior compatible with the data? (prior predictive checks)
 
--   Posterior (or MCMC output)
+-   Posterior (or MCMC output):
 
     -   Convergence diagnostics (traceplots, autocorrelation plots, etc.)
 
@@ -158,11 +158,11 @@ A systematic review of the steps within the modern Bayesian workflow, described 
 
 ## How to select a prior?
 
--   The prior should allow adequate exploration of the parameter space of the random variable
+-   The prior should allow adequate exploration of the parameter space of the random variable.
 
 -   The prior should be compatible with the nature of the random variable.
 
--   The priors should reflect our prior knowledge
+-   The priors should reflect our prior knowledge.
 
 ## Example 1: The prior is too strict
 
@@ -269,21 +269,21 @@ ggsave("variance.png", width = 20, height = 8, units = "cm", dpi = 300)
 
 -   If you do know, then priors should reflect your knowledge.
 
-    -   Treatment effects for numerous previous studies or meta-analysis
+    -   Treatment effects for numerous previous studies or meta-analysis.
 
-    -   How smooth an effect can be (we will discuss later)
+    -   How smooth an effect can be. (we will discuss later)
 
 -   If you do not know, then the priors should reflect your lack of knowledge.
 
-    -   Vague priors, non-informative priors
+    -   Vague priors, non-informative priors.
 
 ## Prior predictive checks
 
 **Prior predictive checking** consists in simulating data from the priors:
 
--   visualize priors (especially after transformation),
--   this shows the range of data compatible with the model,
--   it helps understand the adequacy of the chosen priors, as it is often easier to elicit expert knowledge on measureable quantities of interest rather than abstract parameter values.
+-   Visualize priors. (especially after transformation)
+-   This shows the range of data compatible with the model.
+-   It helps understand the adequacy of the chosen priors, as it is often easier to elicit expert knowledge on measureable quantities of interest rather than abstract parameter values.
 
 # Examples
 
@@ -343,13 +343,13 @@ code <- nimbleCode({
 })
 ```
 
-## Prior redictive check again
+## Prior predictive check again
 
 <center>
 
 ![](assets/data3.png){width="45%"}
 
-Better: now the range of prior predictive draws is covering the data. \## Diagnosing MCMC outputs
+Better: now the range of prior predictive draws is covering the data. 
 
 ## Posterior checks (MCMC output)
 
@@ -367,7 +367,7 @@ We use multiple chains of MCMC to estimate the posterior:
     -   $\hat{R}$ statistic,
     -   traceplots.
 -   Effective sample size (ESS):
-    -   samples will be typically autocorrelated within a chain, which increases the uncertainty of the estimation of posterior quantities,
+    -   Samples will be typically autocorrelated within a chain, which increases the uncertainty of the estimation of posterior quantities.
     -   ESS -- number of *independent* samples required to obtain the same level of uncertainty as from the available dependent samples.
 
 ## Diagnosing MCMC outputs
@@ -382,7 +382,7 @@ We use multiple chains of MCMC to inspect convergence after warm-up:
 
 ## Diagnosing MCMC outputs
 
-We use multiple chains and inspect convergence after warm-up:
+We use multiple chains of MCMC to inspect convergence after warm-up:
 
 . . .
 
@@ -406,19 +406,20 @@ The post-warm-up samples of $\theta$ approximate its **posterior** distribution:
 
 This examines how well your model fits the data.
 
--   The idea is to compare the posterior of the fitted values with the observed values of your data
+-   The idea is to compare the posterior of the fitted values with the observed values of your data.
 
--   You can try different things: correlation, mean squared error, bias, coverage probability
+-   You can try different things: correlation, mean squared error, bias, coverage probability.
 
 ![](assets/posterior1.png){fig-align="center"}
 
 ## Other
 
--   Cross validation. The idea is to act like some of your data is missing, use your model to predict it, and then compare what the model predicts *well* with the truth.
+-   Cross validation -- The idea is to act like some of your data is missing, use your model to predict it, and then compare what the model predicts *well* with the truth.
 
     -   How do you select the *missing* data and what does *well* mean?
 
--   Information criteria. Penalise complexity over the fit. The smaller the better. Examples: DIC, WAIC, AIC, BIC, etc.
+-   Information criteria -- Penalise complexity over the fit. The smaller the better. 
+    -  Examples: DIC, WAIC, AIC, BIC, etc.
 
 -   Deviance + p
 
