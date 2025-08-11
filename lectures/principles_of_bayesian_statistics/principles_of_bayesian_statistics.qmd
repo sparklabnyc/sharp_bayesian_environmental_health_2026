@@ -42,13 +42,13 @@ library(hrbrthemes)
 
 ## This course is for those who
 
-- Are interested or who have heard about Bayesian modeling.
+- Are interested in or who have heard about Bayesian modeling.
 - Work in Environmental Health (or adjacent fields).
 - Have little theoretical or practical experience of Bayesian ideas.
 - Would like some tools and know-how to get started in an approachable and friendly setting.
 - People who would like to have some fun while learning!
 - Some equations will be there but mainly for reference.
-- Lots of code though throughout the two days...
+- There will be lots of code to get though over the next two days...
 
 ## `R`
 
@@ -103,7 +103,7 @@ plot(p)
 
 - `RStudio` is an integrated development environment (IDE) for `R`.
 - `RStudio` provides a convenient graphical interface to `R`, making it more user-friendly, and providing many useful features.
-- Such features include direct code execution, tools for plotting, history, debugging and workspace management.
+- Such features include direct code execution, tools for plotting, history, debugging, and workspace management.
 - A more detailed background on to `RStudio` can be found at [https://posit.co/about/](https://posit.co/about/).
 
 ## `RStudio` by `Posit`
@@ -372,7 +372,7 @@ ggplot(data) +
 
 ![](assets/big_red_cross.png){.absolute top=350 right=50 width="200" height="200"}
 
-## Bayes theorem, prior, likelihood and posterior
+## Bayes theorem, prior, likelihood, and posterior
 
 - $$P(\theta|y) \propto P(y|\theta) P(\theta)$$
 
@@ -437,7 +437,7 @@ $$
 
 ## Obtaining approximate posterior distribution {.smaller}
 
-- Many different types of MCMC:
+- Many different types of Markov Chain Monte Carlo (MCMC):
   - **Metropolis-Hastings**:  
     - Proposes moves; accepts with probability based on posterior ratio.
     - General-purpose, but can mix slowly in high dimensions.
@@ -558,7 +558,7 @@ code_worse_priors <- nimbleCode({
 
 ![](assets/worse_priors.png)
 
-## Non-conjugate how to get posterior?
+## How to get non-conjugate posterior?
 
 - Some kind of software to help us implement models for inference.
 - Using `R`.
@@ -576,7 +576,7 @@ code_worse_priors <- nimbleCode({
 
 ## Illustrative example of basic regression in `NIMBLE`
 
-- Let's go through an example from the upcoming lab
+- Let's go through an example from the upcoming lab.
 
 ## Linear regression
 ::: nonincremental
@@ -778,7 +778,7 @@ toc - tic
 ## Linear regression
 
 ::: nonincremental
-- What is the summary of each estimated parameter from the samples? The following operations will help us understand.
+- The following operations will help us to answer: What is the summary of each estimated parameter from the samples?
 :::
 
 ``` R
@@ -791,7 +791,7 @@ summarise_draws(nimbleMCMC_samples_initial, default_summary_measures())
 ## Linear regression
 
 ::: nonincremental
-- What is the summary of each estimated parameter from the samples? The following operations will help us understand.
+- The following operations will help us to answer: What is the summary of each estimated parameter from the samples? 
 :::
 
 ```{r}
@@ -928,7 +928,7 @@ $$
 
 ## Example of a conjugate pair: Normal-Normal {.smaller}
 
-- Likelihood
+- Likelihood:
 - Normal distribution is defined by two parameters $\mu$ and $\sigma$.
 - Bell curve.
 - $\mu$ is mean.
@@ -937,16 +937,16 @@ $$
 - $$
   y|\mu,\sigma \sim Normal(\mu,\sigma^2)
   $$
-- Prior
+- Prior:
 - Normal distribution is mathematically the conjugate of itself, with hyperparameters $\mu_0$ and $\sigma_0$.
 
 - $$
   \mu \sim Normal(\mu_0,\sigma_0^2)
   $$
 
-## Normal-Normal
+## Example of a conjugate pair: Normal-Normal {.smaller}
 
-- Posterior
+- Posterior:
 - Because of conjugacy, there is an analytical solution for the posterior which is also normally distributed.
 - But this is usually not that useful when models get very complicated.
 
@@ -1003,16 +1003,16 @@ plot(p, dnorm(p, 0, 20), type = "l")
 
 
 
-## Binomial-Beta {.smaller}
+## Example of a conjugate pair: Binomial-Beta {.smaller}
 
-- Likelihood
+- Likelihood:
 - Binomial distribution is when there is success (1) or failure (0) with the proportion of success ($\pi$).
 - $n$ trials.
 
 - $$
   y|\pi \sim Binomial(\pi,n)
   $$
-- Prior
+- Prior:
 - Beta distribution is mathematically the conjugate of binomial defined by two parameters $a$ and $b$.
 - Beta distributuon is 'natural' fit becasue it ranges from 0 to 1.
 
@@ -1020,9 +1020,9 @@ plot(p, dnorm(p, 0, 20), type = "l")
   \pi \sim Beta(a,b)
   $$
 
-## Binomial-Beta
+## Example of a conjugate pair: Binomial-Beta {.smaller}
 
-- Posterior
+- Posterior:
 - Because of conjugacy, there is an analytical solution for the posterior.
 
 - $$
@@ -1101,9 +1101,9 @@ p <- seq(0, 1, length = 100)
 plot(p, dbeta(p, 50, 200), type = "l")
 ```
 
-## Types of conjugate pairs: Poisson-Gamma {.smaller}
+## Example of a conjugate pair: Poisson-Gamma {.smaller}
 
-- Likelihood
+- Likelihood:
 - Normal distribution is defined by on parameters $\lambda$.
 - Very common for count data.
 - $\lambda$ is rate.
@@ -1111,7 +1111,7 @@ plot(p, dbeta(p, 50, 200), type = "l")
 - $$
   y|\lambda \sim Poisson(\lambda)
   $$
-- Prior
+- Prior:
 - Gamma distribution is mathematically the conjugate of Poisson, with hyperparameters $\mu_0$ and $\sigma_0$.
 - Gamma distributuon is 'natural' fit becasue it ranges from 0 to $\infty$.
 
@@ -1119,9 +1119,9 @@ plot(p, dbeta(p, 50, 200), type = "l")
   \lambda \sim Gamma(a,b)
   $$
 
-## Poisson-Gamma
+## Example of a conjugate pair: Poisson-Gamma {.smaller}
 
-- Posterior
+- Posterior:
 - Because of conjugacy, there is an analytical solution for the posterior.
 
 - $$
