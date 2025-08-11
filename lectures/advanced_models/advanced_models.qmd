@@ -40,13 +40,14 @@ library(hrbrthemes)
 
 ## Distributed non-linear lag models
 
--   An exposure event is frequently associated with a risk lasting for a defined period in the future
+-   An exposure event is frequently associated with a risk lasting for a defined period in the future.
 
--   The risk at a given time is assumed a result of protracted exposures experienced in the past
+-   The risk at a given time is assumed a result of protracted exposures experienced in the past.
 
 -   Examples include, drugs, carcinogens, etc.
 
-Challenge: The risk should be modelled in terms of contributions depending on intensity and timing of the exposure events: bi-dimensional association (interaction).
+**Challenge**: The risk should be modelled in terms of contributions depending on intensity and timing of the exposure events.
+ - Can use bi-dimensional association (interaction).
 
 ## Example 1: Lung cancer and radon exposure
 
@@ -206,19 +207,19 @@ rbind(
 ::: {style="font-size: 80%;"}
 ## Considerations
 
--   Easy implementation when lags are few; overparametrized when we want to assess a lot of lags
+-   Easy implementation when lags are few; overparametrized when we want to assess a lot of lags.
 
 -   Collinearity issues: The exposure is likely to be highly correlated with the values of the previous/after days. Weird behaviours in the point estimates (surprising protective effects), variance inflation.
 
-Alternative: to impose some constraints!
+Alternative: impose some constraints!
 
--   A constant effect within lag intervals
+-   A constant effect within lag intervals.
 
--   Average of the exposures in the previous $L$ day
+-   Average of the exposures in the previous $L$ day.
 
 -   Describing the coefficients with a smooth curve using continuous functions such as splines, polynomials, and other basis functions.
 
-The idea: $\beta_{\ell}$ can be modelled using a basis function.
+**The idea**: $\beta_{\ell}$ can be modelled using a basis function.
 :::
 
 ::: {style="font-size: 80%;"}
@@ -278,13 +279,14 @@ What is the main assumption here? Can we relax it?
 
 ## Extension to distributed non-linear lag models
 
--   We know that temperature and mortality have a U-shape relationship
+-   We know that temperature and mortality have a U-shape relationship.
 
--   We know that high temperature has a lag effect on mortality
+-   We know that high temperature has a lag effect on mortality.
 
 -   Can we define models to combine these two components?
 
-The idea: to calculate this bi-dimensional relationship, we need a basis function that combines the basis function in the lag dimension and the basis function in the exposure dimension: **Cross-basis function**
+**The idea**: To calculate this bi-dimensional relationship, we need a basis function that combines the basis function in the lag dimension and the basis function in the exposure dimension.
+ - We can use a cross-basis function.
 
 ## Linear-by-constant
 
@@ -398,13 +400,13 @@ plot(pred2.temp, "slices",
 
 ## Spatially varying coefficients
 
--   So far we assumed a single effect of an exposure across the study region.
+-   So far, we assumed a single effect of an exposure across the study region.
 
 -   However, different populations might experience different vulnerabilities to the effect of the exposure.
 
 -   If these vulnerabilities have spatial structures, then the effect of the exposure will vary in space.
 
--   Spatial effect modification or spatial interaction
+-   Spatial effect modification or spatial interaction.
 
 ## Example 1: Heatwaves in Europe
 
@@ -446,13 +448,13 @@ $$\delta_i = \gamma_0 + \sum \gamma_i Z_i + w_i$$
 ::: {.column width="60%"}
 -   Typically U-shaped relationship between temperature and health.
 
--   Individual effect modifiers: age, sex, chronic conditions
+-   Individual effect modifiers: age, sex, chronic conditions.
 
--   Temporal variation of the effect (adaptation)
+-   Temporal variation of the effect (adaptation).
 
--   Environmental effect modifiers: green space, urban heat island
+-   Environmental effect modifiers: green space, urban heat island.
 
--   Spatial vulnerabilities to heat exposure
+-   Spatial vulnerabilities to heat exposure.
 :::
 
 ::: {.column width="40%"}
@@ -505,9 +507,9 @@ $$
 
 ![](Figures/lrexampler.png){fig-align="center"}
 
-## Modelling the Spatially Varying Non-Linear Effects of Heat Exposure
+## Modelling the spatially varying non-linear effects of heat exposure
 
-Main issues: a. data sparsity, b. spatial correlation
+Main issues: (1) data sparsity, (2) spatial correlation
 
 ![](Figures/EDA_tempMap_fig.png){fig-align="center"}
 
@@ -529,3 +531,5 @@ Main issues: a. data sparsity, b. spatial correlation
 ::: {style="color: #58b364"}
 Next : Coding some of these models in INLA.
 :::
+
+# Questions?
