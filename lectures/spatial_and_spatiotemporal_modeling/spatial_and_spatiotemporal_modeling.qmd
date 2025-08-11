@@ -43,9 +43,9 @@ format:
 </center>
 
 ## Why do we need more complex models?
-- In disease mapping estimates of disease risk can be unstable, leading to non-meaningful maps
-- Accounting for residual spatial autocorrelation is important to have the correct uncertainty
-- Sometimes they pick up unknown spatial confounding, leading to unbiased estimators
+- In disease mapping estimates of disease risk can be unstable, leading to non-meaningful maps.
+- Accounting for residual spatial autocorrelation is important to have the correct uncertainty.
+- Sometimes they pick up unknown spatial confounding, leading to unbiased estimators.
 
 ## Structure of the talk
 - Disease mapping and smoothing
@@ -56,18 +56,18 @@ format:
 # Disease mapping and smoothing
 
 ## Disease mapping - background
-- To summarise spatial and spatio-temporal variation in disease risk
+- To summarise spatial and spatio-temporal variation in disease risk.
 - Rare disease and/or small areas: Poisson framework
 $$O_i \sim \text{Poisson}(\lambda_i E_i)$$
 where $E_i$ is the expected nb of cases and $\lambda_i=\text{SMR}$ in area $i$.
-- Non smoothed estimates of the SMR:
+- Non smoothed estimates of the standardised mortality ratio (SMR):
 $$\text{SMR}_i = \frac{O_i}{E_i},\;\text{and} \;\text{Var(SMR)}_i = \frac{O_i}{E_i^2}$$
 
 ## Issues with crude RR estimates
 
 Calculating crude (non-smoothed) estimates of the SMR can be problematic:
 
-- SMR is estimated independently: does not account for spatial correlation, ie makes no use of SMR estimates in other areas of the map, even though these are likely to be similar.
+- SMR is estimated independently: does not account for spatial correlation, i.e. makes no use of SMR estimates in other areas of the map, even though these are likely to be similar.
 -  They are very imprecise: areas with small $E_i$ have high associated variance.
 
 ## Example with childhood cancers in Switzerland
@@ -87,7 +87,7 @@ Calculating crude (non-smoothed) estimates of the SMR can be problematic:
 ## Hierarchical modelling to smooth rates
 -  **Globally**: Smooth the rates towards the global mean.
 -  **Locally**:  Smooth the rates towards the local mean, using information about the adjacency structure.
--  **Globally + Locally**:  Smooth the rates using information about the global mean and the adjacency structure
+-  **Globally + Locally**:  Smooth the rates using information about the global mean and the adjacency structure.
 
 
 ## Global smoothing
@@ -98,8 +98,8 @@ O_i \sim \text{Poisson}(\lambda_i E_i) \\
 $$
 $\theta_i$: area specific random effects to account for overdispersion
 
-- excess variation in the observed counts due to random noise
-- latent variable which captures the effects of unknown or unmeasured area level covariates
+- Excess variation in the observed counts due to random noise.
+- Latent variable which captures the effects of unknown or unmeasured area level covariates.
 
 $\exp(\theta_i)$:  RR in area i, relative to the overall SMR/SIR
 
@@ -117,14 +117,14 @@ $\exp(\theta_i)$:  RR in area i, relative to the overall SMR/SIR
 - Ignoring spatial dependence can lead to biased and inefficient inference.
 -  Interest in estimating the relationship between location and outcome.
 
-**Local smoothing**: prior distribution for the random effects allowing for spatial correlation to help uncover spatial patterns
+**Local smoothing**: prior distribution for the random effects allowing for spatial correlation to help uncover spatial patterns.
 
 
-## Specify a distribution which takes into account information
+## Specify a distribution to account for information
 - Specify a distribution which takes into account information on neighbouring areas (**adjacency matrix**).
 - Rule for determining the neighbours of each area: most common based on common boundary.
--  Estimate **spatial random effect** for each area as if we knew the values of the spatial random effects in neighbouring areas
-- Use of conditional autoregressive distributions (we are conditioning on knowing the neighbours)
+-  Estimate **spatial random effect** for each area as if we knew the values of the spatial random effects in neighbouring areas.
+- Use of conditional autoregressive distributions. (we are conditioning on knowing the neighbours)
 
 
 ## Example: Queen contiguity in Switzerland (Cantons)
@@ -168,7 +168,7 @@ $$
 ::::
 
 
-## Example with childhood cancers in Switzerland (cont)
+## Example with childhood cancers in Switzerland (cont.)
 - Plot $exp(\alpha + \phi_i)$
 
 <center>
@@ -195,8 +195,8 @@ priors for $\alpha, \sigma_{\theta}^2 \; \text{and} \; \sigma^2_{\phi}$
 
 
 ## Use BYM with care
-- ICAR model defined above is improper: the overall mean of the $\phi_i$ is not defined: **sum-to-zero contraints**
-- Inference may be sensitive to choice of hyperprior for the random effects variance or precision parameters
+- ICAR model defined above is improper: the overall mean of the $\phi_i$ is not defined: **sum-to-zero contraints**.
+- Inference may be sensitive to choice of hyperprior for the random effects variance or precision parameters.
 - Other known issues we have not discussed about: different interpretation of the variances (marginal conditional), scalling the covariance matrix, etc.
 
 ## Other CAR models
@@ -223,9 +223,9 @@ $$
 - Adaptive CARs
 
 ## Posterior Probability
--  Mapping the posterior mean RR does (or residual RR) not make full use of the output of the Bayesian analysis that provides, for each area, samples from the whole posterior distribution of the relative risk.
+-  Mapping the posterior mean RR (or residual RR) does not make full use of the output of the Bayesian analysis that provides, for each area, samples from the whole posterior distribution of the relative risk.
 -  Mapping the probability that a RR is greater than a specified threshold of interest has been proposed by several authors (e.g. Clayton and Bernardinelli (1992)).
-- Very effective method to identify areas characterised by elevated risk
+- Very effective method to identify areas characterised by elevated risk.
 
 ## How to classify areas as having elevated risk
 - We define the decision rule $D(c, \text{RR}_0)$, which depends:
@@ -261,7 +261,7 @@ $$
 - $\color{red}{\beta}$: parameter associated with the covariate (assigned a prior)
 
 ## Interpretation of the parameters
-- $\exp(\beta)$ is the relative risk of disease associated with a unit increase in exposure $X$ (when X continuous)
+- $\exp(\beta)$ is the relative risk of disease associated with a unit increase in exposure $X$ (when X continuous).
 - $\exp(\theta_i + \phi_i)$ is the residual or adjusted relative risk of disease in area $i$ after accounting for the effect of $X$.
 
 ##  Extension to several variables
@@ -276,7 +276,7 @@ $$
 - Same for $\exp(\beta_k)$, after adjustment for $X_1, \dots ,X_{k-1}$
 - $\exp(\theta_i + \phi_i)$ is the adjusted relative risk of disease in area $i$ after accounting for the effects of measured covariates
 
-##  Example: HPV vaccination in Switzerland
+##  Example with HPV vaccination in Switzerland
 
 $$
 Y_{kit} \sim \text{Binomial}(p_{kit}) \\
@@ -309,18 +309,18 @@ $$
 # Building complex spatiotemporal models
 
 ## Cervical cancers among HIV positive women
-- Global cohort composed of 1,700,000 persons living with HIV/AIDS
-- SAM study, evaluating HIV related cancers in South Africa
-- 17% of adult women in South Africa over the age of 25 years are living with HIV
-- High burden of cervical cancer: 43.1 cases per 100,000
-- 5 times more likely to develop cervical cancer
+- Global cohort composed of 1,700,000 persons living with HIV/AIDS.
+- SAM study, evaluating HIV related cancers in South Africa.
+- 17% of adult women in South Africa over the age of 25 years are living with HIV.
+- High burden of cervical cancer: 43.1 cases per 100,000.
+- 5 times more likely to develop cervical cancer.
 
 ## Exploratory analysis of the crude rates
 <center>
 ![](figures/CrudeSIR_hpv.png){width=100%}
 </center>
 
-## Exploratory analysis of the crude rates (cont)
+## Exploratory analysis of the crude rates (cont.)
 <center>
 ![](figures/CrudeSIRbyRegion.png){width=75%}
 </center>
@@ -342,17 +342,17 @@ Similar with the BYM model in space $\gamma_t$ is the temporal unstructured and 
 ![](figures/RandomEffectInt1.png){width=100%}
 </center>
 
-## Spacetime (Spaghetti plot)
+## Space-time (Spaghetti plot)
 <center>
 ![](figures/SpagSIRbyRegion.png){width=75%}
 </center>
 
-## Spacetime (Space by year)
+## Space-time (Space by year)
 <center>
 ![](figures/MapsSIRbyRegion.png){width=90%}
 </center>
 
-## Spacetime interactions
+## Space-time interactions
 
 ```{r}
 data.frame(
@@ -387,7 +387,7 @@ knitr::kable(tab, escape = FALSE, align = "c")
 - Extension to ecological regression and relevant interpretations
 - Separable  spatiotemporal models
 - Higher spatiotemporal interactions
-- Examples using childhood cancers, HPV vaccination and cervical cancers in South Africa
+- Examples using childhood cancers, HPV vaccination, and cervical cancers in South Africa
 
 ::::: {style="color: #58b364"}
 Next : Coding these models in NIMBLE.
