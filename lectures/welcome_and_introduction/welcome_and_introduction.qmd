@@ -32,7 +32,7 @@ format:
 -   **Restrooms**. Directly outside the classroom to the right.
 -   **Course materials**. All material (lectures/labs) is located on Posit Cloud. You were invited to the ‘sharp_bayesian_environmental_health_2025’ workspace via email a few days ago.
 -   **Name tags**. Please wear during workshop to make connecting with others easier! Please return them after the Workshop to help us be greener.
--   Contact Meaghan Doherty **914-522-8114** for assistance.
+-   Contact Admin Coordinator Tristan Swedin **ts3716@cumc.columbia.edu** for any assistance.
 
 ## Overview of workshop
 
@@ -136,6 +136,6 @@ plot(p)
 -   **Restrooms**. Directly outside the classroom to the right.
 -   **Course materials**. All material (lectures/labs) is located on Posit Cloud. You were invited to the ‘sharp_bayesian_environmental_health_2025’ workspace via email earlier this week.
 -   **Name tags**. Please wear during workshop to make connecting with others easier! Please return them after the Workshop to help us be greener.
--   Contact Meaghan Doherty **914-522-8114** for assistance.
+-   Contact Admin Coordinator Tristan Swedin **ts3716@cumc.columbia.edu** for any assistance.
 
 # Questions?
