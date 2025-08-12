@@ -125,6 +125,7 @@ df <- read_csv("assets/experience_level_r.csv") |>
 p <- ggplot(df, aes(x = experience_level)) +
   geom_bar() +
   xlab("Experience level with R") +
+  scale_y_continuous(breaks = function(x) unique(floor(pretty(x)))) +
   theme_ipsum()
 
 plot(p)
