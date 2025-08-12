@@ -391,7 +391,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-color="#f3f4f4" data-background-image="../../assets/bmeh_normal.png" data-background-position="60% 120%" data-background-size="80%" class="quarto-title-block center">
+<section id="title-slide" data-background-color="#f3f4f4" data-background-image="assets/bmeh_normal.png" data-background-position="60% 120%" data-background-size="80%" class="quarto-title-block center">
   <h1 class="title">Bayesian workflow</h1>
   <p class="subtitle">Good practice of Bayesian inference</p>
 
@@ -416,8 +416,8 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 <ul>
 <li class="fragment">Bayesian inference recap: What? Why? How?</li>
 <li class="fragment">What is a Bayesian workflow and why do we need it?</li>
-<li class="fragment">Principles of Bayesian workflow</li>
-<li class="fragment">Modern Bayesian workflow</li>
+<li class="fragment">Principles of Bayesian workflow.</li>
+<li class="fragment">Modern Bayesian workflow.</li>
 </ul>
 </section>
 
@@ -436,9 +436,9 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 <p><span class="math display">\[p(\theta|y) = \frac{p(y | \theta) p(\theta)}{p(y)}\]</span> Can you recall what the components of the Bayes formula are?</p>
 <img data-src="assets/bmeh_normal.png" class="r-stretch">
 <ul>
-<li class="fragment"><span class="math inline">\(p(\theta)\)</span> is the <em>prior</em> distribution, i.e.&nbsp;what is known <em>a priori</em></li>
-<li class="fragment"><span class="math inline">\(p(y|\theta)\)</span> is the <em>likelihood</em>, i.e.&nbsp;probability of observing the data given parameters <span class="math inline">\(\theta\)</span></li>
-<li class="fragment"><span class="math inline">\(p(\theta|y)\)</span> is the <em>posterior</em> distribution, i.e.&nbsp;the distribution of parameters of interest after data were observed</li>
+<li class="fragment"><span class="math inline">\(p(\theta)\)</span> is the <em>prior</em> distribution, i.e.&nbsp;what is known <em>a priori</em>.</li>
+<li class="fragment"><span class="math inline">\(p(y|\theta)\)</span> is the <em>likelihood</em>, i.e.&nbsp;probability of observing the data given parameters <span class="math inline">\(\theta\)</span>.</li>
+<li class="fragment"><span class="math inline">\(p(\theta|y)\)</span> is the <em>posterior</em> distribution, i.e.&nbsp;the distribution of parameters of interest after data were observed.</li>
 </ul>
 </section>
 <section id="bayes-rule" class="slide level2">
@@ -456,8 +456,8 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 <ul>
 <li class="fragment">Specify a complete Bayesian model:
 <ul>
-<li class="fragment">specify likelihood</li>
-<li class="fragment">specify priors for all parameters (saying “I don’t know” is also a prior)</li>
+<li class="fragment">Specify likelihood.</li>
+<li class="fragment">Specify priors for all parameters. (saying “I don’t know” is also a prior)</li>
 </ul></li>
 </ul>
 </section>
@@ -466,8 +466,8 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 <ul>
 <li class="fragment">Example:
 <ul>
-<li class="fragment">consider <strong>data</strong> <span class="math inline">\(y = \{ y_1, ..., y_n\}\)</span></li>
-<li class="fragment">specify an <strong>observation model</strong>, e.g.&nbsp;<span class="math display">\[p(y|\theta) = \prod_i N(y_i | \theta, \sigma^2)\]</span> <!-- - here $\theta$ is a parameter which we want to infer--></li>
+<li class="fragment">Consider <strong>data</strong> <span class="math inline">\(y = \{ y_1, ..., y_n\}\)</span></li>
+<li class="fragment">Specify an <strong>observation model</strong>, e.g.&nbsp;<span class="math display">\[p(y|\theta) = \prod_i N(y_i | \theta, \sigma^2)\]</span> <!-- - here $\theta$ is a parameter which we want to infer--></li>
 <li class="fragment">complete the model with a prior distribution, e.g.&nbsp;<span class="math display">\[p(\theta)=N(0,1)\]</span></li>
 </ul></li>
 </ul>
@@ -475,7 +475,7 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 <section id="general-principle-of-bayesian-inference-2" class="slide level2">
 <h2>General principle of Bayesian inference:</h2>
 <ul>
-<li class="fragment">Specify a complete Bayesian model</li>
+<li class="fragment">Specify a complete Bayesian model.</li>
 <li class="fragment">Sample the posterior distribution of the parameter <span class="math inline">\(\theta\)</span>.</li>
 </ul>
 <div class="fragment">
@@ -483,7 +483,7 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 </div>
 <div class="fragment">
 <ul>
-<li class="fragment">Examples of <em>conjugate</em> models include the normal-normal, Gamma-Poisson Beta-binomial</li>
+<li class="fragment">Examples of <em>conjugate</em> models include the normal-normal, Gamma-Poisson Beta-binomial.</li>
 </ul>
 </div>
 </section>
@@ -492,19 +492,19 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 <p>Probabilistic programming languages (PPLs) from a user’s perspective:</p>
 <ul>
 <li class="fragment">PPLs are designed to let the user <strong>focus on modelling</strong> while inference happens automatically.</li>
-<li class="fragment">Users need to specify
+<li class="fragment">Users need to specify:
 <ul>
-<li class="fragment">prior,</li>
-<li class="fragment">likelihood.</li>
+<li class="fragment">Prior.</li>
+<li class="fragment">Likelihood.</li>
 </ul></li>
-<li class="fragment">Inference is performed via powerful algorithms such as, for example, Markov Chain Monte Carlo (<strong>MCMC</strong>).</li>
+<li class="fragment">Inference is performed via powerful algorithms such as, Markov Chain Monte Carlo (<strong>MCMC</strong>).</li>
 <li class="fragment">Availability of <strong>diagnostic tools</strong>.</li>
 </ul>
 </section>
 <section id="remark-on-inference-methods" class="slide level2">
 <h2>Remark on inference methods</h2>
 <ul>
-<li class="fragment">Alongside “exact”methods such as MCMC, there also exist approximate methods, such as Variation Inference (VI) and integrated nested Laplace approximation.</li>
+<li class="fragment">Alongside “exact”methods such as MCMC, there also exists approximate methods, such as Variation Inference (VI) and integrated nested Laplace approximation.</li>
 <li class="fragment">The approximate methods are less flexible and there is no guaranteed <em>convergence</em>.</li>
 <li class="fragment">We are opting to use MCMC whenever possible since it has theoretical guarantees (conditional on time the chain will <em>converge</em>).</li>
 </ul>
@@ -516,7 +516,7 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 </section>
 <section id="workflows-as-a-good-practice" class="slide level2">
 <h2>Workflows as a ‘good practice’</h2>
-<p>Workflows exist in a variety of disciplines. For example, in machine learning workflow standards are being formalised under the name of MLOps:</p>
+<p>Workflows exist in a variety of disciplines. For example, in machine learning, workflow standards are being formalised under the name of MLOps:</p>
 <center>
 <p><img data-src="assets/mlops-loop-en.png" style="width:50.0%"></p>
 </center></section>
@@ -535,25 +535,25 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 <section id="iterative-model-building" class="slide level2">
 <h2>Iterative model building</h2>
 <ul>
-<li class="fragment">Understand the <strong>domain</strong> and problem,</li>
-<li class="fragment">Formulate the model <strong>mathematically</strong>,</li>
-<li class="fragment">Implement model, test, <strong>debug</strong>,</li>
-<li class="fragment">Perform <strong>prior predictive</strong> check,</li>
-<li class="fragment">Fit the model,</li>
-<li class="fragment">Assess <strong>convergence diagnostics</strong>,</li>
-<li class="fragment">Perform <strong>posterior predictive</strong> check,</li>
+<li class="fragment">Understand the <strong>domain</strong> and problem.</li>
+<li class="fragment">Formulate the model <strong>mathematically</strong>.</li>
+<li class="fragment">Implement model, test, <strong>debug</strong>.</li>
+<li class="fragment">Perform <strong>prior predictive</strong> check.</li>
+<li class="fragment">Fit the model.</li>
+<li class="fragment">Assess <strong>convergence diagnostics</strong>.</li>
+<li class="fragment">Perform <strong>posterior predictive</strong> check.</li>
 <li class="fragment">Improve the model <strong>iteratively</strong>: from baseline to complex and computationally efficient models.</li>
 </ul>
 </section>
 <section id="some-generic-checks" class="slide level2">
 <h2>Some generic checks</h2>
 <ul>
-<li class="fragment"><p>Priors</p>
+<li class="fragment"><p>Priors:</p>
 <ul>
 <li class="fragment"><p>How to select a prior? (partly philosophical)</p></li>
 <li class="fragment"><p>Is our prior compatible with the data? (prior predictive checks)</p></li>
 </ul></li>
-<li class="fragment"><p>Posterior (or MCMC output)</p>
+<li class="fragment"><p>Posterior (or MCMC output):</p>
 <ul>
 <li class="fragment"><p>Convergence diagnostics (traceplots, autocorrelation plots, etc.)</p></li>
 <li class="fragment"><p>Model fit (posterior predictive checks)</p></li>
@@ -564,9 +564,9 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 <section id="how-to-select-a-prior" class="slide level2">
 <h2>How to select a prior?</h2>
 <ul>
-<li class="fragment"><p>The prior should allow adequate exploration of the parameter space of the random variable</p></li>
+<li class="fragment"><p>The prior should allow adequate exploration of the parameter space of the random variable.</p></li>
 <li class="fragment"><p>The prior should be compatible with the nature of the random variable.</p></li>
-<li class="fragment"><p>The priors should reflect our prior knowledge</p></li>
+<li class="fragment"><p>The priors should reflect our prior knowledge.</p></li>
 </ul>
 </section>
 <section id="example-1-the-prior-is-too-strict" class="slide level2">
@@ -584,12 +584,12 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 <ul>
 <li class="fragment"><p>If you do know, then priors should reflect your knowledge.</p>
 <ul>
-<li class="fragment"><p>Treatment effects for numerous previous studies or meta-analysis</p></li>
-<li class="fragment"><p>How smooth an effect can be (we will discuss later)</p></li>
+<li class="fragment"><p>Treatment effects for numerous previous studies or meta-analysis.</p></li>
+<li class="fragment"><p>How smooth an effect can be. (we will discuss later)</p></li>
 </ul></li>
 <li class="fragment"><p>If you do not know, then the priors should reflect your lack of knowledge.</p>
 <ul>
-<li class="fragment">Vague priors, non-informative priors</li>
+<li class="fragment">Vague priors, non-informative priors.</li>
 </ul></li>
 </ul>
 </section>
@@ -597,9 +597,9 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 <h2>Prior predictive checks</h2>
 <p><strong>Prior predictive checking</strong> consists in simulating data from the priors:</p>
 <ul>
-<li class="fragment">visualize priors (especially after transformation),</li>
-<li class="fragment">this shows the range of data compatible with the model,</li>
-<li class="fragment">it helps understand the adequacy of the chosen priors, as it is often easier to elicit expert knowledge on measureable quantities of interest rather than abstract parameter values.</li>
+<li class="fragment">Visualize priors. (especially after transformation)</li>
+<li class="fragment">This shows the range of data compatible with the model.</li>
+<li class="fragment">It helps understand the adequacy of the chosen priors, as it is often easier to elicit expert knowledge on measureable quantities of interest rather than abstract parameter values.</li>
 </ul>
 </section></section>
 <section>
@@ -651,11 +651,11 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 <span id="cb2-8"><a href="#cb2-8"></a>  }</span>
 <span id="cb2-9"><a href="#cb2-9"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="prior-redictive-check-again" class="slide level2">
-<h2>Prior redictive check again</h2>
+<section id="prior-predictive-check-again" class="slide level2">
+<h2>Prior predictive check again</h2>
 <center>
 <p><img data-src="assets/data3.png" style="width:45.0%"></p>
-<p>Better: now the range of prior predictive draws is covering the data. ## Diagnosing MCMC outputs</p>
+<p>Better: now the range of prior predictive draws is covering the data.</p>
 </center></section>
 <section id="posterior-checks-mcmc-output" class="slide level2">
 <h2>Posterior checks (MCMC output)</h2>
@@ -675,7 +675,7 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 </ul></li>
 <li class="fragment">Effective sample size (ESS):
 <ul>
-<li class="fragment">samples will be typically autocorrelated within a chain, which increases the uncertainty of the estimation of posterior quantities,</li>
+<li class="fragment">Samples will be typically autocorrelated within a chain, which increases the uncertainty of the estimation of posterior quantities.</li>
 <li class="fragment">ESS – number of <em>independent</em> samples required to obtain the same level of uncertainty as from the available dependent samples.</li>
 </ul></li>
 </ul>
@@ -690,7 +690,7 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 </section>
 <section id="diagnosing-mcmc-outputs-2" class="slide level2">
 <h2>Diagnosing MCMC outputs</h2>
-<p>We use multiple chains and inspect convergence after warm-up:</p>
+<p>We use multiple chains of MCMC to inspect convergence after warm-up:</p>
 <div class="fragment">
 <center>
 <p><img data-src="assets/trace_theta_bad.png" style="width:50.0%"></p>
@@ -709,26 +709,29 @@ Garyfallos Konstantinoudis, Elizaveta Semenova
 <h2>Posterior predictive checks</h2>
 <p>This examines how well your model fits the data.</p>
 <ul>
-<li class="fragment"><p>The idea is to compare the posterior of the fitted values with the observed values of your data</p></li>
-<li class="fragment"><p>You can try different things: correlation, mean squared error, bias, coverage probability</p></li>
+<li class="fragment"><p>The idea is to compare the posterior of the fitted values with the observed values of your data.</p></li>
+<li class="fragment"><p>You can try different things: correlation, mean squared error, bias, coverage probability.</p></li>
 </ul>
 
 <img data-src="assets/posterior1.png" class="r-stretch quarto-figure-center"></section>
 <section id="other" class="slide level2">
 <h2>Other</h2>
 <ul>
-<li class="fragment"><p>Cross validation. The idea is to act like some of your data is missing, use your model to predict it, and then compare what the model predicts <em>well</em> with the truth.</p>
+<li class="fragment"><p>Cross validation – The idea is to act like some of your data is missing, use your model to predict it, and then compare what the model predicts <em>well</em> with the truth.</p>
 <ul>
 <li class="fragment">How do you select the <em>missing</em> data and what does <em>well</em> mean?</li>
 </ul></li>
-<li class="fragment"><p>Information criteria. Penalise complexity over the fit. The smaller the better. Examples: DIC, WAIC, AIC, BIC, etc.</p></li>
+<li class="fragment"><p>Information criteria – Penalise complexity over the fit. The smaller the better.</p>
+<ul>
+<li class="fragment">Examples: DIC, WAIC, AIC, BIC, etc.</li>
+</ul></li>
 <li class="fragment"><p>Deviance + p</p></li>
 </ul>
 </section></section>
 <section id="questions" class="title-slide slide level1 center">
 <h1>Questions?</h1>
 
-<img src="../../assets/bmeh_normal.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<img src="assets/bmeh_normal.png" class="slide-logo r-stretch"><div class="footer footer-default">
 
 </div>
 </section>

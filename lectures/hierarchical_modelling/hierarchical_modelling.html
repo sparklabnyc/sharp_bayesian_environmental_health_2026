@@ -391,7 +391,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-color="#f3f4f4" data-background-image="../../assets/bmeh_normal.png" data-background-position="60% 120%" data-background-size="80%" class="quarto-title-block center">
+<section id="title-slide" data-background-color="#f3f4f4" data-background-image="assets/bmeh_normal.png" data-background-position="60% 120%" data-background-size="80%" class="quarto-title-block center">
   <h1 class="title">Hierarchical modelling</h1>
   <p class="subtitle">Bayesian multilevel models</p>
 
@@ -531,7 +531,7 @@ $ week                    &lt;dbl&gt; 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 20
 <li class="fragment">Complete data. <span style="color:red">Missingness is common</span>.</li>
 </ul>
 </section>
-<section id="what-we-want-beyond-linear-model" class="slide level2">
+<section id="what-we-want-beyond-linear-model" class="slide level2 smaller">
 <h2>What we want beyond linear model</h2>
 <ul>
 <li class="fragment">To appropriately model grouped or nested data (e.g., individuals within regions, time within subjects).</li>
@@ -542,7 +542,7 @@ $ week                    &lt;dbl&gt; 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 20
 <li class="fragment">To introduce structure in parameters, linking them through shared hyperparameters.</li>
 </ul>
 </section>
-<section id="what-we-want-beyond-linear-model-1" class="slide level2">
+<section id="what-we-want-beyond-linear-model-1" class="slide level2 smaller">
 <h2>What we want beyond linear model</h2>
 <ul>
 <li class="fragment">To propagate uncertainty across levels of the model (data, parameters, hyperparameters).</li>
@@ -567,10 +567,10 @@ $ week                    &lt;dbl&gt; 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 20
 </center></section>
 <section id="complete-pooling-from-lab" class="slide level2">
 <h2>Complete pooling (from lab)</h2>
-<p>Priors <span class="math display">\[
+<p>Priors: <span class="math display">\[
 \alpha \sim N(0, 5)
 \]</span></p>
-<p>Likelihood <span class="math display">\[
+<p>Likelihood: <span class="math display">\[
 \begin{split}
 y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 \log(\mu_i) &amp;= \log(E_i) + \alpha
@@ -594,10 +594,10 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 </center></section>
 <section id="no-pooling-from-lab" class="slide level2">
 <h2>No pooling (from lab)</h2>
-<p>Priors <span class="math display">\[
+<p>Priors: <span class="math display">\[
 \alpha_j \sim N(0, 1) \quad j = 1,..., N_p
 \]</span></p>
-<p>Likelihood <span class="math display">\[
+<p>Likelihood: <span class="math display">\[
 \begin{split}
 y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 \log(\mu_i) &amp;= \log(E_i) + \alpha_{j[i]}
@@ -639,14 +639,14 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 </center></section>
 <section id="partial-pooling-from-lab" class="slide level2">
 <h2>Partial pooling (from lab)</h2>
-<p>Priors <span class="math display">\[
+<p>Priors: <span class="math display">\[
 \begin{split}
 \alpha &amp;\sim N(0,5), \\
 \sigma_p &amp;\sim N^+(1) \\
 \theta_j &amp;\sim N(0, \sigma^2_p) \quad j = 1,..., N_p
 \end{split}
 \]</span></p>
-<p>Likelihood <span class="math display">\[
+<p>Likelihood: <span class="math display">\[
 \begin{split}
 y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 \log(\mu_i) &amp;= \log(E_i) + \alpha + \theta_{j[i]}
@@ -720,14 +720,14 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 </section>
 <section id="partial-pooling-again" class="slide level2">
 <h2>Partial pooling again</h2>
-<p>Priors <span class="math display">\[
+<p>Priors: <span class="math display">\[
 \begin{split}
 \alpha &amp;\sim N(0,5), \\
 \sigma_p &amp;\sim N^+(1) \\
 \theta_j &amp;\sim N(0, \sigma^2_p) \quad j = 1,..., N_p
 \end{split}
 \]</span></p>
-<p>Likelihood <span class="math display">\[
+<p>Likelihood: <span class="math display">\[
 \begin{split}
 y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 \log(\mu_i) &amp;= \log(E_i) + \alpha + \theta_{j[i]}
@@ -803,12 +803,12 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 <li class="fragment">Model selection is the process of choosing between different models based on their performance on a given dataset.</li>
 <li class="fragment">Frequentist:
 <ul>
-<li class="fragment">optimise different models on the <strong>training set</strong>,</li>
-<li class="fragment">and compare them on the <strong>test set</strong>.</li>
+<li class="fragment">Optimise different models on the <strong>training set</strong>.</li>
+<li class="fragment">Compare them on the <strong>test set</strong>.</li>
 </ul></li>
 <li class="fragment">Bayesian:
 <ul>
-<li class="fragment">use <strong>model evidence</strong> <span class="math inline">\(p(Data | Model_i)\)</span></li>
+<li class="fragment">Use <strong>model evidence</strong> <span class="math inline">\(p(Data | Model_i)\)</span></li>
 <li class="fragment">It tends to choose models which are just complex enough to model the data, but not overly complex (by which it avoids <strong>overfitting</strong>).</li>
 </ul></li>
 </ul>
@@ -824,7 +824,7 @@ y_i &amp;\sim \text{Pois}(\mu_i) \quad i = 1,..., N \\
 L - \text{maximum value of likelihood},\\
 k - \text{number of parameters}\]</span></li>
 <li class="fragment">BIC (Bayesian Information Criterion): <span class="math display">\[\text{BIC} = -2 \ln(L) + k \ln(n)\]</span></li>
-<li class="fragment">Widely Applicable Information Criterion (WAIC) <span class="math display">\[\text{WAIC} = -2 \sum_{i=1}^{n} \left( \ln(\hat{p}(y_i)) - \text{Var}(\ln(p(y_i))) \right)\]</span></li>
+<li class="fragment">Widely Applicable Information Criterion (WAIC): <span class="math display">\[\text{WAIC} = -2 \sum_{i=1}^{n} \left( \ln(\hat{p}(y_i)) - \text{Var}(\ln(p(y_i))) \right)\]</span></li>
 </ul>
 </section>
 <section>
@@ -847,7 +847,7 @@ k - \text{number of parameters}\]</span></li>
 <section id="questions" class="title-slide slide level1 center">
 <h1>Questions?</h1>
 
-<img src="../../assets/bmeh_normal.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<img src="assets/bmeh_normal.png" class="slide-logo r-stretch"><div class="footer footer-default">
 
 </div>
 </section>

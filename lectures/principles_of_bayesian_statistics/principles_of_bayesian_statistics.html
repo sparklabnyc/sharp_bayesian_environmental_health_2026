@@ -391,7 +391,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-color="#f3f4f4" data-background-image="../../assets/bmeh_normal.png" data-background-position="60% 120%" data-background-size="80%" class="quarto-title-block center">
+<section id="title-slide" data-background-color="#f3f4f4" data-background-image="assets/bmeh_normal.png" data-background-position="60% 120%" data-background-size="80%" class="quarto-title-block center">
   <h1 class="title">Principles of Bayesian statistics</h1>
   <p class="subtitle">Key ideas and concepts</p>
 
@@ -428,13 +428,13 @@ Robbie M. Parks
 <section id="this-course-is-for-those-who" class="slide level2">
 <h2>This course is for those who</h2>
 <ul>
-<li class="fragment">Are interested or who have heard about Bayesian modeling.</li>
+<li class="fragment">Are interested in or who have heard about Bayesian modeling.</li>
 <li class="fragment">Work in Environmental Health (or adjacent fields).</li>
 <li class="fragment">Have little theoretical or practical experience of Bayesian ideas.</li>
 <li class="fragment">Would like some tools and know-how to get started in an approachable and friendly setting.</li>
 <li class="fragment">People who would like to have some fun while learning!</li>
 <li class="fragment">Some equations will be there but mainly for reference.</li>
-<li class="fragment">Lots of code though throughout the two days…</li>
+<li class="fragment">There will be lots of code to get though over the next two days…</li>
 </ul>
 </section>
 <section id="r" class="slide level2">
@@ -482,7 +482,7 @@ Robbie M. Parks
 <ul>
 <li class="fragment"><code>RStudio</code> is an integrated development environment (IDE) for <code>R</code>.</li>
 <li class="fragment"><code>RStudio</code> provides a convenient graphical interface to <code>R</code>, making it more user-friendly, and providing many useful features.</li>
-<li class="fragment">Such features include direct code execution, tools for plotting, history, debugging and workspace management.</li>
+<li class="fragment">Such features include direct code execution, tools for plotting, history, debugging, and workspace management.</li>
 <li class="fragment">A more detailed background on to <code>RStudio</code> can be found at <a href="https://posit.co/about/">https://posit.co/about/</a>.</li>
 </ul>
 </section>
@@ -693,7 +693,7 @@ y_i &amp;\sim \text{Normal}(\mu_i, \sigma) \quad i = 1,..., N \\
 <p><img data-src="assets/big_red_cross.png" class="absolute" style="top: 350px; right: 50px; width: 200px; height: 200px; "></p>
 </section>
 <section id="bayes-theorem-prior-likelihood-and-posterior" class="slide level2">
-<h2>Bayes theorem, prior, likelihood and posterior</h2>
+<h2>Bayes theorem, prior, likelihood, and posterior</h2>
 <ul>
 <li class="fragment"><p><span class="math display">\[P(\theta|y) \propto P(y|\theta) P(\theta)\]</span></p></li>
 <li class="fragment"><p><span class="math inline">\(P(\theta)\)</span> is the <code>prior</code> (known or estimated a priori).</p></li>
@@ -765,7 +765,7 @@ y_i &amp;\sim \text{Normal}(\mu_i, \sigma) \quad i = 1,..., N \\
 <section id="obtaining-approximate-posterior-distribution" class="slide level2 smaller">
 <h2>Obtaining approximate posterior distribution</h2>
 <ul>
-<li class="fragment">Many different types of MCMC:
+<li class="fragment">Many different types of Markov Chain Monte Carlo (MCMC):
 <ul>
 <li class="fragment"><strong>Metropolis-Hastings</strong>:
 <ul>
@@ -841,7 +841,7 @@ y_i &amp;\sim \text{Normal}(\mu_i, \sigma) \quad i = 1,..., N \\
 <img data-src="assets/sample_example.png" class="r-stretch">
 </section>
 <section id="informative-or-non-informative-priors" class="slide level2">
-<h2>Informative or non-informative priors</h2>
+<h2>Informative or non-informative priors?</h2>
 <ul>
 <li class="fragment">A source of intrigue from pre-Bayesians is how priors are chosen.</li>
 <li class="fragment">Priors can be informed by existing knowledge.</li>
@@ -912,8 +912,8 @@ y_i &amp;\sim \text{Normal}(\mu_i, \sigma) \quad i = 1,..., N \\
 </div>
 
 <img data-src="assets/worse_priors.png" class="r-stretch"></section>
-<section id="non-conjugate-how-to-get-posterior" class="slide level2">
-<h2>Non-conjugate how to get posterior?</h2>
+<section id="how-to-get-non-conjugate-posterior" class="slide level2">
+<h2>How to get non-conjugate posterior?</h2>
 <ul>
 <li class="fragment">Some kind of software to help us implement models for inference.</li>
 <li class="fragment">Using <code>R</code>.</li>
@@ -938,7 +938,7 @@ y_i &amp;\sim \text{Normal}(\mu_i, \sigma) \quad i = 1,..., N \\
 <section id="illustrative-example-of-basic-regression-in-nimble" class="slide level2">
 <h2>Illustrative example of basic regression in <code>NIMBLE</code></h2>
 <ul>
-<li class="fragment">Let’s go through an example from the upcoming lab</li>
+<li class="fragment">Let’s go through an example from the upcoming lab.</li>
 </ul>
 </section>
 <section id="linear-regression" class="slide level2">
@@ -1101,7 +1101,7 @@ x3           0.29160573  0.28189340 0.301318063</code></pre>
 |-------------------------------------------------------|</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 50.27098 secs</code></pre>
+<pre><code>Time difference of 50.31507 secs</code></pre>
 </div>
 </div>
 </section>
@@ -1109,7 +1109,7 @@ x3           0.29160573  0.28189340 0.301318063</code></pre>
 <h2>Linear regression</h2>
 <div>
 <ul>
-<li>What is the summary of each estimated parameter from the samples? The following operations will help us understand.</li>
+<li>The following operations will help us to answer: What is the summary of each estimated parameter from the samples?</li>
 </ul>
 </div>
 <div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">library</span>(bayesplot)</span>
@@ -1121,7 +1121,7 @@ x3           0.29160573  0.28189340 0.301318063</code></pre>
 <h2>Linear regression</h2>
 <div>
 <ul>
-<li>What is the summary of each estimated parameter from the samples? The following operations will help us understand.</li>
+<li>The following operations will help us to answer: What is the summary of each estimated parameter from the samples?</li>
 </ul>
 </div>
 <div class="cell">
@@ -1277,7 +1277,7 @@ P(B|A) = \frac{P(A|B) P(B)}{P(A)}
 <section id="example-of-a-conjugate-pair-normal-normal" class="slide level2 smaller">
 <h2>Example of a conjugate pair: Normal-Normal</h2>
 <ul>
-<li class="fragment"><p>Likelihood</p></li>
+<li class="fragment"><p>Likelihood:</p></li>
 <li class="fragment"><p>Normal distribution is defined by two parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>.</p></li>
 <li class="fragment"><p>Bell curve.</p></li>
 <li class="fragment"><p><span class="math inline">\(\mu\)</span> is mean.</p></li>
@@ -1285,17 +1285,17 @@ P(B|A) = \frac{P(A|B) P(B)}{P(A)}
 <li class="fragment"><p><span class="math display">\[
 y|\mu,\sigma \sim Normal(\mu,\sigma^2)
 \]</span></p></li>
-<li class="fragment"><p>Prior</p></li>
+<li class="fragment"><p>Prior:</p></li>
 <li class="fragment"><p>Normal distribution is mathematically the conjugate of itself, with hyperparameters <span class="math inline">\(\mu_0\)</span> and <span class="math inline">\(\sigma_0\)</span>.</p></li>
 <li class="fragment"><p><span class="math display">\[
 \mu \sim Normal(\mu_0,\sigma_0^2)
 \]</span></p></li>
 </ul>
 </section>
-<section id="normal-normal" class="slide level2">
-<h2>Normal-Normal</h2>
+<section id="example-of-a-conjugate-pair-normal-normal-1" class="slide level2 smaller">
+<h2>Example of a conjugate pair: Normal-Normal</h2>
 <ul>
-<li class="fragment">Posterior</li>
+<li class="fragment">Posterior:</li>
 <li class="fragment">Because of conjugacy, there is an analytical solution for the posterior which is also normally distributed.</li>
 <li class="fragment">But this is usually not that useful when models get very complicated.</li>
 </ul>
@@ -1320,16 +1320,16 @@ y|\mu,\sigma \sim Normal(\mu,\sigma^2)
 <p><span class="math display">\[Normal(0,20)\]</span></p>
 
 <img data-src="principles_of_bayesian_statistics_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"></section>
-<section id="binomial-beta" class="slide level2 smaller">
-<h2>Binomial-Beta</h2>
+<section id="example-of-a-conjugate-pair-binomial-beta" class="slide level2 smaller">
+<h2>Example of a conjugate pair: Binomial-Beta</h2>
 <ul>
-<li class="fragment"><p>Likelihood</p></li>
+<li class="fragment"><p>Likelihood:</p></li>
 <li class="fragment"><p>Binomial distribution is when there is success (1) or failure (0) with the proportion of success (<span class="math inline">\(\pi\)</span>).</p></li>
 <li class="fragment"><p><span class="math inline">\(n\)</span> trials.</p></li>
 <li class="fragment"><p><span class="math display">\[
 y|\pi \sim Binomial(\pi,n)
 \]</span></p></li>
-<li class="fragment"><p>Prior</p></li>
+<li class="fragment"><p>Prior:</p></li>
 <li class="fragment"><p>Beta distribution is mathematically the conjugate of binomial defined by two parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p></li>
 <li class="fragment"><p>Beta distributuon is ‘natural’ fit becasue it ranges from 0 to 1.</p></li>
 <li class="fragment"><p><span class="math display">\[
@@ -1337,10 +1337,10 @@ y|\pi \sim Binomial(\pi,n)
 \]</span></p></li>
 </ul>
 </section>
-<section id="binomial-beta-1" class="slide level2">
-<h2>Binomial-Beta</h2>
+<section id="example-of-a-conjugate-pair-binomial-beta-1" class="slide level2 smaller">
+<h2>Example of a conjugate pair: Binomial-Beta</h2>
 <ul>
-<li class="fragment"><p>Posterior</p></li>
+<li class="fragment"><p>Posterior:</p></li>
 <li class="fragment"><p>Because of conjugacy, there is an analytical solution for the posterior.</p></li>
 <li class="fragment"><p><span class="math display">\[
 p(\pi|y) \sim Beta(y+a,n-y+b)
@@ -1377,17 +1377,17 @@ p(\pi|y) \sim Beta(y+a,n-y+b)
 <p><span class="math display">\[Beta(50,200)\]</span></p>
 
 <img data-src="principles_of_bayesian_statistics_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section>
-<section id="types-of-conjugate-pairs-poisson-gamma" class="slide level2 smaller">
-<h2>Types of conjugate pairs: Poisson-Gamma</h2>
+<section id="example-of-a-conjugate-pair-poisson-gamma" class="slide level2 smaller">
+<h2>Example of a conjugate pair: Poisson-Gamma</h2>
 <ul>
-<li class="fragment"><p>Likelihood</p></li>
+<li class="fragment"><p>Likelihood:</p></li>
 <li class="fragment"><p>Normal distribution is defined by on parameters <span class="math inline">\(\lambda\)</span>.</p></li>
 <li class="fragment"><p>Very common for count data.</p></li>
 <li class="fragment"><p><span class="math inline">\(\lambda\)</span> is rate.</p></li>
 <li class="fragment"><p><span class="math display">\[
 y|\lambda \sim Poisson(\lambda)
 \]</span></p></li>
-<li class="fragment"><p>Prior</p></li>
+<li class="fragment"><p>Prior:</p></li>
 <li class="fragment"><p>Gamma distribution is mathematically the conjugate of Poisson, with hyperparameters <span class="math inline">\(\mu_0\)</span> and <span class="math inline">\(\sigma_0\)</span>.</p></li>
 <li class="fragment"><p>Gamma distributuon is ‘natural’ fit becasue it ranges from 0 to <span class="math inline">\(\infty\)</span>.</p></li>
 <li class="fragment"><p><span class="math display">\[
@@ -1395,10 +1395,10 @@ y|\lambda \sim Poisson(\lambda)
 \]</span></p></li>
 </ul>
 </section>
-<section id="poisson-gamma" class="slide level2">
-<h2>Poisson-Gamma</h2>
+<section id="example-of-a-conjugate-pair-poisson-gamma-1" class="slide level2 smaller">
+<h2>Example of a conjugate pair: Poisson-Gamma</h2>
 <ul>
-<li class="fragment"><p>Posterior</p></li>
+<li class="fragment"><p>Posterior:</p></li>
 <li class="fragment"><p>Because of conjugacy, there is an analytical solution for the posterior.</p></li>
 <li class="fragment"><p><span class="math display">\[
 \rho | y \sim Gamma(a+y,b+E)
@@ -1428,7 +1428,7 @@ y|\lambda \sim Poisson(\lambda)
 <p><img data-src="principles_of_bayesian_statistics_files/figure-revealjs/unnamed-chunk-31-1.png" width="960"></p>
 </div>
 </div>
-<p><img src="../../assets/bmeh_normal.png" class="slide-logo"></p>
+<p><img src="assets/bmeh_normal.png" class="slide-logo"></p>
 <div class="footer footer-default">
 
 </div>

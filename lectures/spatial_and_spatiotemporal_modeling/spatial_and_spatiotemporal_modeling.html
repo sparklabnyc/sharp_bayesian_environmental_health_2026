@@ -326,8 +326,9 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-color="#f3f4f4" data-background-image="../../assets/bmeh_normal.png" data-background-position="60% 120%" data-background-size="80%" subparagraph="yes" class="quarto-title-block center">
+<section id="title-slide" data-background-color="#f3f4f4" data-background-image="assets/bmeh_normal.png" data-background-position="60% 120%" data-background-size="80%" subparagraph="yes" class="quarto-title-block center">
   <h1 class="title">Spatial and Spatio-temporal Modelling</h1>
+  <p class="subtitle">Structured space-time dependence</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -371,9 +372,9 @@ Garyfallos Konstantinoudis
 <section id="why-do-we-need-more-complex-models" class="slide level2">
 <h2>Why do we need more complex models?</h2>
 <ul>
-<li>In disease mapping estimates of disease risk can be unstable, leading to non-meaningful maps</li>
-<li>Accounting for residual spatial autocorrelation is important to have the correct uncertainty</li>
-<li>Sometimes they pick up unknown spatial confounding, leading to unbiased estimators</li>
+<li>In disease mapping estimates of disease risk can be unstable, leading to non-meaningful maps.</li>
+<li>Accounting for residual spatial autocorrelation is important to have the correct uncertainty.</li>
+<li>Sometimes they pick up unknown spatial confounding, leading to unbiased estimators.</li>
 </ul>
 </section>
 <section id="structure-of-the-talk" class="slide level2">
@@ -393,16 +394,16 @@ Garyfallos Konstantinoudis
 <section id="disease-mapping---background" class="slide level2">
 <h2>Disease mapping - background</h2>
 <ul>
-<li>To summarise spatial and spatio-temporal variation in disease risk</li>
+<li>To summarise spatial and spatio-temporal variation in disease risk.</li>
 <li>Rare disease and/or small areas: Poisson framework <span class="math display">\[O_i \sim \text{Poisson}(\lambda_i E_i)\]</span> where <span class="math inline">\(E_i\)</span> is the expected nb of cases and <span class="math inline">\(\lambda_i=\text{SMR}\)</span> in area <span class="math inline">\(i\)</span>.</li>
-<li>Non smoothed estimates of the SMR: <span class="math display">\[\text{SMR}_i = \frac{O_i}{E_i},\;\text{and} \;\text{Var(SMR)}_i = \frac{O_i}{E_i^2}\]</span></li>
+<li>Non smoothed estimates of the standardised mortality ratio (SMR): <span class="math display">\[\text{SMR}_i = \frac{O_i}{E_i},\;\text{and} \;\text{Var(SMR)}_i = \frac{O_i}{E_i^2}\]</span></li>
 </ul>
 </section>
 <section id="issues-with-crude-rr-estimates" class="slide level2">
 <h2>Issues with crude RR estimates</h2>
 <p>Calculating crude (non-smoothed) estimates of the SMR can be problematic:</p>
 <ul>
-<li>SMR is estimated independently: does not account for spatial correlation, ie makes no use of SMR estimates in other areas of the map, even though these are likely to be similar.</li>
+<li>SMR is estimated independently: does not account for spatial correlation, i.e.&nbsp;makes no use of SMR estimates in other areas of the map, even though these are likely to be similar.</li>
 <li>They are very imprecise: areas with small <span class="math inline">\(E_i\)</span> have high associated variance.</li>
 </ul>
 </section>
@@ -431,7 +432,7 @@ Garyfallos Konstantinoudis
 <ul>
 <li><strong>Globally</strong>: Smooth the rates towards the global mean.</li>
 <li><strong>Locally</strong>: Smooth the rates towards the local mean, using information about the adjacency structure.</li>
-<li><strong>Globally + Locally</strong>: Smooth the rates using information about the global mean and the adjacency structure</li>
+<li><strong>Globally + Locally</strong>: Smooth the rates using information about the global mean and the adjacency structure.</li>
 </ul>
 </section>
 <section id="global-smoothing" class="slide level2">
@@ -442,8 +443,8 @@ O_i \sim \text{Poisson}(\lambda_i E_i) \\
 \theta_i \sim \text{Normal}(0,\sigma_{\theta}^2)
 \]</span> <span class="math inline">\(\theta_i\)</span>: area specific random effects to account for overdispersion</p>
 <ul>
-<li>excess variation in the observed counts due to random noise</li>
-<li>latent variable which captures the effects of unknown or unmeasured area level covariates</li>
+<li>Excess variation in the observed counts due to random noise.</li>
+<li>Latent variable which captures the effects of unknown or unmeasured area level covariates.</li>
 </ul>
 <p><span class="math inline">\(\exp(\theta_i)\)</span>: RR in area i, relative to the overall SMR/SIR</p>
 </section>
@@ -464,15 +465,15 @@ O_i \sim \text{Poisson}(\lambda_i E_i) \\
 <li>Ignoring spatial dependence can lead to biased and inefficient inference.</li>
 <li>Interest in estimating the relationship between location and outcome.</li>
 </ul>
-<p><strong>Local smoothing</strong>: prior distribution for the random effects allowing for spatial correlation to help uncover spatial patterns</p>
+<p><strong>Local smoothing</strong>: prior distribution for the random effects allowing for spatial correlation to help uncover spatial patterns.</p>
 </section>
-<section id="specify-a-distribution-which-takes-into-account-information" class="slide level2">
-<h2>Specify a distribution which takes into account information</h2>
+<section id="specify-a-distribution-to-account-for-information" class="slide level2">
+<h2>Specify a distribution to account for information</h2>
 <ul>
 <li>Specify a distribution which takes into account information on neighbouring areas (<strong>adjacency matrix</strong>).</li>
 <li>Rule for determining the neighbours of each area: most common based on common boundary.</li>
-<li>Estimate <strong>spatial random effect</strong> for each area as if we knew the values of the spatial random effects in neighbouring areas</li>
-<li>Use of conditional autoregressive distributions (we are conditioning on knowing the neighbours)</li>
+<li>Estimate <strong>spatial random effect</strong> for each area as if we knew the values of the spatial random effects in neighbouring areas.</li>
+<li>Use of conditional autoregressive distributions. (we are conditioning on knowing the neighbours)</li>
 </ul>
 </section>
 <section id="example-queen-contiguity-in-switzerland-cantons" class="slide level2">
@@ -508,8 +509,8 @@ Var(\phi_i|\phi_j) = \sigma_{\phi}^2/n_i
 </div>
 </div>
 </section>
-<section id="example-with-childhood-cancers-in-switzerland-cont" class="slide level2">
-<h2>Example with childhood cancers in Switzerland (cont)</h2>
+<section id="example-with-childhood-cancers-in-switzerland-cont." class="slide level2">
+<h2>Example with childhood cancers in Switzerland (cont.)</h2>
 <ul>
 <li>Plot <span class="math inline">\(exp(\alpha + \phi_i)\)</span></li>
 </ul>
@@ -526,7 +527,7 @@ O_i \sim \text{Poisson}(\lambda_i E_i) \\
 \phi \sim \text{ICAR}(W, \sigma^2_{\phi})
 \]</span> priors for <span class="math inline">\(\alpha, \sigma_{\theta}^2 \; \text{and} \; \sigma^2_{\phi}\)</span></p>
 </section>
-<section id="example-with-childhood-cancers-in-switzerland-cont-1" class="slide level2">
+<section id="example-with-childhood-cancers-in-switzerland-cont" class="slide level2">
 <h2>Example with childhood cancers in Switzerland (cont)</h2>
 <ul>
 <li>Plot <span class="math inline">\(exp(\alpha + \theta_i + \phi_i)\)</span></li>
@@ -538,8 +539,8 @@ O_i \sim \text{Poisson}(\lambda_i E_i) \\
 <section id="use-bym-with-care" class="slide level2">
 <h2>Use BYM with care</h2>
 <ul>
-<li>ICAR model defined above is improper: the overall mean of the <span class="math inline">\(\phi_i\)</span> is not defined: <strong>sum-to-zero contraints</strong></li>
-<li>Inference may be sensitive to choice of hyperprior for the random effects variance or precision parameters</li>
+<li>ICAR model defined above is improper: the overall mean of the <span class="math inline">\(\phi_i\)</span> is not defined: <strong>sum-to-zero contraints</strong>.</li>
+<li>Inference may be sensitive to choice of hyperprior for the random effects variance or precision parameters.</li>
 <li>Other known issues we have not discussed about: different interpretation of the variances (marginal conditional), scalling the covariance matrix, etc.</li>
 </ul>
 </section>
@@ -569,9 +570,9 @@ b = \sigma_b*(\sqrt{1 - \rho}\theta + \sqrt{\rho}\phi) \\
 <section id="posterior-probability" class="slide level2">
 <h2>Posterior Probability</h2>
 <ul>
-<li>Mapping the posterior mean RR does (or residual RR) not make full use of the output of the Bayesian analysis that provides, for each area, samples from the whole posterior distribution of the relative risk.</li>
+<li>Mapping the posterior mean RR (or residual RR) does not make full use of the output of the Bayesian analysis that provides, for each area, samples from the whole posterior distribution of the relative risk.</li>
 <li>Mapping the probability that a RR is greater than a specified threshold of interest has been proposed by several authors (e.g.&nbsp;Clayton and Bernardinelli (1992)).</li>
-<li>Very effective method to identify areas characterised by elevated risk</li>
+<li>Very effective method to identify areas characterised by elevated risk.</li>
 </ul>
 </section>
 <section id="how-to-classify-areas-as-having-elevated-risk" class="slide level2">
@@ -621,7 +622,7 @@ O_i \sim \text{Poisson}(\lambda_i E_i) \\
 <section id="interpretation-of-the-parameters" class="slide level2">
 <h2>Interpretation of the parameters</h2>
 <ul>
-<li><span class="math inline">\(\exp(\beta)\)</span> is the relative risk of disease associated with a unit increase in exposure <span class="math inline">\(X\)</span> (when X continuous)</li>
+<li><span class="math inline">\(\exp(\beta)\)</span> is the relative risk of disease associated with a unit increase in exposure <span class="math inline">\(X\)</span> (when X continuous).</li>
 <li><span class="math inline">\(\exp(\theta_i + \phi_i)\)</span> is the residual or adjusted relative risk of disease in area <span class="math inline">\(i\)</span> after accounting for the effect of <span class="math inline">\(X\)</span>.</li>
 </ul>
 </section>
@@ -639,8 +640,8 @@ O_i \sim \text{Poisson}(\lambda_i E_i) \\
 <li><span class="math inline">\(\exp(\theta_i + \phi_i)\)</span> is the adjusted relative risk of disease in area <span class="math inline">\(i\)</span> after accounting for the effects of measured covariates</li>
 </ul>
 </section>
-<section id="example-hpv-vaccination-in-switzerland" class="slide level2">
-<h2>Example: HPV vaccination in Switzerland</h2>
+<section id="example-with-hpv-vaccination-in-switzerland" class="slide level2">
+<h2>Example with HPV vaccination in Switzerland</h2>
 <p><span class="math display">\[
 Y_{kit} \sim \text{Binomial}(p_{kit}) \\
 \text{logit}(p_{kit}) = \alpha + \beta_1 X_{1it} + \dots + \beta_k X_{kit} + \theta_i + \phi_i \\
@@ -681,11 +682,11 @@ Y_{kit} \sim \text{Binomial}(p_{kit}) \\
 <section id="cervical-cancers-among-hiv-positive-women" class="slide level2">
 <h2>Cervical cancers among HIV positive women</h2>
 <ul>
-<li>Global cohort composed of 1,700,000 persons living with HIV/AIDS</li>
-<li>SAM study, evaluating HIV related cancers in South Africa</li>
-<li>17% of adult women in South Africa over the age of 25 years are living with HIV</li>
-<li>High burden of cervical cancer: 43.1 cases per 100,000</li>
-<li>5 times more likely to develop cervical cancer</li>
+<li>Global cohort composed of 1,700,000 persons living with HIV/AIDS.</li>
+<li>SAM study, evaluating HIV related cancers in South Africa.</li>
+<li>17% of adult women in South Africa over the age of 25 years are living with HIV.</li>
+<li>High burden of cervical cancer: 43.1 cases per 100,000.</li>
+<li>5 times more likely to develop cervical cancer.</li>
 </ul>
 </section>
 <section id="exploratory-analysis-of-the-crude-rates" class="slide level2">
@@ -694,8 +695,8 @@ Y_{kit} \sim \text{Binomial}(p_{kit}) \\
 <img data-src="figures/CrudeSIR_hpv.png" style="width:100.0%">
 </center>
 </section>
-<section id="exploratory-analysis-of-the-crude-rates-cont" class="slide level2">
-<h2>Exploratory analysis of the crude rates (cont)</h2>
+<section id="exploratory-analysis-of-the-crude-rates-cont." class="slide level2">
+<h2>Exploratory analysis of the crude rates (cont.)</h2>
 <center>
 <img data-src="figures/CrudeSIRbyRegion.png" style="width:75.0%">
 </center>
@@ -717,20 +718,20 @@ O_{it} \sim \text{Poisson}(\lambda_{it} E_{it}) \\
 <img data-src="figures/RandomEffectInt1.png" style="width:100.0%">
 </center>
 </section>
-<section id="spacetime-spaghetti-plot" class="slide level2">
-<h2>Spacetime (Spaghetti plot)</h2>
+<section id="space-time-spaghetti-plot" class="slide level2">
+<h2>Space-time (Spaghetti plot)</h2>
 <center>
 <img data-src="figures/SpagSIRbyRegion.png" style="width:75.0%">
 </center>
 </section>
-<section id="spacetime-space-by-year" class="slide level2">
-<h2>Spacetime (Space by year)</h2>
+<section id="space-time-space-by-year" class="slide level2">
+<h2>Space-time (Space by year)</h2>
 <center>
 <img data-src="figures/MapsSIRbyRegion.png" style="width:90.0%">
 </center>
 </section>
-<section id="spacetime-interactions" class="slide level2">
-<h2>Spacetime interactions</h2>
+<section id="space-time-interactions" class="slide level2">
+<h2>Space-time interactions</h2>
 <div style="font-size:78%">
 <p><span class="math display">\[
 O_{it} \sim \text{Poisson}(\lambda_{it} E_{it}) \\
@@ -779,7 +780,7 @@ O_{it} \sim \text{Poisson}(\lambda_{it} E_{it}) \\
 <li>Extension to ecological regression and relevant interpretations</li>
 <li>Separable spatiotemporal models</li>
 <li>Higher spatiotemporal interactions</li>
-<li>Examples using childhood cancers, HPV vaccination and cervical cancers in South Africa</li>
+<li>Examples using childhood cancers, HPV vaccination, and cervical cancers in South Africa</li>
 </ul>
 <div style="color: #58b364">
 <p>Next : Coding these models in NIMBLE.</p>
@@ -808,7 +809,7 @@ O_{it} \sim \text{Poisson}(\lambda_{it} E_{it}) \\
 <section id="questions" class="title-slide slide level1 center">
 <h1>Questions?</h1>
 
-<img src="../../assets/bmeh_normal.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<img src="assets/bmeh_normal.png" class="slide-logo r-stretch"><div class="footer footer-default">
 
 </div>
 </section>
