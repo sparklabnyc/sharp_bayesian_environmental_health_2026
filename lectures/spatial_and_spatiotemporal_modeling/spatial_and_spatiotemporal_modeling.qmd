@@ -9,7 +9,7 @@ date: "08-15-2025"
 date-format: medium
 title-slide-attributes:
   data-background-color: "#f3f4f4"
-  data-background-image: "../../assets/bmeh_normal.png"
+  data-background-image: "assets/bmeh_normal.png"
   data-background-size: 80%
   data-background-position: 60% 120%
   subparagraph: yes
@@ -20,7 +20,7 @@ format:
     chalkboard:
       buttons: false
       preview-links: auto
-    logo: "../../assets/bmeh_normal.png"
+    logo: "assets/bmeh_normal.png"
     theme: [default, ../../assets/style.scss]
 ---
 
