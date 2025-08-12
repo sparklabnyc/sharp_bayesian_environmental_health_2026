@@ -9,7 +9,7 @@ date: 2025-08-14
 date-format: medium
 title-slide-attributes:
   data-background-color: "#f3f4f4"
-  data-background-image: "../../assets/bmeh_normal.png"
+  data-background-image: "assets/bmeh_normal.png"
   data-background-size: 80%
   data-background-position: 60% 120%
   subparagraph: yes
@@ -20,7 +20,7 @@ format:
     chalkboard:
       buttons: false
       preview-links: auto
-    logo: "../../assets/bmeh_normal.png"
+    logo: "assets/bmeh_normal.png"
     theme: [default, ../../assets/style.scss]
 ---
 
@@ -109,7 +109,7 @@ The **Bayesian Modeling for Environmental Health Workshop** is a two-day intensi
 | 4:30 - 5:00 | Final farewell |
 :::
 
-## What is your experience level with R? (need to update) {.smaller}
+## What is your experience level with R? {.smaller}
 
 ```{r}
 # Load packages
