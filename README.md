@@ -27,7 +27,7 @@ Below is the set of labs to follow throughout the two days:
 | 10:15 - 11:00 | [Principles of Bayesian statistics](/labs/principles_of_bayesian_statistics/principles_of_bayesian_statistics.qmd) (Hands-on Lab) |
 | 11:00 - 11:15 | Break |
 | 11:15 - 12:00 | [Bayesian workflow](/lectures/bayesian_workflow/bayesian_workflow.qmd) (Lecture) |
-| 12:00 - 1:00 | Lunch |
+| 12:00 - 1:00 | Lunch and package installation session |
 | 1:00 - 1:45 | [Hierarchical modeling](/lectures/hierarchical_modelling/hierarchical_modelling.qmd) (Lecture) |
 | 1:45 - 2:00 | Break |
 | 2:00 - 2:45 | [Hierarchical modelling](/labs/hierarchical_modelling/hierarchical_modelling.qmd) (Hands-on Lab) |
