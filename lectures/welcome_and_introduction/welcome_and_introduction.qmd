@@ -77,11 +77,11 @@ The **Bayesian Modeling for Environmental Health Workshop** is a two-day intensi
 | 10:15 - 11:00 | Principles of Bayesian statistics (Hands-on Lab) |
 | 11:00 - 11:15 | Break |
 | 11:15 - 12:00 | Bayesian workflow (Lecture) |
-| 12:00 - 1:00 | Lunch |
+| 12:00 - 1:00 | Lunch and package installation session |
 | 1:00 - 1:45 | Hierarchical modeling (Lecture) |
 | 1:45 - 2:00 | Break |
 | 2:00 - 2:45 | Hierarchical modelling (Hands-on Lab) |
-| 2:45 - 3:00 | Questions and wrap-up |
+| 2:45 - 3:00 | Break |
 | 3:00 - 3:45 | Non-linear regression (Lecture) |
 | 3:45 - 4:00 | Break |
 | 4:00 - 4:45 | Non-linear regression (Hands-on Lab) |
