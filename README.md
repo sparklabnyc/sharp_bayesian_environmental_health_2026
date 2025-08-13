@@ -31,7 +31,7 @@ Below is the set of labs to follow throughout the two days:
 | 1:00 - 1:45 | [Hierarchical modeling](/lectures/hierarchical_modelling/hierarchical_modelling.qmd) (Lecture) |
 | 1:45 - 2:00 | Break |
 | 2:00 - 2:45 | [Hierarchical modelling](/labs/hierarchical_modelling/hierarchical_modelling.qmd) (Hands-on Lab) |
-| 2:45 - 3:00 | Questions and wrap-up |
+| 2:45 - 3:00 | Break |
 | 3:00 - 3:45 | [Non-linear regression](/lectures/non_linear_regression/non_linear_regression.qmd) (Lecture) |
 | 3:45 - 4:00 | Break |
 | 4:00 - 4:45 | [Non-linear regression](/labs/non_linear_regression/non_linear_regression.qmd) (Hands-on Lab) |
