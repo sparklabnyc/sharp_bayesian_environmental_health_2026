@@ -16,7 +16,9 @@ This workshop is largely written in [`NIMBLE`](https://r-nimble.org/). There are
 
 Below is the set of labs to follow throughout the two days:
 
-### Day 1 (August 14th 2025)
+### Day 1 (August 5th 2026)
+
+TBC
 
 | Time | Activity |
 |----|----|
@@ -37,7 +39,9 @@ Below is the set of labs to follow throughout the two days:
 | 4:00 - 4:45 | [Non-linear regression](/labs/non_linear_regression/non_linear_regression.qmd) (Hands-on Lab) |
 | 4:45 - 5:00 | Questions and wrap-up |
 
-### Day 2 (August 15th 2025)
+### Day 2 (August 6th 2026)
+
+TBC
 
 | Time | Activity |
 |----|----|
@@ -55,6 +59,10 @@ Below is the set of labs to follow throughout the two days:
 | 3:00 - 3:45 | [Advanced models](/labs/advanced_models/advanced_models.qmd) (Hands-on Lab) |
 | 3:45 - 4:30 | Interactive panel discussion & course wrap-up |
 | 4:30 - 5:00 | Final farewell |
+
+### Day 3 (August 7th 2026)
+
+TBC
 
 ## Notes for those working on the repo
 
