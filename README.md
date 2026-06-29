@@ -44,7 +44,7 @@ Below is the set of labs to follow throughout the two days:
 | 9:00 - 9:45 | [Non-linear regression](/lectures/non_linear_regression/non_linear_regression.qmd) (Lecture) |
 | 9:45 - 10:30 | [Non-linear regression](/labs/non_linear_regression/non_linear_regression.qmd) (Hands-on Lab) |
 | 10:30 - 10:45 | Break |
-| 10:45 - 11:45 | [Spatial and spatio-temporal modeling] |(/lectures/spatial_and_spatiotemporal_modeling/spatial_and_spatiotemporal_modeling.qmd) (Lecture) |
+| 10:45 - 11:45 | [Spatial and spatio-temporal modeling](/lectures/spatial_and_spatiotemporal_modeling/spatial_and_spatiotemporal_modeling.qmd) (Lecture) |
 | 11:45 - 12:45 | Lunch |
 | 12:45 - 1:45 | [Spatial and spatio-temporal modelling](/labs/spatial_and_spatiotemporal_modeling/spatial_and_spatiotemporal_modeling.qmd) (Hands-on Lab) |
 | 1:45 - 2:00 | Break |
@@ -64,10 +64,10 @@ Below is the set of labs to follow throughout the two days:
 | 10:15 - 11:15 | [Advanced models](/labs/advanced_models/advanced_models.qmd) (Hands-on Lab) |
 | 11:15 - 11:45 | Attribution (Lecture)|
 | 11:45 - 12:45 | Lunch |
-| 12:45 - 1:30 | [Scaling models](/labs/scaling_models/scaling_models.qmd) (Lecture) |
+| 12:45 - 1:30 | [Scaling models](/lectures/scaling_models/scaling_models.qmd) (Lecture) |
 | 1:30 - 2:15 | [Scaling models](/labs/scaling_models/scaling_models.qmd) (Lab) |
 | 2:15 - 2:30 | Break |
-| 2:30 - 3:30 | Potential projects discussion|
+| 2:30 - 3:30 | Potential projects discussion |
 | 3:30 - 4:00 | Panel discussion |
 | 4:00 - 4:15 | Group photo |
 | 4:15 - 5:00 | Final farewell |
