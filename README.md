@@ -1,5 +1,11 @@
 # SHARP: Bayesian Modeling for Environmental Health Workshop
 
+TO DO: 
+
+Akis - Priors
+Robbie - INLA
+Robbie - Scaling
+
 ![](assets/bmeh-1200x630.jpg)
 
 ## Introduction
@@ -18,51 +24,72 @@ Below is the set of labs to follow throughout the two days:
 
 ### Day 1 (August 5th 2026)
 
-TBC
-
 | Time | Activity |
 |----|----|
 | 8:30 - 9:00 | Check in and breakfast |
 | 9:00 - 9:15 | [Welcome and introduction](/lectures/welcome_and_introduction/welcome_and_introduction.qmd) |
 | 9:15 - 10:00 | [Principles of Bayesian statistics](/lectures/principles_of_bayesian_statistics/principles_of_bayesian_statistics.qmd) (Lecture) |
-| 10:00 - 10:15 | Break |
-| 10:15 - 11:00 | [Principles of Bayesian statistics](/labs/principles_of_bayesian_statistics/principles_of_bayesian_statistics.qmd) (Hands-on Lab) |
-| 11:00 - 11:15 | Break |
-| 11:15 - 12:00 | [Bayesian workflow](/lectures/bayesian_workflow/bayesian_workflow.qmd) (Lecture) |
-| 12:00 - 1:00 | Lunch and package installation session |
-| 1:00 - 1:45 | [Hierarchical modeling](/lectures/hierarchical_modelling/hierarchical_modelling.qmd) (Lecture) |
-| 1:45 - 2:00 | Break |
-| 2:00 - 2:45 | [Hierarchical modelling](/labs/hierarchical_modelling/hierarchical_modelling.qmd) (Hands-on Lab) |
-| 2:45 - 3:00 | Break |
-| 3:00 - 3:45 | [Non-linear regression](/lectures/non_linear_regression/non_linear_regression.qmd) (Lecture) |
-| 3:45 - 4:00 | Break |
-| 4:00 - 4:45 | [Non-linear regression](/labs/non_linear_regression/non_linear_regression.qmd) (Hands-on Lab) |
+| 10:00 - 10:45 | [Principles of Bayesian statistics](/labs/principles_of_bayesian_statistics/principles_of_bayesian_statistics.qmd) (Hands-on Lab) |
+| 10:45 - 11:00 | Break |
+| 11:00 - 11:45 | [Bayesian workflow](/lectures/bayesian_workflow/bayesian_workflow.qmd) (Lecture) |
+| 11:45 - 12:45 | Lunch |
+| 12:45 - 1:30 | [Bayesian workflow](/lab/bayesian_workflow/bayesian_workflow.qmd) (Lab)  |
+| 1:30 - 1:45 | Break |
+| 1:45 - 2:30 | [Hierarchical modeling](/lectures/hierarchical_modelling/hierarchical_modelling.qmd) (Lecture) |
+| 2:30 - 3:15 | [Hierarchical modelling](/labs/hierarchical_modelling/hierarchical_modelling.qmd) (Hands-on Lab) |
+| 3:15 - 3:30 | Break |
+| 3:30 - 4:15 | [Priors](/lectures/priors/priors.qmd) (Lecture) |
+| 4:15 - 4:45 | [Priors](/labs/priors/priors.qmd) (Lab) |
 | 4:45 - 5:00 | Questions and wrap-up |
+
+Robbie until 1:30, Akis after
 
 ### Day 2 (August 6th 2026)
 
-TBC
-
 | Time | Activity |
 |----|----|
+
 | 8:30 - 9:00 | Check in and breakfast |
-| 9:00 - 10:00 | [Spatial and spatio-temporal modeling](/lectures/spatial_and_spatiotemporal_modeling/spatial_and_spatiotemporal_modeling.qmd) (Lecture) |
-| 10:00 - 10:15 | Break |
-| 10:15 - 11:00 | [Spatial and spatio-temporal modelling](/labs/spatial_and_spatiotemporal_modeling/spatial_and_spatiotemporal_modeling.qmd) (Hands-on Lab) |
-| 11:00 - 11:15 | Break |
-| 11:15 - 12:00 | [Software options](lectures/software_options/software_options.qmd) (Lecture) |
-| 12:00 - 1:00 | Lunch |
-| 1:00 - 1:45 | [Software options](/labs/software_options/software_options.qmd) (Hands-on Lab) |
+| 9:00 - 9:45 | [Non-linear regression](/lectures/non_linear_regression/non_linear_regression.qmd) (Lecture) |
+| 9:45 - 10:30 | [Non-linear regression](/labs/non_linear_regression/non_linear_regression.qmd) (Hands-on Lab) |
+| 10:30 - 10:45 | Break |
+| 10:45 - 11:45 | [Spatial and spatio-temporal modeling] |(/lectures/spatial_and_spatiotemporal_modeling/spatial_and_spatiotemporal_modeling.qmd) (Lecture) |
+| 11:45 - 12:45 | Lunch |
+| 12:45 - 1:45 | [Spatial and spatio-temporal modelling](/labs/spatial_and_spatiotemporal_modeling/spatial_and_spatiotemporal_modeling.qmd) (Hands-on Lab) |
 | 1:45 - 2:00 | Break |
-| 2:00 - 2:45 | [Advanced models](lectures/advanced_models/advanced_models.qmd) (Lecture) |
+| 2:00 - 2:45 | [Software options](lectures/software_options/software_options.qmd) (Lecture) |
 | 2:45 - 3:00 | Break |
-| 3:00 - 3:45 | [Advanced models](/labs/advanced_models/advanced_models.qmd) (Hands-on Lab) |
-| 3:45 - 4:30 | Interactive panel discussion & course wrap-up |
-| 4:30 - 5:00 | Final farewell |
+| 3:00 - 3:45 | [R-INLA](/lectures/inla/inla.qmd) (Lecture) |
+| 3:45 - 4:30 | [R-INLA](/labs/inla/inla.qmd) (Lab) |
+| 4:30 - 5:00 | Questions, survey on projects, and wrap-up |
+
+Akis until 2:00, Robbie after
 
 ### Day 3 (August 7th 2026)
 
-TBC
+| 8:30 - 9:00 | Check in and breakfast |
+| 9:00 - 10:00 | [Advanced models](lectures/advanced_models/advanced_models.qmd) (Lecture) |
+| 10:00 - 10:15 | Break |
+| 10:15 - 11:15 | [Advanced models](/labs/advanced_models/advanced_models.qmd) (Hands-on Lab) |
+| 11:15 - 11:45 | Attribution (Lecture)|
+| 11:45 - 12:45 | Lunch |
+| 12:45 - 1:30 | [Scaling models](/labs/scaling_models/scaling_models.qmd) (Lecture) |
+| 1:30 - 2:15 | [Scaling models](/labs/scaling_models/scaling_models.qmd) (Lab) |
+| 2:15 - 2:30 | Break |
+| 2:30 - 3:30 | Potential projects discussion|
+| 3:30 - 4:00 | Panel discussion |
+| 4:00 - 4:15 | Group photo |
+| 4:15 - 5:00 | Final farewell |
+
+Akis until 12:45, Robbie after
+
+Future directions and panel and discussion of potential projects (and potentially how we can work together)
+
+Final farewell
+
+| 4:30 - 5:00 | Final farewell |
+
+SPDEs in 2027
 
 ## Notes for those working on the repo
 
