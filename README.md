@@ -88,6 +88,7 @@ Quarto is pretty cool. I won't bore you, but have a look at the [docs](https://q
 
 ## Other material
 https://gkonstantinoudis.github.io/teaching/
+
 https://github.com/sparklabnyc/resources/wiki
 
 TO DO: 
