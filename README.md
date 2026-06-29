@@ -1,16 +1,10 @@
 # SHARP: Bayesian Modeling for Environmental Health Workshop
 
-TO DO: 
-
-Akis - Priors
-Robbie - INLA
-Robbie - Scaling
-
 ![](assets/bmeh-1200x630.jpg)
 
 ## Introduction
 
-GitHub repo through which we're developing and sharing materials for the SHARP Bayesian Modeling for Environmental Health Workshop, taking place in person during August 14th-15th 2025.
+GitHub repo through which we're developing and sharing materials for the SHARP Bayesian Modeling for Environmental Health Workshop, taking place in person during August 5th-7th 2026.
 
 ## Notes for attendees
 
@@ -18,7 +12,7 @@ The workshop will be a series of lectures and interactive supervised lab session
 
 We will be using `Posit (RStudio) Cloud`, which assumes knowledge of `R` and `RStudio`. We will also ask you to pull the final versions of the `GitHub` repo to your Cloud account. The basics of doing this are in a previously-created guide found via [another guide repo](https://github.com/rmp15/rstudio_cloud_tutorial/tree/main).
 
-This workshop is largely written in [`NIMBLE`](https://r-nimble.org/). There are also several elements in [`R-INLA`](https://www.r-inla.org/).
+This workshop is written partly in [`NIMBLE`](https://r-nimble.org/). There are also several elements later on in [`R-INLA`](https://www.r-inla.org/).
 
 Below is the set of labs to follow throughout the two days:
 
@@ -42,8 +36,6 @@ Below is the set of labs to follow throughout the two days:
 | 4:15 - 4:45 | [Priors](/labs/priors/priors.qmd) (Lab) |
 | 4:45 - 5:00 | Questions and wrap-up |
 
-Robbie until 1:30, Akis after
-
 ### Day 2 (August 6th 2026)
 
 | Time | Activity |
@@ -63,8 +55,6 @@ Robbie until 1:30, Akis after
 | 3:45 - 4:30 | [R-INLA](/labs/inla/inla.qmd) (Lab) |
 | 4:30 - 5:00 | Questions, survey on projects, and wrap-up |
 
-Akis until 2:00, Robbie after
-
 ### Day 3 (August 7th 2026)
 
 | 8:30 - 9:00 | Check in and breakfast |
@@ -80,16 +70,6 @@ Akis until 2:00, Robbie after
 | 3:30 - 4:00 | Panel discussion |
 | 4:00 - 4:15 | Group photo |
 | 4:15 - 5:00 | Final farewell |
-
-Akis until 12:45, Robbie after
-
-Future directions and panel and discussion of potential projects (and potentially how we can work together)
-
-Final farewell
-
-| 4:30 - 5:00 | Final farewell |
-
-SPDEs in 2027
 
 ## Notes for those working on the repo
 
@@ -108,3 +88,15 @@ Quarto is pretty cool. I won't bore you, but have a look at the [docs](https://q
 ## Other material
 https://gkonstantinoudis.github.io/teaching/
 https://github.com/sparklabnyc/resources/wiki
+
+TO DO: 
+
+Akis - Priors\
+Robbie - INLA\
+Robbie - Scaling
+
+Day 1: Robbie until 1:30, Akis after
+Day 2: Akis until 2:00, Robbie after
+Day 3: Akis until 12:45, Robbie after
+
+SPDEs in 2027?
