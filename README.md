@@ -40,7 +40,6 @@ Below is the set of labs to follow throughout the two days:
 
 | Time | Activity |
 |----|----|
-
 | 8:30 - 9:00 | Check in and breakfast |
 | 9:00 - 9:45 | [Non-linear regression](/lectures/non_linear_regression/non_linear_regression.qmd) (Lecture) |
 | 9:45 - 10:30 | [Non-linear regression](/labs/non_linear_regression/non_linear_regression.qmd) (Hands-on Lab) |
@@ -57,6 +56,8 @@ Below is the set of labs to follow throughout the two days:
 
 ### Day 3 (August 7th 2026)
 
+| Time | Activity |
+|----|----|
 | 8:30 - 9:00 | Check in and breakfast |
 | 9:00 - 10:00 | [Advanced models](lectures/advanced_models/advanced_models.qmd) (Lecture) |
 | 10:00 - 10:15 | Break |
