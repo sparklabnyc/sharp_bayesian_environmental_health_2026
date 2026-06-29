@@ -87,8 +87,7 @@ Run `pre-commit install` to install the hooks. You now won't be able to commit u
 Quarto is pretty cool. I won't bore you, but have a look at the [docs](https://quarto.org/docs/guide/). Here, we're using it for [presentations](https://quarto.org/docs/presentations/revealjs/). It's designed by the folks at `RStudio`, so you `R` folk will be happy. Make a `.qmd` file and run `quarto render *.qmd` to generate the `html`, which you can open in browser. We can get fancy and import our own `css` to have a consistent theme for out presentations.
 
 ## Other material
-https://gkonstantinoudis.github.io/teaching/
-
+https://gkonstantinoudis.github.io/teaching/ \
 https://github.com/sparklabnyc/resources/wiki
 
 TO DO: 
